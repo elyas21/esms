@@ -1,0 +1,41 @@
+<div class="container" class="col-md-6 offset-md-3 mt-5">
+  <h1>Add Current Class Year</h1>
+  <form (ngSubmit)="onSubmit(settingForm.value)" #settingForm="ngForm">
+
+    <mat-label>Current</mat-label>
+    <mat-form-field>
+      <mat-select
+        placeholder="{{ semisterClassYear ? classYearList[0]?.name : 'Current Class Year' }}"
+        [(ngModel)]="semisterClassYear"
+        name="semisterClassYear"
+      >
+        <mat-option *ngFor="let item of classYearList | async " [value]="item.id">
+          {{ item.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> 
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div class="container" class="col-md-6 offset-md-3 mt-5">
+  <h1>Add Current Class Year</h1>
+  <form (ngSubmit)="onSubmitLastYear(lastYearForm.value)" #lastYearForm="ngForm">
+
+    <mat-label>Last</mat-label>
+    <mat-form-field>
+      <mat-select
+        placeholder="{{ semisterClassYear ? classYearList[0]?.name : 'Last Class Year' }}"
+        [(ngModel)]="semisterClassYear"
+        name="semisterClassYear"
+      >
+        <mat-option *ngFor="let item of classYearList | async " [value]="item.id">
+          {{ item.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> 
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

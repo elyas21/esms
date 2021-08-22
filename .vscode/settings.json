@@ -1,0 +1,9 @@
+{
+  "files.exclude": {
+    "**.spec.ts": true,
+    "/try-this/": true,
+    "/projects/**": true,
+    "/public/": true,
+    "/e2e/": true,
+  }
+}

@@ -1,0 +1,102 @@
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-end">
+    <li class="page-item">
+      <h6>Total Students {{ data?.count }}</h6>
+    </li>
+    <li class="page-item" [class.active]="page == 0">
+      <a class="page-link" (click)="naved(0)">Start</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" (click)="naved(page - 2)" *ngIf="page > 1">{{ page - 2 }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" (click)="naved(page - 1)" *ngIf="page > 0">{{ page - 1 }}</a>
+    </li>
+    <li class="page-item active">
+      <a class="page-link" (click)="naved(page)">{{ page }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" (click)="naved(page + 1)" *ngIf="noPage > page">{{ page + 1 }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" (click)="naved(page + 2)" *ngIf="noPage > page + 1">{{ page + 2 }}</a>
+    </li>
+    <li class="page-item" [class.active]="page == noPage">
+      <a class="page-link" (click)="naved(noPage)">End</a>
+    </li>
+  </ul>
+</nav>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Student Id</th>
+      <th scope="col">Student Name</th>
+      <th scope="col">Current Grade</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of dataSource; let i = index" [ngClass]="{ 'bg-secondary': d.flag }">
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.studentId"
+            name="d.studentId"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.studentName"
+            name="d.studentName"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [hidden]="d.flag === true"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.currentGrade"
+            name="d.currentGrade"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <button
+          (click)="cancleUpdate(d, $event, d.isNew, i)"
+          [hidden]="d.flag ? null : true"
+          class="btn btn-warning"
+        >
+          Cancle
+        </button>
+        <button
+          (click)="selectedUser(d, $event)"
+          [hidden]="d.isNew ? true : null"
+          class="btn btn-info"
+        >
+          Update
+        </button>
+        <a [routerLink]="['../../../detail', d.studentId]">View</a>
+      </td>
+      <td>
+        <button (click)="remove(d, i)" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

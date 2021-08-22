@@ -1,0 +1,95 @@
+<mat-expansion-panel class="width-80" #showSeo expanded="showSeo">
+  <mat-expansion-panel-header>
+    <mat-toolbar>
+      <span *ngIf="!selectedDay && !seletedMonth">
+        DATE AND MONTH
+      </span>
+      <span *ngIf="selectedDay && seletedMonth"
+        ><strong>{{
+          '     ' + '  Month  ' + seletedMonth + '  Day   ' + selectedDay
+        }}</strong></span
+      ></mat-toolbar
+    >
+  </mat-expansion-panel-header>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card fxFlex.gt-xs="1 1 60%" fxFlex="1 1 76%">
+      <mat-card-header>
+        <nav aria-label="Page navigation example">
+          <div class="form-group">
+            <mat-select
+              class="form-control"
+              placeholder="seletedMonth"
+              [(ngModel)]="seletedMonth"
+              name="seletedMonth"
+            >
+              <mat-option *ngFor="let item of months" [value]="item.no">
+                {{ item.name }}
+              </mat-option>
+            </mat-select>
+          </div>
+        </nav>
+      </mat-card-header>
+      <div class="grid-container--fill">
+        <button
+          (click)="[gotFiller(seletedMonth, item), (showSeo.expanded = false)]"
+          mat-button
+          class="grid-element"
+          *ngFor="let item of days"
+        >
+          {{ item }}
+        </button>
+      </div>
+      <mat-card-actions>
+        <button mat-button>Ok</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</mat-expansion-panel>
+
+<div fxLayout="row" fxLayoutAlign="center center">
+  <table fxFlex.gt-sm="1 1 60%" *ngIf="dataSource" class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Student</th>
+        <th scope="col">mid</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of dataSource; let i = index" [ngClass]="{ 'bg-secondary': d.flag }">
+        <td>
+          <div class="form-group">
+            <input
+              [class.editRow]="d.flag === true"
+              [attr.disabled]="d.flag ? null : true"
+              [(ngModel)]="d.student"
+              name="d.student"
+              type="text"
+              class="form-control"
+            />
+          </div>
+        </td>
+        <td>
+          <div class="form-group">
+            <!-- <input
+              [class.editRow]="d.flag === true"
+              [attr.disabled]="d.flag ? null : true"
+              [(ngModel)]="d.day"
+              name="d.day"
+              type="text"
+              class="form-control"
+            /> -->
+
+            <mat-select placeholder="{{ d.day }}" matNativeControl [(ngModel)]="d.day">
+              <mat-option (click)="updateAttendace(d)" value="A">A</mat-option>
+              <mat-option (click)="updateAttendace(d)" value="P">P</mat-option>
+              <mat-option (click)="updateAttendace(d)" value="H">H</mat-option>
+              <mat-option (click)="updateAttendace(d)" value="W">W</mat-option>
+              <mat-option (click)="updateAttendace(d)" value="F">F</mat-option>
+              <mat-option (click)="updateAttendace(d)" value="L">L</mat-option>
+            </mat-select>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

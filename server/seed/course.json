@@ -1,0 +1,182 @@
+[
+  {
+    "courseId": "mat-kg-1",
+    "school": "school-0"
+  },
+  {
+    "courseId": "mat-kg-2",
+    "school": "school-0"
+  },
+  {
+    "courseId": "mat-kg-3",
+    "school": "school-0"
+  },
+  {
+    "courseId": "mat-grade-1",
+    "school": "school-0"
+  },
+  {
+    "courseId": "mat-grade-2",
+    "school": "school-0"
+  },
+  {
+    "courseId": "mat-grade-3",
+    "school": "school-0"
+  },
+  {
+    "courseId": "mat-grade-4",
+    "school": "school-0"
+  },
+  {
+    "courseId": "mat-grade-5",
+    "school": "school-0"
+  },
+  {
+    "courseId": "mat-grade-6",
+    "school": "school-0"
+  },
+  {
+    "courseId": "eng-kg-1",
+    "school": "school-0"
+  },
+  {
+    "courseId": "eng-kg-2",
+    "school": "school-0"
+  },
+  {
+    "courseId": "eng-kg-3",
+    "school": "school-0"
+  },
+  {
+    "courseId": "eng-grade-1",
+    "school": "school-0"
+  },
+  {
+    "courseId": "eng-grade-2",
+    "school": "school-0"
+  },
+  {
+    "courseId": "eng-grade-3",
+    "school": "school-0"
+  },
+  {
+    "courseId": "eng-grade-4",
+    "school": "school-0"
+  },
+  {
+    "courseId": "eng-grade-5",
+    "school": "school-0"
+  },
+  {
+    "courseId": "eng-grade-6",
+    "school": "school-0"
+  },
+  {
+    "courseId": "amh-kg-1",
+    "school": "school-0"
+  },
+  {
+    "courseId": "amh-kg-2",
+    "school": "school-0"
+  },
+  {
+    "courseId": "amh-kg-3",
+    "school": "school-0"
+  },
+  {
+    "courseId": "amh-grade-1",
+    "school": "school-0"
+  },
+  {
+    "courseId": "amh-grade-2",
+    "school": "school-0"
+  },
+  {
+    "courseId": "amh-grade-3",
+    "school": "school-0"
+  },
+  {
+    "courseId": "amh-grade-4",
+    "school": "school-0"
+  },
+  {
+    "courseId": "amh-grade-5",
+    "school": "school-0"
+  },
+  {
+    "courseId": "amh-grade-6",
+    "school": "school-0"
+  },
+  {
+    "courseId": "science-kg-1",
+    "school": "school-0"
+  },
+  {
+    "courseId": "science-kg-2",
+    "school": "school-0"
+  },
+  {
+    "courseId": "science-kg-3",
+    "school": "school-0"
+  },
+  {
+    "courseId": "science-grade-1",
+    "school": "school-0"
+  },
+  {
+    "courseId": "science-grade-2",
+    "school": "school-0"
+  },
+  {
+    "courseId": "science-grade-3",
+    "school": "school-0"
+  },
+  {
+    "courseId": "science-grade-4",
+    "school": "school-0"
+  },
+  {
+    "courseId": "science-grade-5",
+    "school": "school-0"
+  },
+  {
+    "courseId": "science-grade-6",
+    "school": "school-0"
+  },
+  {
+    "courseId": "history-kg-1",
+    "school": "school-0"
+  },
+  {
+    "courseId": "history-kg-2",
+    "school": "school-0"
+  },
+  {
+    "courseId": "history-kg-3",
+    "school": "school-0"
+  },
+  {
+    "courseId": "history-grade-1",
+    "school": "school-0"
+  },
+  {
+    "courseId": "history-grade-2",
+    "school": "school-0"
+  },
+  {
+    "courseId": "history-grade-3",
+    "school": "school-0"
+  },
+  {
+    "courseId": "history-grade-4",
+    "school": "school-0"
+  },
+  {
+    "courseId": "history-grade-5",
+    "school": "school-0"
+  },
+  {
+    "courseId": "history-grade-6",
+    "school": "school-0"
+  }
+]

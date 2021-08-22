@@ -1,0 +1,27 @@
+[
+  {
+    "teacherId": "lec-amh",
+    "teacherName": "lec-amh",
+    "school": "school-0"
+  },
+  {
+    "teacherId": "lec-eng",
+    "teacherName": "lec-eng",
+    "school": "school-0"
+  },
+  {
+    "teacherId": "lec-his",
+    "teacherName": "lec-his",
+    "school": "school-0"
+  },
+  {
+    "teacherId": "lec-mat",
+    "teacherName": "lec-mat",
+    "school": "school-0"
+  },
+  {
+    "teacherId": "lec-sci",
+    "teacherName": "lec-sci",
+    "school": "school-0"
+  }
+]

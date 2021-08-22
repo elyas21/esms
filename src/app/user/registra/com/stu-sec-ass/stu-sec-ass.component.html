@@ -1,0 +1,90 @@
+<!-- gradeList -->
+<!-- view * candidate students -->
+<!-- assing single stu bt serching by id -->
+<div>
+  <mat-toolbar class="grade-row" fxLayout="row wrap" fxLayoutAlign="center center">
+    <button
+      mat-raised-button
+      *ngFor="let item of grades"
+      fxFlex="1 1"
+      mat-list-item
+      (click)="[getSections(item.grade), getCandidateStudents(item), getRegisterdStudents(item)]"
+    >
+      {{ item.gradeId }}
+    </button>
+  </mat-toolbar>
+</div>
+
+<div class="stu-form-wrap" *ngIf="!stuList" fxLayout="row" fxLayoutAlign="center center">
+  <app-assign-stu fxFlex.gt-xs="1 1 100%"></app-assign-stu>
+</div>
+
+<!-- candiataStudet List -->
+<div class="candidate" *ngIf="stuList" fxLayout="column" fxLayout.gt-sm="row">
+  <mat-card fxFlex.gt-sm="1 1 50%">
+    <mat-card-header>
+      <mat-card-title
+        >Candidate Students for Grade
+        <span *ngIf="SectionList?.length > 0">
+          {{ '      ' + SectionList[0].grade }}
+        </span></mat-card-title
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <h4>{{ candidateMales?.length + ' ' }} Male</h4>
+      <h4>{{ candidateFemales?.length + ' ' }} Female</h4>
+      <h4>
+        {{ candidateFemales?.length + candidateMales?.length + ' ' }} Total
+        <a [routerLink]="[selectedGrade.grade, selectedGrade.gradeId, selectedGrade.id, { reg: false }]">viewAll</a>
+      </h4>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="shufle()" class="btn-primary">
+        Shuffl And Assign Students
+      </button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card fxFlex.gt-sm="1 1 50%">
+    <mat-card-header>
+      <mat-card-title
+        >Registerd Students for Grade
+        <span *ngIf="SectionList && SectionList.length > 0">
+          {{ '      ' + SectionList[0].grade }}
+        </span></mat-card-title
+      >
+    </mat-card-header>
+    <mat-card-content *ngIf="registerdMales && registerdFemales">
+      <h4>{{ registerdMales.length + ' ' }} Male</h4>
+      <h4>{{ registerdFemales.length + ' ' }} Female</h4>
+      <h4>
+        {{ registerdMales.length + registerdFemales.length + ' ' }} Total
+        <a [routerLink]="[selectedGrade.grade, selectedGrade.gradeId, selectedGrade.id, { reg: true }]">viewAll</a>
+      </h4>
+    </mat-card-content>
+  </mat-card>
+</div>
+<!-- adding To Section ProgresBar -->
+<div ngif="progress > 0" *ngIf="stuList" class="demo-progress-bar-container">
+  <mat-progress-bar mode="determinate" [value]="progress" [color]="color"> </mat-progress-bar>
+</div>
+
+<!-- sectionList -->
+<div class="section-row">
+  <mat-card *ngIf="SectionList" fxLayoutAlign="start center" fxLayout="row wrap">
+    <a *ngFor="let item of SectionList" [routerLink]="['../../registra', 'section', 'detail', item.id]">
+      <mat-card class="nest-card">
+        <button mat-raised-button fxFlex="1 1" mat-list-item>
+          <span>{{ item.sectionId }}</span
+          ><br />
+          <span>{{ item.sectionName }}</span
+          ><br />
+          <span><strong>Total No</strong>{{ '  ' + item.noOfStudents }}</span
+          ><br />
+          <span><strong>Total No M</strong>{{ '  ' + item.noOfMaleStudents }}</span
+          ><br />
+          <span><strong>Total No F</strong>{{ '  ' + item.noOfFemaleStudents }}</span>
+        </button>
+      </mat-card>
+    </a>
+  </mat-card>
+</div>

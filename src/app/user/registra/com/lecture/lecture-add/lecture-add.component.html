@@ -1,0 +1,28 @@
+<div class="container" class="col-md-6 offset-md-3 mt-5">
+    <h1>Add Lecture</h1>
+    <form (ngSubmit)="onSubmit(lectureForm.value)" #lectureForm="ngForm">
+      <div class="form-group">
+        <label for="lectureId">Lecture Id</label>
+        <input
+          type="text"
+          class="form-control"
+          autofocus
+          [(ngModel)]="teacherId"
+          name="teacherId"
+          required
+        />
+      </div>
+  
+      <div class="form-group">
+        <label for="teacherName">Lecture Name</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="teacherName"
+          name="teacherName"
+        />
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+  

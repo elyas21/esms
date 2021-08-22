@@ -1,0 +1,26 @@
+<div>
+  <mat-toolbar fxLayout="column wrap" fxLayoutAlign="end space-around">
+    <a
+      fxFlex="1 1"
+      mat-list-item
+      [routerLink]="['/director', 'finace', 'add']"
+      routerLinkActive="router-link-active"
+      >Add</a
+    >
+    <a
+      fxFlex="1 1"
+      mat-list-item
+      [routerLink]="['/director', 'finace', 'view']"
+      routerLinkActive="router-link-active"
+      >View</a
+    >
+    <a
+      fxFlex="1 1"
+      mat-list-item
+      [routerLink]="['/director', 'finace', 'detail', 'dd']"
+      routerLinkActive="router-link-active"
+      >Detail</a
+    >
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</div>

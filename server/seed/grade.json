@@ -1,0 +1,65 @@
+[
+  {
+    "gradeId": "G-kg-1",
+    "grade": -2,
+    "gradeName": "kg-1",
+    "school": "school-0",
+    "courses": ["mat-kg-1", "amh-kg-1", "eng-kg-1", "science-kg-1", "history-kg-1"]
+  },
+  {
+    "gradeId": "G-kg-2",
+    "grade": -1,
+    "gradeName": "kg-2",
+    "school": "school-0",
+    "courses": ["mat-kg-2", "amh-kg-2", "eng-kg-2", "science-kg-2", "history-kg-2"]
+  },
+  {
+    "gradeId": "G-kg-3",
+    "grade": 0,
+    "gradeName": "kg-3",
+    "school": "school-0",
+    "courses": ["mat-kg-3", "amh-kg-3", "eng-kg-3", "science-kg-3", "history-kg-3"]
+  },
+  {
+    "gradeId": "G-1",
+    "grade": 1,
+    "gradeName": "grade-1",
+    "school": "school-0",
+    "courses": ["mat-grade-1", "amh-grade-1", "eng-grade-1", "science-grade-1", "history-grade-1"]
+  },
+  {
+    "gradeId": "G-2",
+    "grade": 2,
+    "gradeName": "grade-2",
+    "school": "school-0",
+    "courses": ["mat-grade-2", "amh-grade-2", "eng-grade-2", "science-grade-2", "history-grade-2"]
+  },
+  {
+    "gradeId": "G-3",
+    "grade": 3,
+    "gradeName": "grade-3",
+    "school": "school-0",
+    "courses": ["mat-grade-3", "amh-grade-3", "eng-grade-3", "science-grade-3", "history-grade-3"]
+  },
+  {
+    "gradeId": "G-4",
+    "grade": 4,
+    "gradeName": "grade-4",
+    "school": "school-0",
+    "courses": ["mat-grade-4", "amh-grade-4", "eng-grade-4", "science-grade-4", "history-grade-4"]
+  },
+  {
+    "gradeId": "G-5",
+    "grade": 5,
+    "gradeName": "grade-5",
+    "school": "school-0",
+    "courses": ["mat-grade-5", "amh-grade-5", "eng-grade-5", "science-grade-5", "history-grade-5"]
+  },
+  {
+    "gradeId": "G-6",
+    "grade": 6,
+    "gradeName": "grade-6",
+    "school": "school-0",
+    "courses": ["mat-grade-6", "amh-grade-6", "eng-grade-6", "science-grade-6", "history-grade-6"]
+  }
+]

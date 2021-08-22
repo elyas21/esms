@@ -1,0 +1,69 @@
+<div>
+  <mat-toolbar fxLayout="column wrap" fxLayoutAlign="end center">
+    <button
+      mat-raised-button
+      *ngFor="let item of grades"
+      fxFlex="1 1"
+      mat-list-item
+      (click)="selectGrade(item.gradeId)"
+    >
+      {{ item.gradeId }}
+    </button>
+  </mat-toolbar>
+</div>
+
+<form
+  *ngIf="selectedGrade"
+  (ngSubmit)="create(gradeForm.value)"
+  #gradeForm="ngForm"
+>
+  <mat-label>Grade</mat-label>
+  <mat-form-field>
+    <mat-select
+      placeholder="{{ courseList ? courseList[0]?.gradeId : 'couresId' }}"
+      [(ngModel)]="courseId"
+      name="courseId"
+      #g="ngModel"
+    >
+      <mat-option
+        *ngFor="let item of courseList | async"
+        [value]="item.courseId"
+      >
+        {{ item.courseId }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Course Name</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let d of dataSource; let i = index"
+      [ngClass]="{ 'bg-secondary': d.flag }"
+    >
+      <td>
+        <div class="form-group">
+          <input
+            [(ngModel)]="d.courseId"
+            name="d.courseId"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <button (click)="remove(d, i)" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

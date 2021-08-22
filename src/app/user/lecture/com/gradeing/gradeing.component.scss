@@ -1,0 +1,15 @@
+.section > mat-toolbar {
+  margin-top: 7%;
+  width: auto;
+  max-height: 10px;
+  padding: 0;
+
+  .section-btn {
+    padding: 0;
+    max-width: 270px;
+    background-color: rgba(62, 85, 62, 0.363);
+    margin: 0.12rem;
+    color: rgb(3, 112, 88);
+    font-size: 1.3;
+  }
+}

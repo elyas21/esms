@@ -1,0 +1,37 @@
+[
+  {
+    "sectionId": "sec-0-2-a",
+    "sectionName": "grade 2 A",
+    "grade": "G-2",
+    "classYear": 2,
+    "school": "school-0"
+  },
+  {
+    "sectionId": "sec-0-2-bb",
+    "sectionName": "grade 2 A",
+    "grade": "G-2",
+    "classYear": 2,
+    "school": "school-0"
+  },
+  {
+    "sectionId": "sec-0-3-a",
+    "sectionName": "grade 3 A",
+    "grade": "G-3",
+    "classYear": 2,
+    "school": "school-0"
+  },
+  {
+    "sectionId": "sec-0-44-a",
+    "sectionName": "grade 4 A",
+    "grade": "G-4",
+    "classYear": 2,
+    "school": "school-0"
+  },
+  {
+    "sectionId": "sec-0-44-b",
+    "sectionName": "grade 4 B",
+    "grade": "G-4",
+    "classYear": 2,
+    "school": "school-0"
+  }
+]

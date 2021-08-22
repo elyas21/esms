@@ -1,0 +1,12 @@
+div {
+  mat-card-content {
+    display: grid;
+
+    & img {
+      align-content: center center;
+      max-width: 400px;
+      // height: 80%;
+      width: 90%;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+<div class="container" class="col-md-6 offset-md-3 mt-5">
+  <h1>Add Grade</h1>
+  <form (ngSubmit)="onSubmit(courseForm.value)" #courseForm="ngForm">
+    <div class="form-group">
+      <label for="stuId">Studed Id</label>
+      <input type="text" class="form-control" autofocus [(ngModel)]="stuId" name="stuId" required />
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button><br />
+    <mat-error *ngIf="courseForm.valueChanges && selectedStu?.found == false">
+      No Student Found
+    </mat-error>
+  </form>
+</div>
+<div fxlayout.gt-x="row" *ngIf="selectedStu?.studentId">
+  <mat-card fxFlex.gt-xs="1 1 50">
+    <mat-card-content>
+      <img src="assets/img/wad-dress.jpg" alt="" srcset="" />
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="info-wrap" fxFlex.gt-xs="1 1 50" fxLayout="column" fxLayoutAlign="center start">
+    <mat-label
+      >Full Name{{
+        '  ' +
+          selectedStu?.firstName +
+          '  ' +
+          selectedStu?.middleName +
+          '  ' +
+          selectedStu?.lastName
+      }}</mat-label
+    >
+    <mat-label>Sex{{ '  ' + selectedStu?.sex }}</mat-label>
+    <div>
+      <mat-label [hidden]="editGrade"
+        >Current Grade{{ '  ' + selectedStu?.currentGrade }}</mat-label
+      >
+      <button [hidden]="editGrade" (click)="changeEditable()" class="btn-primary" mat-button>
+        Edit
+      </button>
+      <div [hidden]="!editGrade" fxLayout="row">
+        Current Grade
+        <input name="stuGrade" min="-2" max="12" [(ngModel)]="stuGrade" type="number" />
+        <button (click)="[changeEditable(), saveGrade()]" class="btn-primary" mat-button>
+          Save
+        </button>
+      </div>
+    </div>
+    <!-- <mat-label>Last Grade{{ '  ' + selectedStu?.lastGrade }}</mat-label> -->
+    <div class="assing-remove" *ngIf="!selectedStu?.regCandidate">
+      <mat-icon class="btn-primary">Assind To Section</mat-icon>
+      <!-- <button
+        class="btn-danger"
+        (click)="remove(selectedStu.studentId, selectedStu.Sections[0].id, selectedStu.sex)"
+        mat-button
+      >
+        Remove
+      </button> -->
+    </div>
+    <div class="assing-remove" *ngIf="selectedStu?.regCandidate">
+      <mat-icon class="btn-danger">Not Assind To Section Yet</mat-icon>
+      <button class="btn-primary" (click)="openDialog()" mat-button>Assign</button>
+    </div>
+  </mat-card>
+</div>
+<mat-icon class="mat-icon-rtl-mirror"></mat-icon>

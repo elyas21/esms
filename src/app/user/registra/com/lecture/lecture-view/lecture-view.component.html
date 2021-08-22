@@ -1,0 +1,74 @@
+<!-- <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Lecture Id</th>
+      <th scope="col">Lecture Name</th>
+      <th scope="col"></th>
+      <th scope="col"><i class="fa-trash-alt" style="font-size:24px"></i></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let d of dataSource; let i = index" [ngClass]="{ 'bg-secondary': d.flag }">
+      <td>
+        <div class="form-group">
+          <input
+            id="chi"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.teacherId"
+            name="d.teacherId"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.teacherName"
+            name="d.teacherName"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <button
+          (click)="cancleUpdate(d, $event, d.isNew, i)"
+          [hidden]="d.flag ? null : true"
+          class="btn btn-warning"
+        >
+          <i class="fa fa-undo" style="font-size:24px"></i>
+        </button>
+        <button
+          (click)="selectedUser(d, $event)"
+          [hidden]="d.isNew ? true : false"
+          class="btn btn-info"
+        >
+          <i class="fa fa-edit" style="font-size:24px"></i>
+        </button>
+        <button
+          (click)="selectedUser(d, $event)"
+          [hidden]="d.flag ? null : true"
+          class="btn btn-warning"
+        >
+          <i class="fa fa-save" style="font-size:24px"></i>
+        </button>
+      </td>
+      <td>
+        <button (click)="remove(d, i)" class="btn btn-dark">
+          <i class="fa fa-trash-o" style="font-size:24px"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+<!-- 
+<app-lec-view-table [cData]="dataSource"></app-lec-view-table>
+
+{{dataSource | json}} -->
+<ng-container *ngIf="dataSource">
+  <app-table-lec-view [cData]="dataSource"></app-table-lec-view>
+</ng-container>

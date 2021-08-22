@@ -1,0 +1,59 @@
+<div class="container" class="col-md-6 offset-md-3 mt-5">
+        <h1>Add Semister</h1>
+        <form (ngSubmit)="onSubmit(ClassYearForm.value)" #ClassYearForm="ngForm">
+          <div class="form-group">
+            <label for="name">Semister Name</label>
+            <input
+              type="text"
+              class="form-control"
+              autofocus
+              [(ngModel)]="name"
+              name="name"
+              required
+            />
+          </div>
+          <div class="form-group" fxLayout="column">
+                <label for="startDate">Semister Start</label>
+              <div fxLayout="row">
+
+                  <input fxFlex="90% 90%  90%" matInput [matDatepicker]="start" name="semisterStart" placeholder="title" [(ngModel)]="semisterStart"/>
+                  <mat-datepicker-toggle fxFlex="" matSuffix [for]="start"></mat-datepicker-toggle>
+                  <mat-datepicker fxFlex="0 0 0" #start></mat-datepicker>
+                </div>
+          </div>
+          <div class="form-group" fxLayout="column">
+                <label for="startDate">Class End</label>
+              <div fxLayout="row">
+
+                  <input fxFlex="90% 90%  90%" matInput [matDatepicker]="classEnd" name="semisterClassEnd" placeholder="title" [(ngModel)]="semisterClassEnd"/>
+                  <mat-datepicker-toggle fxFlex="" matSuffix [for]="classEnd"></mat-datepicker-toggle>
+                  <mat-datepicker fxFlex="0 0 0" #classEnd></mat-datepicker>
+                </div>
+          </div>
+          <div class="form-group" fxLayout="column">
+                <label for="startDate">Semister End</label>
+              <div fxLayout="row">
+
+                  <input fxFlex="90% 90%  90%" matInput [matDatepicker]="end" name="semisterEnd" placeholder="title" [(ngModel)]="semisterEnd"/>
+                  <mat-datepicker-toggle fxFlex="" matSuffix [for]="end"></mat-datepicker-toggle>
+                  <mat-datepicker fxFlex="0 0 0" #end></mat-datepicker>
+                </div>
+          </div>
+
+          <mat-label>Grade</mat-label>
+          <mat-form-field>
+            <mat-select
+              placeholder="{{ semisterClassYear ? classYearList[0]?.name : 'gradeId' }}"
+              [(ngModel)]="semisterClassYear"
+              name="semisterClassYear"
+            >
+              <mat-option *ngFor="let item of classYearList | async " [value]="item.id">
+                {{ item.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> 
+      
+          <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+      </div>
+      

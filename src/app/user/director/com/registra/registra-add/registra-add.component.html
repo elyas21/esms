@@ -1,0 +1,16 @@
+<div class="container" class="col-md-6 offset-md-3 mt-5">
+    <h1>Add Finace</h1>
+    <form (ngSubmit)="onSubmit(heroForm.value)" #heroForm="ngForm">
+      <div class="form-group">
+        <label for="registraId">Fince Id</label>
+        <input type="text" class="form-control" autofocus [(ngModel)]="registraId" name="registraId" required />
+      </div>
+  
+      <div class="form-group">
+        <label for="registraName">Finace Name</label>
+        <input type="text" class="form-control" [(ngModel)]="registraName" name="registraName" />
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+  

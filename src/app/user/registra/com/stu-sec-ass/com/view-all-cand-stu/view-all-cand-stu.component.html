@@ -1,0 +1,129 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-evenly center">
+  <a [routerLink]="['../../../']">Back</a>
+  <div fxFlexAlign.gt-sm="1 1 30%">
+    <span>Registerd</span>
+    <mat-checkbox [(ngModel)]="reg" (change)="regChange($event)" name="reg">
+    </mat-checkbox>
+  </div>
+
+  <div fxFlexAlign.gt-sm="1 1 30%">
+    <span>Section</span>
+    <mat-select
+      placeholder="Placeholder"
+      [(ngModel)]="selectedSection"
+      name="item"
+      #item
+    >
+      <mat-option *ngFor="let item of sectionList" [value]="item.id">
+        {{ item.id }}
+      </mat-option>
+    </mat-select>
+    <button mat-button (click)="sectionFilter(item.value)">Filter</button>
+  </div>
+</mat-toolbar>
+<table *ngIf="dataSource" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Section ID</th>
+      <th scope="col">Last Grade</th>
+      <th scope="col">StudentId Id</th>
+      <th scope="col">Sex</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let d of dataSource; let i = index"
+      [ngClass]="{ 'bg-secondary': d.flag }"
+    >
+      <td>
+        <div class="form-group">
+          <input
+            *ngIf="d.Sections"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [value]="d.Sections[0].id"
+            name="d.section"
+            type="text"
+            class="form-control"
+          />
+          <mat-select
+            *ngIf="d.flag"
+            [(ngModel)]="selectedSection"
+            name="selectedSection"
+          >
+            <mat-option
+              placeholder="select section"
+              *ngFor="let item of sectionList"
+              [value]="item.id"
+            >
+              {{ item.sectionId }}
+            </mat-option>
+          </mat-select>
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [value]="d.lastGrade"
+            name="d.lastGrade"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [value]="d.studentId"
+            name="d.studentId"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [value]="d.sex"
+            name="d.sex"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <button
+          (click)="cancleUpdate(d, $event, d.isNew, i)"
+          [hidden]="d.flag ? null : true"
+          class="btn btn-warning"
+        >
+          Cancle
+        </button>
+        <button
+          (click)="selectedUser(d, $event)"
+          [hidden]="d.isNew ? true : null"
+          class="btn btn-info"
+        >
+          Update
+        </button>
+        <a [routerLink]="['../../../../student', 'detail', d.studentId]">View</a>
+        <button [hidden]="d.isNew ? null : true">
+          save
+        </button>
+      </td>
+      <td>
+        <button *ngIf="!d.regCandidate" (click)="remove(d.studentId , d.Sections[0].id, d.sex)" class="btn btn-danger">
+          Remove
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

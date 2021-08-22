@@ -1,0 +1,110 @@
+<div class="container" class="col-md-6 offset-md-3 mt-5">
+  <h1>Search</h1>
+  <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
+    <div class="form-group">
+      <label for="section">Fince Id</label>
+      <input
+        type="text"
+        class="form-control"
+        autofocus="true"
+        [(ngModel)]="id"
+        name="section"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+<!-- <pre>
+      {{ section | json}}
+  </pre> -->
+<mat-toolbar
+  *ngIf="dataSource"
+  fxLayout="row wrap"
+  fxLayoutAlign="center end"
+  fxLayoutGap="32px "
+>
+  <mat-label class="label "
+    >Section <span>{{ "  " + section.sectionName }}</span></mat-label
+  >
+  <mat-label class="label "
+    >Section ID id <span>{{ "  " + section.sectionId }}</span></mat-label
+  >
+  <mat-label class="label "
+    >Section GradeGrade<span>{{ "  " + section.grade }}</span></mat-label
+  >
+</mat-toolbar>
+
+<table *ngIf="dataSource" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Section ID</th>
+      <th scope="col">StudentId Id</th>
+      <th scope="col">Sex</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let d of dataSource; let i = index"
+      [ngClass]="{ 'bg-secondary': d.flag }"
+    >
+      <td>
+        <div class="form-group">
+          <input
+            id="chi"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [value]="section.id"
+            name="d.id"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [value]="d.studentId"
+            name="d.studentId"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [value]="d.sex"
+            name="d.sex"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <button [hidden]="d.flag ? null : true" class="btn btn-warning">
+          Cancle
+        </button>
+        <button [hidden]="d.isNew ? true : null" class="btn btn-info">
+          Update
+        </button>
+        <a [routerLink]="['../../../student', 'detail', d.studentId]">View</a>
+        <button [hidden]="d.isNew ? null : true">
+          save
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

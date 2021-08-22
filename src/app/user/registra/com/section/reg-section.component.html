@@ -1,0 +1,27 @@
+<div>
+    <mat-toolbar fxLayout="column wrap" fxLayoutAlign="end space-around">
+      <a
+        fxFlex="1 1"
+        mat-list-item
+        [routerLink]="['/registra', 'section', 'add']"
+        routerLinkActive="router-link-active"
+        >Add</a
+      >
+      <a
+        fxFlex="1 1"
+        mat-list-item
+        [routerLink]="['/registra', 'section', 'view']"
+        routerLinkActive="router-link-active"
+        >View</a
+      >
+      <a
+        fxFlex="1 1"
+        mat-list-item
+        [routerLink]="['/registra', 'section', 'detail']"
+        routerLinkActive="router-link-active"
+        >Detail</a
+      >
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </div>
+  

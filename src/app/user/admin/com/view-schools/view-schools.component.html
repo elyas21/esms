@@ -1,0 +1,47 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">School Id</th>
+      <th scope="col">School Name</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let d of dataSource; let i = index"
+      [ngClass]="{ 'bg-secondary': d.flag }"
+    >
+      <td>
+        <div class="form-group">
+          <input
+            id="chi"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.schoolId"
+            name="d.schoolId"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.schoolName"
+            name="d.schoolName"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+          <a [routerLink]="['/admin' , 'school-detial' , d.schoolId]" routerLinkActive="router-link-active" >
+        edit
+            </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

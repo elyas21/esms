@@ -1,0 +1,14 @@
+<div class="container" class="col-md-6 offset-md-3 mt-5">
+    <h1>Search</h1>
+    <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
+      <div class="form-group">
+        <label for="student">Grade Id</label>
+        <input type="text" class="form-control" autofocus="true" [(ngModel)]="id" name="student" required />
+      </div>
+  
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+  <pre>
+      {{ grade | async | json}}
+  </pre>

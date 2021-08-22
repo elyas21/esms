@@ -1,0 +1,28 @@
+div {
+  mat-card-content {
+    display: grid;
+
+    & img {
+      align-content: center center;
+      max-width: 400px;
+      // height: 80%;
+      width: 90%;
+    }
+  }
+}
+
+mat-icon {
+  width: auto;
+}
+
+.assign-remove {
+  mat-icon {
+    margin-right: 30px;
+  }
+}
+
+.info-wrap {
+  & > * {
+    margin-top: 10px;
+  }
+}

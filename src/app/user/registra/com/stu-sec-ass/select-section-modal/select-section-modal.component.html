@@ -1,0 +1,33 @@
+<!-- <button mat-raised-button mat-dialog-close="yes">
+    yes
+</button>
+<button mat-raised-button mat-dialog-close="no">
+    no
+</button> -->
+
+<h2 mat-dialog-title>Select Section</h2>
+
+<mat-dialog-content
+  ><div class="section-row">
+    <mat-card *ngIf="SectionList" fxLayoutAlign="start center" fxLayout="row wrap">
+      <button
+        *ngFor="let item of SectionList"
+        (click)="sendSection(item)"
+        >
+        <mat-card class="nest-card">
+          <button mat-raised-button fxFlex="1 1" mat-list-item>
+            <span>{{ item.sectionId }}</span
+            ><br />
+            <span>{{ item.sectionName }}</span
+            ><br />
+            <span><strong>Total No</strong>{{ '  ' + item.noOfStudents }}</span
+            ><br />
+            <span><strong>Total No M</strong>{{ '  ' + item.noOfMaleStudents }}</span
+            ><br />
+            <span><strong>Total No F</strong>{{ '  ' + item.noOfFemaleStudents }}</span>
+          </button>
+        </mat-card>
+      </button>
+    </mat-card>
+  </div></mat-dialog-content
+>

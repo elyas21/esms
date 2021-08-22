@@ -1,0 +1,32 @@
+[
+  {
+    "directorId": "director-0",
+    "directorName": "d05fdwd5d",
+    "softDelete": false,
+    "school": "school-0"
+  },
+  {
+    "directorId": "director-1",
+    "directorName": "d05fdwd5d",
+    "softDelete": false,
+    "school": "school-1"
+  },
+  {
+    "directorId": "director-2",
+    "directorName": null,
+    "softDelete": false,
+    "school": "school-2"
+  },
+  {
+    "directorId": "director-3",
+    "directorName": "d05fdwd5d",
+    "softDelete": true,
+    "school": "school-3"
+  },
+  {
+    "directorId": "director-4",
+    "directorName": null,
+    "softDelete": false,
+    "school": "school-4"
+  }
+]

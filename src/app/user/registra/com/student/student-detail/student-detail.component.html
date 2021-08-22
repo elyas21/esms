@@ -1,0 +1,47 @@
+<div class="container" class="col-xs-6 offset-md-3 mt-5">
+  <h1>Search</h1>
+  <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
+    <div class="form-group">
+      <label for="student">Fince Id</label>
+      <input
+        type="text"
+        class="form-control"
+        autofocus="true"
+        [(ngModel)]="id"
+        name="student"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div fxLayout.gt-xs="row" fxLayout="column" fxLayoutAlign="center center">
+  <div fxFlex.gt-xs="1 1 calc(10% + 40)" fxFlex="1 1 50%">
+    <mat-card>
+      <mat-card-content>
+        <img src="assets/img.jpg" alt="" srcset="" />
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex.gt-xs="1 1 calc(10% + 40)" fxFlex="1 1 50%">
+    <mat-card>
+      <mat-card-content>
+        <mat-label>
+            "Full Name " 
+          {{student.firstName + " "  + student.middleName + ' ' + student.lastName}}  
+        </mat-label>
+        <mat-label>
+          Sex <span>{{student.sex}}</span>
+        </mat-label>
+        <mat-label>
+            ID  +<span>{{student.studentId}}</span>
+          </mat-label>
+          <mat-label>
+              {{"Current Grade " + student.currentGrade}}
+            </mat-label>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

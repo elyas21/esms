@@ -1,0 +1,54 @@
+<div class="container" class="col-md-6 offset-md-3 mt-5">
+  <h1>Add Section</h1>
+  <form (ngSubmit)="onSubmit(sectionForm.value)" #sectionForm="ngForm">
+    <div class="form-group">
+      <label for="sectionId">Section Id</label>
+      <input
+        type="text"
+        class="form-control"
+        autofocus
+        [(ngModel)]="sectionId"
+        name="sectionId"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="sectionName">Section Name</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="sectionName"
+        name="sectionName"
+      />
+    </div>
+
+    <mat-label>Grade</mat-label>
+    <mat-form-field>
+      <mat-select
+        placeholder="{{ gradeList ? gradeList[0]?.grade : 'gradeNo' }}"
+        [(ngModel)]="gradeNo"
+        name="gradeNo"
+      >
+        <mat-option *ngFor="let item of gradeList | async" [value]="item.grade">
+          {{ item.grade }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> 
+<!--     
+    <mat-label>Year</mat-label>
+    <mat-form-field>
+      <mat-select
+        placeholder="{{ yearList ? yearList[0] : 'yearId' }}"
+        [(ngModel)]="classYear"
+        name="item"
+      >
+        <mat-option *ngFor="let item of yearList" [value]="item">
+          {{ item }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

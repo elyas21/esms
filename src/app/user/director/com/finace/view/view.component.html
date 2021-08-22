@@ -1,0 +1,81 @@
+<table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Finace Id</th>
+            <th scope="col">Finace Name</th>
+            <th scope="col">School</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let d of dataSource; let i = index"
+            [ngClass]="{ 'bg-secondary': d.flag }"
+          >
+            <td>
+              <div class="form-group">
+                <input
+                  id="chi"
+                  [class.editRow]="d.flag === true"
+                  [attr.disabled]="d.flag ? null : true"
+                  [(ngModel)]="d.finaceId"
+                  name="d.finaceId"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <input
+                  [class.editRow]="d.flag === true"
+                  [attr.disabled]="d.flag ? null : true"
+                  [(ngModel)]="d.finaceName"
+                  name="d.finaceName"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+            </td>
+            <td>
+              <div class="form-group">
+                <input
+                  [hidden]="d.flag === true"
+                  [class.editRow]="d.flag === true"
+                  [attr.disabled]="d.flag ? null : true"
+                  [(ngModel)]="d.school"
+                  name="d.school"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+            </td>
+            <td>
+              <button
+                (click)="cancleUpdate(d, $event,d.isNew , i)"
+                [hidden]="d.flag ? null : true"
+                class="btn btn-warning"
+              >
+                Cancle
+              </button>
+              <button
+                (click)="selectedUser(d, $event)"
+                [hidden]="d.isNew ? true : null"
+                class="btn btn-info"
+              >
+                Update
+              </button>
+              <button (click)="create(d, i)" [hidden]="d.isNew ? null : true">
+                save
+              </button>
+            </td>
+            <td>
+              <button (click)="remove(d, i)" class="btn btn-danger">
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      

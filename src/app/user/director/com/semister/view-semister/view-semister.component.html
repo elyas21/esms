@@ -1,0 +1,160 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">Class Start</th>
+      <th scope="col">Class End</th>
+      <th scope="col">Semister End</th>
+      <th scope="col">IsOpen</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let d of dataSource; let i = index"
+      [ngClass]="{ 'bg-secondary': d.flag }"
+    >
+      <td>
+        <div class="form-group">
+          <input
+            id="chi"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.name"
+            name="d.name"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [hidden]="d.flag === true"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.semisterStart"
+            name="d.semisterStart"
+            type="text"
+            class="form-control"
+          />
+
+          <div class="date-piker" *ngIf="d.flag" fxLayout="row">
+            <input
+              matInput
+              [matDatepicker]="end"
+              placeholder="title"
+              [(ngModel)]="d.semisterStart"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="end"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #end></mat-datepicker>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [hidden]="d.flag === true"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.semisterClassEnd"
+            name="d.semisterClassEnd"
+            type="text"
+            class="form-control"
+          />
+
+          <div class="date-piker" *ngIf="d.flag" fxLayout="row">
+            <input
+              matInput
+              [matDatepicker]="classEnd"
+              placeholder="title"
+              [(ngModel)]="d.semisterClassEnd"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="classEnd"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #classEnd></mat-datepicker>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [hidden]="d.flag === true"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.semisterEnd"
+            name="d.semisterEnd"
+            type="text"
+            class="form-control"
+          />
+
+          <div class="date-piker" *ngIf="d.flag" fxLayout="row">
+            <input
+              matInput
+              [matDatepicker]="semEnd"
+              placeholder="title"
+              [(ngModel)]="d.semisterEnd"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="semEnd"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #semEnd></mat-datepicker>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [hidden]="d.flag === true"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.isClosed"
+            name="d.isClosed"
+            type="text"
+            class="form-control"
+          />
+          <div *ngIf="d.flag">
+            <mat-label>Grade</mat-label>
+            <mat-form-field>
+              <mat-select [(ngModel)]="d.isClosed" name="d.isClosed">
+                <mat-option value="false"> Open </mat-option>
+                <mat-option value="true"> Close </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </td>
+      <td>
+        <button
+          (click)="cancleUpdate(d, $event, d.isNew, i)"
+          [hidden]="d.flag ? null : true"
+          class="btn btn-warning"
+        >
+          Cancle
+        </button>
+        <button
+          (click)="selectedUser(d, $event)"
+          [hidden]="d.isNew ? true : null"
+          class="btn btn-info"
+        >
+          Update
+        </button>
+        <button (click)="create(d, i)" [hidden]="d.isNew ? null : true">
+          save
+        </button>
+      </td>
+      <td>
+        <button (click)="remove(d, i)" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,119 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Section Id</th>
+      <th scope="col">Section Name</th>
+      <th scope="col">Grade</th>
+      <th scope="col">ClassYear</th>
+      <th scope="col">Homeroom</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let d of dataSource; let i = index"
+      [ngClass]="{ 'bg-secondary': d.flag }"
+    >
+      <td>
+        <div class="form-group">
+          <input
+            id="chi"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.sectionId"
+            name="d.sectionId"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.sectionName"
+            name="d.sectionName"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [hidden]="d.flag === true"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.gradeNo"
+            name="d.gradeNo"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [hidden]="d.flag === true"
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.classYear"
+            name="d.classYear"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.homeroomTeacher"
+            name="d.homeroomTeacher"
+            type="text"
+            class="form-control"
+          />
+          <mat-select *ngIf="d.flag" [(ngModel)]="d.homeroomTeacher" name="homeroomTeacher">
+            <mat-option
+            
+              placeholder="item[0].teacherId"
+              *ngFor="let item of lectureList"
+              [value]="item.teacherId"
+            >
+              {{ item.teacherId }}
+            </mat-option>
+          </mat-select>
+        </div>
+      </td>
+
+      <td>
+        <button
+          (click)="cancleUpdate(d, $event, d.isNew, i)"
+          [hidden]="d.flag ? null : true"
+          class="btn btn-warning"
+        >
+          Cancle
+        </button>
+        <button
+          (click)="selectedUser(d, $event)"
+          [hidden]="d.isNew ? true : null"
+          class="btn btn-info"
+        >
+          Update
+        </button>
+        <a [routerLink]="['detail', d.id]">View</a>
+        <button (click)="create(d, i)" [hidden]="d.isNew ? null : true">
+          save
+        </button>
+      </td>
+      <td>
+        <button (click)="remove(d, i)" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

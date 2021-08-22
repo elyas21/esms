@@ -1,0 +1,137 @@
+<div>
+  <mat-toolbar fxLayout="column wrap" fxLayoutAlign="end center">
+    <button
+      mat-raised-button
+      *ngFor="let item of grades"
+      fxFlex="1 1"
+      mat-list-item
+      (click)="getSections(item.grade)"
+    >
+      {{ item.gradeId }}
+    </button>
+  </mat-toolbar>
+</div>
+<div class="section">
+  <mat-toolbar fxLayout="column wrap" fxLayoutAlign="end center">
+    <button
+      class="section-btn"
+      mat-raised-button
+      *ngFor="let item of sections"
+      fxFlex="1 1"
+      mat-list-item
+      (click)="getAssigni(item.sectionId)"
+    >
+      {{ item.sectionId }}
+    </button>
+  </mat-toolbar>
+</div>
+<table *ngIf="selectedSection" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Section Id</th>
+      <th scope="col">Course Id</th>
+      <th scope="col">Teacher Id</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let d of selectedSection; let i = index"
+      [ngClass]="{ 'bg-secondary': d.flag }"
+    >
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.section"
+            name="d.section"
+            type="text"
+            class="form-control"
+          />
+
+          <!-- <mat-select *ngIf="d.flag" [(ngModel)]="d.section" name="sectionitem">
+              <mat-option
+                placeholder="item[0].sectionId"
+                *ngFor="let item of sectionId"
+                [value]="item.sectionId"
+              >
+                {{ item.sectionId }}
+              </mat-option>
+            </mat-select> -->
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.course"
+            name="d.course"
+            type="text"
+            class="form-control"
+          />
+
+          <!-- <mat-select *ngIf="d.flag" [(ngModel)]="d.section" name="sectionitem">
+              <mat-option
+                placeholder="item[0].sectionId"
+                *ngFor="let item of sectionId"
+                [value]="item.sectionId"
+              >
+                {{ item.sectionId }}
+              </mat-option>
+            </mat-select> -->
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.teacher"
+            name="d.teacher"
+            type="text"
+            class="form-control"
+          />
+
+          <mat-select *ngIf="d.flag" [(ngModel)]="d.teacher" name="sectionitem">
+            <mat-option
+              placeholder="item[0].teacherId"
+              *ngFor="let item of lectureList"
+              [value]="item.teacherId"
+            >
+              {{ item.teacherId }}
+            </mat-option>
+          </mat-select>
+        </div>
+      </td>
+
+      <td>
+        <button
+          (click)="cancleUpdate(d, $event, d.isNew, i)"
+          [hidden]="d.flag ? null : true"
+          class="btn btn-warning"
+        >
+          Cancle
+        </button>
+        <button
+          (click)="selectedUser(d, $event)"
+          [hidden]="d.isNew ? true : null"
+          class="btn btn-info"
+        >
+          Update
+        </button>
+        <button (click)="add(d, i)" [hidden]="d.isNew ? null : true">
+          save
+        </button>
+      </td>
+      <td>
+        <button (click)="remove(d, i)" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button (click)="addNewRow()">Add Colleg Head</button>

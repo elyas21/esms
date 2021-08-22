@@ -1,0 +1,143 @@
+<div class="section">
+  <mat-toolbar fxLayout="column wrap" fxLayoutAlign="end center">
+    <button
+      class="section-btn"
+      mat-raised-button
+      *ngFor="let item of selectedSection"
+      fxFlex="1 1"
+      mat-list-item
+      (click)="getAssigni(item.course , item.section)"
+    >
+      {{ item.section + item.course }}
+    </button>
+  </mat-toolbar>
+</div>
+
+<mat-toolbar *ngIf="course" fxLayout="row wrap">
+  <button mat-button (click)="getByTerm(1)">term-1</button>
+  <button mat-button (click)="getByTerm(2)">term-2</button>
+  <!-- <button mat-button (click)="getByTerm(3)">term-1</button> -->
+  <!-- <button mat-button (click)="getByTerm(4)">term-1</button> -->
+</mat-toolbar>
+<table *ngIf="dataSource" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Student</th>
+      <!-- <th scope="col">Term</th> -->
+      <th scope="col">mid</th>
+      <th scope="col">Assi</th>
+      <th scope="col">final</th>
+      <th scope="col">Total</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let d of dataSource; let i = index"
+      [ngClass]="{ 'bg-secondary': d.flag }"
+    >
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.student"
+            name="d.student"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <!-- <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.term"
+            name="d.term"
+            type="text"
+            class="form-control"
+          />
+
+        </div>
+      </td> -->
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.midExam"
+            name="d.midExam"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.assignment"
+            name="d.assignment"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.finalExam"
+            name="d.finalExam"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+
+      <td>
+        <div class="form-group">
+          <input
+            [class.editRow]="d.flag === true"
+            [attr.disabled]="d.flag ? null : true"
+            [(ngModel)]="d.sttudentGrade"
+            name="d.sttudentGrade"
+            type="text"
+            class="form-control"
+          />
+        </div>
+      </td>
+
+
+      <td>
+        <button
+          (click)="cancleUpdate(d, $event, d.isNew, i)"
+          [hidden]="d.flag ? null : true"
+          class="btn btn-warning"
+        >
+          Cancle
+        </button>
+        <button
+          (click)="selectedUser(d, $event)"
+          [hidden]="d.isNew ? true : null"
+          class="btn btn-info"
+        >
+          Update
+        </button>
+        <button (click)="add(d, i)" [hidden]="d.isNew ? null : true">
+          save
+        </button>
+      </td>
+      <td>
+        <button (click)="remove(d, i)" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

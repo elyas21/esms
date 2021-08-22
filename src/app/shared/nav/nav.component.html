@@ -1,0 +1,101 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-toolbar>
+      <div class="corner-box" fxLayout="column" fxLayoutAlign="center center">
+        <div>
+          <span *ngIf="currentUser && currentUser.School" >{{
+            currentUser.School.schoolId | uppercase
+            }}</span>
+        </div>
+      </div>
+    </mat-toolbar>
+    <mat-nav-list *ngIf="currentUser">
+      <a mat-list-item [routerLink]="['/finace', 'add-payment']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'finace'" href="#">AddPayment</a>
+      <a mat-list-item [routerLink]="['/finace', 'view-payment']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'finace'" href="#">ViewPayment</a>
+
+      <!-- lecture -->
+
+      <a mat-list-item [routerLink]="['/lecture', 'gradeing']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'lecture'" href="#">Grading</a>
+
+      <mat-expansion-panel class="width-80" expanded="showSeo" *ngFor="let item of currentUser.sections">
+        <mat-expansion-panel-header color="primary">
+          <mat-toolbar color="primary">{{ item.id }} {{ ' k ' + item.sectionId }}</mat-toolbar>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="['/lecture', 'attendance', item.id]"
+            routerLinkActive="router-link-active">Attendace {{ item.sectionId }}</a>
+          <a mat-list-item [routerLink]="['/lecture' , 'class-grade', item.gradeNo, item.id]"
+            routerLinkActive="router-link-active">Grade {{ item.sectionId }}</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <!-- admin -->
+      <a mat-list-item [routerLink]="['/admin', 'add-school']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'admin'">Add School</a>
+      <a mat-list-item [routerLink]="['/admin', 'view-school']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'admin'">View School</a>
+      <!-- registra -->
+      <a mat-list-item [routerLink]="['/registra', 'student', 'view', 4, 0]" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'registra'" href="#">Student
+        <i class="fa-leaf"></i>
+      </a>
+
+      <a mat-list-item [routerLink]="['/registra', 'grade']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'registra'" href="#">Grade</a>
+      <a mat-list-item [routerLink]="['/registra', 'lecture']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'registra'" href="#">Lecture</a>
+      <a mat-list-item [routerLink]="['/registra', 'section']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'registra'" href="#">Section</a>
+      <a mat-list-item [routerLink]="['/registra', 'course']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'registra'" href="#">Course</a>
+      <a mat-list-item [routerLink]="['/registra', 'course-section-lecture-ass']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'registra'" href="#">CourseSecLectureAss</a>
+
+      <a mat-list-item [routerLink]="['/registra', 'assign-stu-sec']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'registra'" href="#">aStudents 2 Sections</a>
+
+      <!-- director -->
+      <a mat-list-item [routerLink]="['/director', 'class-year']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'director'" href="#">ClassYear</a>
+      <a mat-list-item [routerLink]="['/director', 'semister']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'director'" href="#">semister</a>
+      <a mat-list-item [routerLink]="['/director', 'registra']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'director'" href="#">Registra</a>
+      <a mat-list-item [routerLink]="['/director', 'finace']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'director'" href="#">Finace</a>
+      <a mat-list-item [routerLink]="['/director', 'setting']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'director'" href="#">Setting</a>
+
+      <!-- student -->
+      <a mat-list-item [routerLink]="['/student', 'attendance']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'student'" href="#">Attendance</a>
+      <a mat-list-item [routerLink]="['/student', 'grading']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'student'" href="#">Grading</a>
+      <a mat-list-item [routerLink]="['/student', 'profile']" routerLinkActive="router-link-active"
+        *ngIf="currentUser && currentUser.role == 'student'" href="#">Profile</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" fxLayout.gt-xs="column">
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <div fxFlexAlign="end">
+        <a class="nav-item nav-link btn btn-info" *ngIf="currentUser" (click)="logout()">Logout</a>
+      </div>
+      <a class="nav-item nav-link btn btn-info" id="loginlink" *ngIf="!currentUser" routerLink="/login"
+        routerLinkActive="router-link-active">Login</a>
+
+      <!-- <span id="role" *ngIf="currentUser && currentUser.School" fxFlexOffset="15%">{{
+        currentUser.role
+        }}</span> -->
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

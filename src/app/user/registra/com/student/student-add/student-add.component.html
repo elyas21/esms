@@ -1,0 +1,77 @@
+<div class="container" class="col-md-6 offset-md-3 mt-5">
+  <h1>Add Student</h1>
+  <form (ngSubmit)="onSubmit(studentForm.value)" #studentForm="ngForm">
+    <div class="form-group">
+      <label for="studentId">Student Id</label>
+      <input
+        type="text"
+        class="form-control"
+        autofocus="true"
+        [(ngModel)]="studentId"
+        name="studentId"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="studentName">Student Name</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="studentName"
+        name="studentName"
+      />
+    </div>
+    <mat-label>Sex</mat-label>
+    <mat-form-field>
+      <mat-select
+        placeholder="sex"
+        [(ngModel)]="sex"
+        name="sex"
+        >
+        <mat-option value="male">Male </mat-option>
+        <mat-option value="female">Female </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-label>Last Grade</mat-label>
+    <mat-form-field>
+      <mat-select
+        placeholder="{{ gradeList ? gradeList[0]?.grade : 'grade' }}"
+        [(ngModel)]="lastGrade"
+        name="lastGrade"
+        >
+        <mat-option *ngFor="let item of gradeList " [value]="item.grade">
+          {{ item.grade }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-label>Current Grade</mat-label>
+    <mat-form-field>
+      <mat-select
+        placeholder="{{ gradeList ? gradeList[0]?.grade : 'grade' }}"
+        [(ngModel)]="currentGrade"
+        name="currentGrade"
+        >
+        <mat-option *ngFor="let item of gradeList" [value]="item.grade">
+          {{ item.grade }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-label>Section</mat-label>
+    <mat-form-field>
+      <mat-select
+        placeholder="{{ sectionList ? sectionList[0]?.sectionId : 'sectionId' }}"
+        [(ngModel)]="section"
+        name="item"
+        >
+        <mat-option *ngFor="let item of sectionList | async" [value]="item.sectionId">
+          {{ item.sectionId }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+
+<!-- (selectionChange)="filterSection()" -->

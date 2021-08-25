@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RegGradeComponent } from './reg-grade.component';
 
@@ -6,7 +6,7 @@ describe('RegGradeComponent', () => {
   let component: RegGradeComponent;
   let fixture: ComponentFixture<RegGradeComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [RegGradeComponent]
     }).compileComponents();

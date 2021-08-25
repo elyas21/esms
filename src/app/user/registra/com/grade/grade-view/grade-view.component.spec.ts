@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { GradeViewComponent } from './grade-view.component';
 
@@ -6,7 +6,7 @@ describe('GradeViewComponent', () => {
   let component: GradeViewComponent;
   let fixture: ComponentFixture<GradeViewComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [GradeViewComponent]
     }).compileComponents();

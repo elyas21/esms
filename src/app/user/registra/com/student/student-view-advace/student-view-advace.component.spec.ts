@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -10,7 +10,7 @@ describe('StudentViewAdvaceComponent', () => {
   let component: StudentViewAdvaceComponent;
   let fixture: ComponentFixture<StudentViewAdvaceComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [StudentViewAdvaceComponent],
       imports: [NoopAnimationsModule, MatPaginatorModule, MatSortModule, MatTableModule]

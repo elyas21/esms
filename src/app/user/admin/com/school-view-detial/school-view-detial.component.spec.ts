@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SchoolViewDetialComponent } from './school-view-detial.component';
 
@@ -6,7 +6,7 @@ describe('SchoolViewDetialComponent', () => {
   let component: SchoolViewDetialComponent;
   let fixture: ComponentFixture<SchoolViewDetialComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SchoolViewDetialComponent]
     }).compileComponents();

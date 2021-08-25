@@ -30,7 +30,14 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "aot": false,
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -58,7 +65,8 @@
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -125,7 +133,9 @@
           "options": {
             "outputPath": "dist/server",
             "main": "src/main.server.ts",
-            "tsConfig": "tsconfig.server.json"
+            "tsConfig": "tsconfig.server.json",
+            "sourceMap": true,
+            "optimization": false
           },
           "configurations": {
             "production": {
@@ -136,7 +146,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "deploy": {
           "builder": "@angular/fire:deploy",
@@ -167,7 +178,13 @@
             "styles": [
               "projects/demo-test/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -193,7 +210,8 @@
                 }
               ]
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

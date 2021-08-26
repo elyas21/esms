@@ -17,10 +17,16 @@
 }
 mat-sidenav {
   mat-nav-list {
-    a {
-      margin: 3px 0;
-      background-color: rgb(182, 43, 96);
+    a:hover {
+      margin: 0px 4px;
+      font-size: 1.34  rem;
+      // background-color: rgb(133, 112, 120);
     }
+    a:active, .router-link-active, a:visited{
+      background-color: rgb(230, 218, 218);
+      box-shadow:  -2px 0px 9px 0px rgb(2 2 2 / 16%);
+    }
+    
   }
 }
 

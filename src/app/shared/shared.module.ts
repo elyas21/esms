@@ -21,10 +21,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
-  declarations: [HomeComponent, NotFoundComponent],
+  declarations: [ HomeComponent, NotFoundComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -38,6 +39,7 @@ import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
     MatFormFieldModule,
     MatProgressBarModule,
     FormsModule,
+    MatMenuModule,
     MatExpansionModule,
     MatIconModule,
     MatDialogModule,
@@ -61,7 +63,8 @@ import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
     MatIconModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatMenuModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { float: 'auto' } }

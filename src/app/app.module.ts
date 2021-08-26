@@ -23,8 +23,13 @@ import { environment } from '../environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StyleManagerService } from './service/theme/style-manager.service';
+import { ThemeService } from './service/theme/theme.service';
+import { MenuComponent } from './shared/menu/menu.component';
+import { reducers, metaReducers } from './store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 @NgModule({
-  declarations: [NavComponent],
+  declarations: [NavComponent, MenuComponent],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
@@ -33,13 +38,14 @@ import { EffectsModule } from '@ngrx/effects';
     AppRoutingModule,
     HttpClientModule,
 
-    FlexLayoutModule,
+    FlexLayoutModule.withConfig({addOrientationBps: true}),
     FontAwesomeModule,
     MatGridListModule,
     MatCardModule,
 
     MatMenuModule,
     MatIconModule,
+    MatMenuModule,
     MatButtonModule,
     LayoutModule,
     MatToolbarModule,
@@ -47,9 +53,13 @@ import { EffectsModule } from '@ngrx/effects';
     MatListModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [
+    StyleManagerService,
+    ThemeService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],

@@ -275,5 +275,8 @@
       }
     }
   },
-  "defaultProject": "schoolingp"
+  "defaultProject": "schoolingp",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

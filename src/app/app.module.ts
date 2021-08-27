@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -28,6 +28,13 @@ import { ThemeService } from './service/theme/theme.service';
 import { MenuComponent } from './shared/menu/menu.component';
 import { reducers, metaReducers } from './store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AlertEffects } from './store/effects/alert.effects';
+import { SpinnerEffects } from './store/effects/spinner.effects';
+import { RouteEffects } from './store/effects/route.effects';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { AlertModule } from 'ngx-alerts';
+import { AppEffects } from './store/effects/app.effects';
+
 @NgModule({
   declarations: [NavComponent, MenuComponent],
   imports: [
@@ -38,10 +45,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppRoutingModule,
     HttpClientModule,
 
-    FlexLayoutModule.withConfig({addOrientationBps: true}),
+    FlexLayoutModule.withConfig({ addOrientationBps: true }),
     FontAwesomeModule,
     MatGridListModule,
     MatCardModule,
+    NgxSpinnerModule,
+    AlertModule.forRoot({ maxMessages: 5, timeout: 5000 }),
 
     MatMenuModule,
     MatIconModule,
@@ -53,7 +62,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     MatListModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([ AlertEffects, SpinnerEffects, RouteEffects]),
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
@@ -63,6 +72,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
-  bootstrap: [NavComponent]
+  bootstrap: [NavComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {}

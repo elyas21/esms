@@ -20,3 +20,6 @@ stop cruders from cruding others data
 # now
 
     homeroom lec attendace fill is working angular material table
+
+# latter
+    create action to store websetting {theem,platform,}

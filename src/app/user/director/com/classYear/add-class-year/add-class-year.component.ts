@@ -13,6 +13,8 @@ export class AddClassYearComponent implements OnInit {
   currentUser: User;
   name;
   start;
+  end;
+  endDate;
   semisterType;
   startDate;
   constructor(
@@ -28,6 +30,7 @@ export class AddClassYearComponent implements OnInit {
 
   onSubmit(value) {
     value.start = this.startDate;
+    value.end = this.endDate;
     value.school = this.currentUser.school;
     this.classYearSer.create(value).subscribe(res => {
       this.snackbar.open(this.name + ` Add As classyear`, '', {
@@ -37,6 +40,7 @@ export class AddClassYearComponent implements OnInit {
       this.name = '';
       this.semisterType = '';
       this.start = '';
+      this.end = '';
     });
   }
 }

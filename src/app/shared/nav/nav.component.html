@@ -10,25 +10,26 @@
     <mat-toolbar>
       <div color="primary" fxLayout="column" fxLayoutAlign="center center">
         <div>
-          <span *ngIf="currentUser && currentUser.School" >{{
+          <span *ngIf="currentUser && currentUser.School">{{
             currentUser.School.schoolId | uppercase
           }}</span>
         </div>
       </div>
     </mat-toolbar>
-    <mat-nav-list *ngIf="currentUser">
+    <mat-nav-list *ngIf="vm$ | async as vm">
+      <!-- Finace -->
       <a
         mat-list-item
         [routerLink]="['/finace', 'add-payment']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'finace'"
+        *ngIf="vm.role == 'finace'"
         >AddPayment</a
       >
       <a
         mat-list-item
         [routerLink]="['/finace', 'view-payment']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'finace'"
+        *ngIf="vm.role == 'finace'"
         >ViewPayment</a
       >
 
@@ -38,11 +39,11 @@
         mat-list-item
         [routerLink]="['/lecture', 'gradeing']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'lecture'"
+        *ngIf="vm.role == 'lecture'"
         >Grading</a
       >
 
-      <mat-expansion-panel
+      <!-- <mat-expansion-panel
         class="width-80"
         expanded="showSeo"
         *ngFor="let item of currentUser.sections"
@@ -64,24 +65,24 @@
             >Grade {{ item.sectionId }}</a
           >
         </mat-nav-list>
-      </mat-expansion-panel>
+      </mat-expansion-panel> -->
       <!-- admin -->
       <a
         mat-list-item
         [routerLink]="['/admin', 'add-school']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'admin'"
+        *ngIf="vm.role == 'admin'"
         >Add School</a
       >
       <a
         mat-list-item
         [routerLink]="['/admin', 'view-school']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'admin'"
+        *ngIf="vm.role == 'admin'"
         >View School</a
       >
       <!-- registra -->
-      <div *ngIf="currentUser && currentUser.role == 'registra'">
+      <div *ngIf="vm.role == 'registra'">
         <a
           mat-list-item
           [routerLink]="['/registra', 'student', 'view', 4, 0]"
@@ -130,35 +131,35 @@
         mat-list-item
         [routerLink]="['/director', 'class-year']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'director'"
+        *ngIf="vm.role == 'director'"
         >ClassYear</a
       >
       <a
         mat-list-item
         [routerLink]="['/director', 'semister']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'director'"
+        *ngIf="vm.role == 'director'"
         >semister</a
       >
       <a
         mat-list-item
         [routerLink]="['/director', 'registra']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'director'"
+        *ngIf="vm.role == 'director'"
         >Registra</a
       >
       <a
         mat-list-item
         [routerLink]="['/director', 'finace']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'director'"
+        *ngIf="vm.role == 'director'"
         >Finace</a
       >
       <a
         mat-list-item
         [routerLink]="['/director', 'setting']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'director'"
+        *ngIf="vm.role == 'director'"
         >Setting</a
       >
 
@@ -167,27 +168,27 @@
         mat-list-item
         [routerLink]="['/student', 'attendance']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'student'"
+        *ngIf="vm.role == 'student'"
         >Attendance</a
       >
       <a
         mat-list-item
         [routerLink]="['/student', 'grading']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'student'"
+        *ngIf="vm.role == 'student'"
         >Grading</a
       >
       <a
         mat-list-item
         [routerLink]="['/student', 'profile']"
         routerLinkActive="router-link-active"
-        *ngIf="currentUser && currentUser.role == 'student'"
+        *ngIf="vm.role == 'student'"
         >Profile</a
       >
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary" fxLayout. ="column">
+    <mat-toolbar color="primary" fxLayout="row">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -195,31 +196,57 @@
         (click)="drawer.toggle()"
         *ngIf="isHandset$ | async"
       >
+        <div fxFlex="0 1 auto" *ngIf="expression"></div>
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Dora</span>
-      <span class="spacer"></span>
-      <app-menu 
-        [options]="options$ | async"
-        (themeChange)="themeChangeHandler($event)">
-      </app-menu>
+      <div fxFlex="1 2 auto"></div>
+      <div fxLayout="row" fxFlex="0 1 auto">
+        <app-menu [options]="options$ | async" (themeChange)="themeChangeHandler($event)">
+        </app-menu>
 
-      <div fxFlexAlign="end">
-        <a class="nav-item nav-link btn btn-info" *ngIf="currentUser" (click)="logout()">Logout</a>
+        <!-- <div >
+          <a class="nav-item nav-link btn btn-info" *ngIf="currentUser" (click)="logout()"
+            >Logout</a
+          >
+        </div> -->
+        <button
+          mat-icon-button
+          *ngIf="(vm$ | async)?.isLoggedin"
+          [matMenuTriggerFor]="menu"
+          aria-label="Example icon-button with a menu"
+        >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span>Redial</span>
+          </button>
+          <a
+            mat-menu-item
+            class="nav-item nav-link btn btn-info"
+            
+            (click)="logout()"
+            >Logout</a
+          >
+        </mat-menu>
+        <a
+          class="nav-item nav-link btn btn-info"
+          id="loginlink"
+          *ngIf="!(vm$ | async)?.isLoggedin"
+          routerLink="/login"
+          routerLinkActive="router-link-active"
+          >Login</a
+        >
       </div>
-      <a
-        class="nav-item nav-link btn btn-info"
-        id="loginlink"
-        *ngIf="!currentUser"
-        routerLink="/login"
-        routerLinkActive="router-link-active"
-        >Login</a
-      >
 
-      <!-- <span id="role" *ngIf="currentUser && currentUser.School" fxFlexOffset="15%">{{
+      <!-- <span id="role" *ngIf="vm.School" fxFlexOffset="15%">{{
         currentUser.role
         }}</span> -->
     </mat-toolbar>
-    <router-outlet></router-outlet>
+    <div class="main-container">
+
+      <router-outlet></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

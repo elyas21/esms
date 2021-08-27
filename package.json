@@ -44,6 +44,7 @@
     "fs-extra": "7.0.1",
     "lodash": "^4.17.15",
     "ngx-alert": "0.0.2",
+    "ngx-alerts": "^10.1.3",
     "ngx-spinner": "^12.0.0",
     "rxjs": "~6.5.4",
     "subsink": "^1.0.1",

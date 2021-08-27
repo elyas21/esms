@@ -14,6 +14,17 @@ export interface User {
   Studentsections?: string;
 }
 
+export interface NewUser {
+  userId: any;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  id: Role;
+  role: string;
+  schoolName: string;
+  school: School;
+}
+
 export interface School {
   schoolId: string;
   schoolName: string;

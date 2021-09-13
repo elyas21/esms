@@ -25,6 +25,7 @@ export class NavComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     public authenticationService: AuthService,
     private readonly themeService: ThemeService,
+    private authSer: AuthService,
     private store: Store
   ) {
     // this.authenticationService.currentUser.subscribe(x => (this.currentUser = x));
@@ -34,6 +35,7 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.store.dispatch(Logout());
+    this.authSer.logout();
   }
 
   ngOnInit() {

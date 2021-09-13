@@ -6,11 +6,13 @@ describe('RegCourseComponent', () => {
   let component: RegCourseComponent;
   let fixture: ComponentFixture<RegCourseComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [RegCourseComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [RegCourseComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegCourseComponent);

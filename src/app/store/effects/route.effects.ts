@@ -19,7 +19,7 @@ export class RouteEffects {
     () => {
       return this.actions$.pipe(
         ofType(fromAuthActions.Logout),
-        tap(() => this.Route.navigate(['/']))
+        tap(() => this.Route.navigate(['/home']))
       );
     },
     { dispatch: false }

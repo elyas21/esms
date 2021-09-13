@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       name: {
         type: DataTypes.INTEGER(5).UNSIGNED,
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       start: {
         type: DataTypes.DATEONLY
@@ -43,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
 };
 
 function createSemisters(classYear) {
-  const SemisterMap = require('../routes/manageSemisterMap');
+  const SemisterMap = require('../controllers/manageSemisterMap');
 
   for (let index = 0; index < classYear.semisterType; index++) {
     semister = { name: '', classYear: '' };

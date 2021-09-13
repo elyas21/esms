@@ -1,0 +1,51 @@
+<form [formGroup]="staffForm" (ngSubmit)="onSubmit()">
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+    <div [style.width.%]="50" fxLayoutGap="0.3rem" fxLayout="column">
+      <mat-form-field appearance="standard">
+        <mat-label>Staff Id</mat-label>
+        <input matInput placeholder="Staff Id" formControlName="staffId" />
+      </mat-form-field>
+        <div
+        *ngIf="
+        staffForm.controls['staffId'].invalid &&
+        (staffForm.controls['staffId'].dirty ||
+        staffForm.controls['staffId'].touched)
+        "
+        class="alert"
+        >
+        <mat-error *ngIf="staffForm.controls['staffId'].errors.required">
+          Please enter staffId
+        </mat-error>
+      </div>
+      <mat-form-field appearance="standard">
+        <mat-label>Staff First Name</mat-label>
+        <input matInput placeholder="Staff First Name" formControlName="staffFirstName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Staff Middle Name</mat-label>
+        <input matInput placeholder="Staff First Name" formControlName="staffMiddleName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Staff Last Name</mat-label>
+        <input matInput placeholder="Staff First Name" formControlName="staffLastName" />
+      </mat-form-field>
+
+      <mat-form-field appearance="standard">
+        <mat-label>Select Role</mat-label>
+        <mat-select matInput placeholder="Role" formControlName="role">
+          <mat-option value="registra">Registra</mat-option>
+          <mat-option value="finace">Finace</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <p>Complete the form to enable button.</p>
+    <button type="submit" [disabled]="!staffForm.valid" mat-raised-button color="primary">
+      Submit
+    </button>
+  </div>
+</form>
+
+<ngx-spinner></ngx-spinner>

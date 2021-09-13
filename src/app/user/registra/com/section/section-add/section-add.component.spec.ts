@@ -6,11 +6,13 @@ describe('SectionAddComponent', () => {
   let component: SectionAddComponent;
   let fixture: ComponentFixture<SectionAddComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [SectionAddComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SectionAddComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SectionAddComponent);

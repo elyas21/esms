@@ -1,0 +1,21 @@
+<div>
+  <!-- <mat-toolbar fxLayout="row wrap" class="course-row" fxLayoutAlign="center center">
+    <button
+      mat-raised-button
+      *ngFor="let item of courseList"
+      fxFlex="1 1"
+      mat-list-item
+      (click)="getGrades(item.courseId)"
+    >
+      {{ item.courseId }}
+    </button>
+  </mat-toolbar> -->
+</div>
+
+<ng-container *ngIf="vm$ | async as avm">
+  <div *ngIf="avm.length > 0">
+    <app-view-staff-table [staffs]="vm$ | async"></app-view-staff-table>
+  </div>
+</ng-container>
+
+{{ vm$ | async | json }}

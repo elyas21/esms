@@ -6,11 +6,13 @@ describe('ClassYearComponent', () => {
   let component: ClassYearComponent;
   let fixture: ComponentFixture<ClassYearComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ClassYearComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ClassYearComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClassYearComponent);

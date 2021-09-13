@@ -69,7 +69,7 @@ module.exports = (sequelize, DataTypes) => {
 
 async function createUser(user) {
   const AutCon = require('../controllers/autCon');
-  const Payment = require('../routes/managePayment');
+  const Payment = require('../controllers/managePayment');
 
   const candidateuser = {};
   candidateuser.userId = user.studentId;
@@ -86,7 +86,7 @@ async function createUser(user) {
   return;
 }
 async function createGradeing(student) {
-  const couresGradeing = require('../routes/manageCouresGrade');
+  const couresGradeing = require('../controllers/manageCouresGrade');
 
   const candidate = {};
   const terms = ['term-1', 'term-2', 'term-3', 'term-4'];
@@ -113,12 +113,12 @@ async function createGradeing(student) {
 }
 
 async function getCourseList(school, currentGrade) {
-  const Grade = require('../routes/manageGrade');
+  const Grade = require('../controllers/manageGrade');
   const courseList = await Grade.getCourseGrade(school, currentGrade);
   return courseList.Courses;
 }
 async function getSemisterType(id) {
-  const cym = require('../routes/manageClassYear');
+  const cym = require('../controllers/manageClassYear');
   const terms = await cym.getClassYearSemister(id);
   return terms;
 }

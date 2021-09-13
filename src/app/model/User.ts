@@ -22,7 +22,7 @@ export interface NewUser {
   id: Role;
   role: string;
   schoolName: string;
-  school: School;
+  School: School;
 }
 
 export interface School {
@@ -35,4 +35,24 @@ export interface School {
 }
 export interface Teacher {
   sections: Section[];
+}
+
+export interface Staff {
+  staffId: string;
+  staffFirstName: string;
+  staffMiddleName: string;
+  staffLastName: string;
+  role: Role;
+  school: string;
+}
+
+export interface Pagination {
+  first: string;
+  next: string;
+  last: string;
+  prev: string;
+}
+export interface PaginatedResult<T> {
+  result: T;
+  pagination: Pagination;
 }

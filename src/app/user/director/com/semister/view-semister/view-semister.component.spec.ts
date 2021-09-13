@@ -6,11 +6,13 @@ describe('ViewSemisterComponent', () => {
   let component: ViewSemisterComponent;
   let fixture: ComponentFixture<ViewSemisterComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ViewSemisterComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ViewSemisterComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewSemisterComponent);

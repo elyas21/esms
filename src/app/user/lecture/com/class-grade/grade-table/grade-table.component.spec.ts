@@ -10,12 +10,14 @@ describe('GradeTableComponent', () => {
   let component: GradeTableComponent;
   let fixture: ComponentFixture<GradeTableComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [GradeTableComponent],
-      imports: [NoopAnimationsModule, MatPaginatorModule, MatSortModule, MatTableModule]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [GradeTableComponent],
+        imports: [NoopAnimationsModule, MatPaginatorModule, MatSortModule, MatTableModule]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GradeTableComponent);

@@ -6,11 +6,13 @@ describe('LectureDetailComponent', () => {
   let component: LectureDetailComponent;
   let fixture: ComponentFixture<LectureDetailComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [LectureDetailComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [LectureDetailComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LectureDetailComponent);

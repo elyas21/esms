@@ -50,7 +50,7 @@ module.exports = (sequelize, DataTypes) => {
 };
 
 async function createSection(section) {
-  const TCS = require('../routes/manageTeacherCouresSection');
+  const TCS = require('../controllers/manageTeacherCouresSection');
 
   const tsc = {};
   tsc.school = section.school;
@@ -62,7 +62,6 @@ async function createSection(section) {
   console.log(section.school, section.gradeNo);
   const ff = await getCourseList(section.school, section.gradeNo);
   console.log('+++++++sssssssssssssssssssssssssssssssssssssssssssssssssssss+++++');
-  console.log(ff.length);
   for (let index = 0; index < ff.length; index++) {
     tsc.course = ff[index].courseId;
     await TCS.assignCourse(tsc);
@@ -72,9 +71,8 @@ async function createSection(section) {
 }
 
 async function getCourseList(school, gradeNo) {
-  const Grade = require('../routes/manageGrade');
+  const Grade = require('../controllers/manageGrade');
   const courseList = await Grade.getCourseGrade(school, gradeNo);
-  console.log(school + gradeNo);
   console.log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
   return courseList.Courses;
 }

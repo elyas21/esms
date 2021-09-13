@@ -6,11 +6,13 @@ describe('ClassGradeComponent', () => {
   let component: ClassGradeComponent;
   let fixture: ComponentFixture<ClassGradeComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ClassGradeComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ClassGradeComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClassGradeComponent);

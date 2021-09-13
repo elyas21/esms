@@ -10,12 +10,14 @@ describe('TableLecViewComponent', () => {
   let component: TableLecViewComponent;
   let fixture: ComponentFixture<TableLecViewComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [TableLecViewComponent],
-      imports: [NoopAnimationsModule, MatPaginatorModule, MatSortModule, MatTableModule]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TableLecViewComponent],
+        imports: [NoopAnimationsModule, MatPaginatorModule, MatSortModule, MatTableModule]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TableLecViewComponent);

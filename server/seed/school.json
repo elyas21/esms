@@ -1,27 +1,22 @@
 [
   {
     "schoolId": "school-0",
-    "schoolName": "SCHOOL-0",
-    "DirectorId": null
+    "schoolName": "SCHOOL-0"
   },
   {
     "schoolId": "school-1",
-    "schoolName": "SCHOOL-1",
-    "DirectorId": null
+    "schoolName": "SCHOOL-1"
   },
   {
     "schoolId": "school-2",
-    "schoolName": "SCHOOL-2",
-    "DirectorId": null
+    "schoolName": "SCHOOL-2"
   },
   {
     "schoolId": "school-3",
-    "schoolName": "SCHOOL-3",
-    "DirectorId": null
+    "schoolName": "SCHOOL-3"
   },
   {
     "schoolId": "school-4",
-    "schoolName": "SCHOOL-4",
-    "DirectorId": null
+    "schoolName": "SCHOOL-4"
   }
 ]

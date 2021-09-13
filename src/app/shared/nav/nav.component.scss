@@ -19,14 +19,15 @@ mat-sidenav {
   mat-nav-list {
     a:hover {
       margin: 0px 4px;
-      font-size: 1.34  rem;
+      font-size: 1.34 rem;
       // background-color: rgb(133, 112, 120);
     }
-    a:active, .router-link-active, a:visited{
+    a:active,
+    .router-link-active,
+    a:visited {
       background-color: rgb(230, 218, 218);
-      box-shadow:  -2px 0px 9px 0px rgb(2 2 2 / 16%);
+      box-shadow: -2px 0px 9px 0px rgb(2 2 2 / 16%);
     }
-    
   }
 }
 
@@ -42,6 +43,6 @@ mat-sidenav {
   height: 100%;
 }
 
-.main-container{
+.main-container {
   min-height: 82.3vh;
 }

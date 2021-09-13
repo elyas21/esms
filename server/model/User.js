@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     'User',
     {
       userId: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.STRING(50),
         allowNull: false,
         primaryKey: true,
         unique: true
@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING
       },
       password: DataTypes.STRING,
+      google_refresh_token: DataTypes.STRING,
       softDelete: { type: DataTypes.BOOLEAN, defaultValue: false }
     },
     {

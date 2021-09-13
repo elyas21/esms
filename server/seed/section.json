@@ -1,6 +1,6 @@
 [
   {
-    "sectionId": "sec-0-1-a",
+    "sectionId": "sec-1-0-1-a",
     "sectionName": "grade 1 A",
     "grade": "G-2",
     "classYear": 1,
@@ -8,7 +8,7 @@
     "gradeNo": 2
   },
   {
-    "sectionId": "sec-0-1-b",
+    "sectionId": "sec-1-0-1-b",
     "sectionName": "grade 1 b",
     "grade": "G-1",
     "classYear": 1,
@@ -16,7 +16,7 @@
     "gradeNo": 2
   },
   {
-    "sectionId": "sec-0-2-a",
+    "sectionId": "sec-1-0-2-a",
     "sectionName": "grade 2 A",
     "grade": "G-2",
     "classYear": 2,
@@ -24,7 +24,7 @@
     "gradeNo": 2
   },
   {
-    "sectionId": "sec-0-3-a",
+    "sectionId": "sec-1-0-3-a",
     "sectionName": "grade 3 A",
     "grade": "G-3",
     "classYear": 2,
@@ -32,7 +32,7 @@
     "gradeNo": 3
   },
   {
-    "sectionId": "sec-0-3-b",
+    "sectionId": "sec-1-0-3-b",
     "sectionName": "grade 3 B",
     "grade": "G-3",
     "classYear": 1,
@@ -40,7 +40,7 @@
     "gradeNo": 3
   },
   {
-    "sectionId": "sec-0-4-a",
+    "sectionId": "sec-1-0-4-a",
     "sectionName": "grade 4 A",
     "grade": "G-4",
     "classYear": 2,
@@ -48,7 +48,7 @@
     "gradeNo": 4
   },
   {
-    "sectionId": "sec-0-4-b",
+    "sectionId": "sec-1-0-4-b",
     "sectionName": "grade 4 b",
     "grade": "G-4",
     "classYear": 2,
@@ -56,7 +56,7 @@
     "gradeNo": 4
   },
   {
-    "sectionId": "sec-0-1a",
+    "sectionId": "sec-1-0-1a",
     "sectionName": "grade 1 A",
     "grade": "G-1",
     "classYear": 1,

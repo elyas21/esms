@@ -6,11 +6,13 @@ describe('RegistraViewComponent', () => {
   let component: RegistraViewComponent;
   let fixture: ComponentFixture<RegistraViewComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [RegistraViewComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [RegistraViewComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegistraViewComponent);

@@ -7,25 +7,26 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 import { MatCardModule } from '@angular/material/card';
-import { MatNativeDateModule,  } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule , MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSidenavModule
-// matformfield
- } from '@angular/material/sidenav';
+import {
+  MatSidenavModule
+  // matformfield
+} from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
-  declarations: [ HomeComponent, NotFoundComponent],
+  declarations: [HomeComponent, NotFoundComponent],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -64,7 +65,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    NgxSpinnerModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { float: 'auto' } }

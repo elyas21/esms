@@ -10,10 +10,7 @@ describe('RouteEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        RouteEffects,
-        provideMockActions(() => actions$)
-      ]
+      providers: [RouteEffects, provideMockActions(() => actions$)]
     });
 
     effects = TestBed.inject(RouteEffects);

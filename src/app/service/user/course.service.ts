@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/core/serivice/auth.service';
 import { DataService } from '../data.service';
 import { environment } from '../../../environments/environment';
+import { Store } from '@ngrx/store';
+import { PaginateService } from '../paginate.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService extends DataService {
-  constructor(http: HttpClient, auth: AuthService) {
-    super(`${environment.url}api/course/`, http, auth);
+  constructor(http: HttpClient, auth: AuthService, paginateSer: PaginateService, store?: Store) {
+    super(`${environment.url}api/course/`, http, auth, paginateSer, store);
   }
 }

@@ -10,12 +10,14 @@ describe('StudentViewAdvaceComponent', () => {
   let component: StudentViewAdvaceComponent;
   let fixture: ComponentFixture<StudentViewAdvaceComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [StudentViewAdvaceComponent],
-      imports: [NoopAnimationsModule, MatPaginatorModule, MatSortModule, MatTableModule]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [StudentViewAdvaceComponent],
+        imports: [NoopAnimationsModule, MatPaginatorModule, MatSortModule, MatTableModule]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StudentViewAdvaceComponent);

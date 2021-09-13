@@ -6,11 +6,13 @@ describe('RegistraDetailComponent', () => {
   let component: RegistraDetailComponent;
   let fixture: ComponentFixture<RegistraDetailComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [RegistraDetailComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [RegistraDetailComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegistraDetailComponent);

@@ -127,41 +127,44 @@
         >
       </div>
       <!-- director -->
-      <a
-        mat-list-item
-        [routerLink]="['/director', 'class-year']"
-        routerLinkActive="router-link-active"
-        *ngIf="vm.role == 'director'"
-        >ClassYear</a
-      >
-      <a
-        mat-list-item
-        [routerLink]="['/director', 'semister']"
-        routerLinkActive="router-link-active"
-        *ngIf="vm.role == 'director'"
-        >semister</a
-      >
-      <a
-        mat-list-item
-        [routerLink]="['/director', 'registra']"
-        routerLinkActive="router-link-active"
-        *ngIf="vm.role == 'director'"
-        >Registra</a
-      >
-      <a
-        mat-list-item
-        [routerLink]="['/director', 'finace']"
-        routerLinkActive="router-link-active"
-        *ngIf="vm.role == 'director'"
-        >Finace</a
-      >
-      <a
-        mat-list-item
-        [routerLink]="['/director', 'setting']"
-        routerLinkActive="router-link-active"
-        *ngIf="vm.role == 'director'"
-        >Setting</a
-      >
+      <div *ngIf="vm.role == 'director'">
+        <a
+          mat-list-item
+          [routerLink]="['/director', 'class-year']"
+          routerLinkActive="router-link-active"
+          >ClassYear</a
+        >
+        <a
+          mat-list-item
+          [routerLink]="['/director', 'semister']"
+          routerLinkActive="router-link-active"
+          >semister</a
+        >
+        <a
+          mat-list-item
+          [routerLink]="['/director', 'registra']"
+          routerLinkActive="router-link-active"
+          >Registra</a
+        >
+        <a
+          mat-list-item
+          [routerLink]="['/director', 'finace']"
+          routerLinkActive="router-link-active"
+          >Finace</a
+        >
+        <a
+          mat-list-item
+          [routerLink]="['/director', 'staff']"
+          routerLinkActive="router-link-active"
+          >Staff</a
+        >
+        <a
+          mat-list-item
+          [routerLink]="['/director', 'setting']"
+          routerLinkActive="router-link-active"
+          >Setting</a
+        >
+      </div>
 
       <!-- student -->
       <a
@@ -222,20 +225,13 @@
             <mat-icon>dialpad</mat-icon>
             <span>Redial</span>
           </button>
-          <a
-            mat-menu-item
-            class="nav-item nav-link btn btn-info"
-            
-            (click)="logout()"
-            >Logout</a
-          >
+          <a mat-menu-item class="nav-item nav-link btn btn-info" (click)="logout()">Logout</a>
         </mat-menu>
         <a
-          class="nav-item nav-link btn btn-info"
+          class="nav-item nav-link"
           id="loginlink"
           *ngIf="!(vm$ | async)?.isLoggedin"
-          routerLink="/login"
-          routerLinkActive="router-link-active"
+          [routerLink]="['/login']"
           >Login</a
         >
       </div>
@@ -245,7 +241,6 @@
         }}</span> -->
     </mat-toolbar>
     <div class="main-container">
-
       <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>

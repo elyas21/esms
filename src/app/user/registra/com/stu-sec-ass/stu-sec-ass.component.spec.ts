@@ -6,11 +6,13 @@ describe('StuSecAssComponent', () => {
   let component: StuSecAssComponent;
   let fixture: ComponentFixture<StuSecAssComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [StuSecAssComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [StuSecAssComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StuSecAssComponent);

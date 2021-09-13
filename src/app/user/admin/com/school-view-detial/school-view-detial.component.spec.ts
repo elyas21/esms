@@ -6,11 +6,13 @@ describe('SchoolViewDetialComponent', () => {
   let component: SchoolViewDetialComponent;
   let fixture: ComponentFixture<SchoolViewDetialComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [SchoolViewDetialComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SchoolViewDetialComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SchoolViewDetialComponent);

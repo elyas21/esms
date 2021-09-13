@@ -10,10 +10,7 @@ describe('SpinnerEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        SpinnerEffects,
-        provideMockActions(() => actions$)
-      ]
+      providers: [SpinnerEffects, provideMockActions(() => actions$)]
     });
 
     effects = TestBed.inject(SpinnerEffects);

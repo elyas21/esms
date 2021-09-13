@@ -35,6 +35,11 @@ const classYearMap = require('./classYearMap.json');
 
 sequelize.sync({ force: true }).then(async function() {
   await Promise.all(
+    school.map(school => {
+      School.create(school);
+    })
+  );
+  await Promise.all(
     director.map(director => {
       Director.create(director);
     })
@@ -42,11 +47,6 @@ sequelize.sync({ force: true }).then(async function() {
   await Promise.all(
     admin.map(admin => {
       Admin.create(admin);
-    })
-  );
-  await Promise.all(
-    school.map(school => {
-      School.create(school);
     })
   );
   await Promise.all(
@@ -64,18 +64,6 @@ sequelize.sync({ force: true }).then(async function() {
       Grade.create(gradee);
     })
   );
-
-  // await Promise.all(
-  //   grade.map(data => {
-  //     Grade.findOne({
-  //       where: {
-  //         gradeId: data.gradeId
-  //       }
-  //     }).then(g => {
-  //       g.addCourse(data.courses);
-  //     });
-  //   })
-  // );
 
   await Promise.all(
     finace.map(finace => {
@@ -103,10 +91,4 @@ sequelize.sync({ force: true }).then(async function() {
       Parent.create(parent);
     })
   );
-
-  // await Promise.all(
-  //   section.map(section => {
-  //     Section.create(section);
-  //   })
-  // );
 });

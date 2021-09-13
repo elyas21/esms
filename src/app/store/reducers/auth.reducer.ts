@@ -18,7 +18,7 @@ export const initialState: State = {
     id: null,
     role: null,
     schoolName: null,
-    school: null
+    School: null
   },
   error: null
 };
@@ -42,7 +42,7 @@ export const reducer = createReducer(
         id: null,
         role: null,
         schoolName: null,
-        school: null
+        School: null
       },
       error: action.error
     };
@@ -58,7 +58,7 @@ export const reducer = createReducer(
         id: null,
         role: null,
         schoolName: null,
-        school: null
+        School: null
       },
       error: null
     };

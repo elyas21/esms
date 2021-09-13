@@ -9,7 +9,7 @@ export class AppEffects {
     () =>
       this.actions$.pipe(
         ofType(fromAuthActions.Logout),
-        tap(() => localStorage.removeItem('user'))
+        tap(() => localStorage.removeItem('currentUser'))
       ),
     { dispatch: false }
   );
@@ -18,9 +18,7 @@ export class AppEffects {
     () =>
       this.actions$.pipe(
         ofType(fromAuthActions.AuthLoginSuccess),
-        tap((action) =>
-          localStorage.setItem('currentUser', JSON.stringify(action.user))
-        )
+        tap(action => localStorage.setItem('currentUser', JSON.stringify(action.user)))
       ),
     { dispatch: false }
   );

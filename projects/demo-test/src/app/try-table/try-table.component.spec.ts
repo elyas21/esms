@@ -10,12 +10,14 @@ describe('TryTableComponent', () => {
   let component: TryTableComponent;
   let fixture: ComponentFixture<TryTableComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [TryTableComponent],
-      imports: [NoopAnimationsModule, MatPaginatorModule, MatSortModule, MatTableModule]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [TryTableComponent],
+        imports: [NoopAnimationsModule, MatPaginatorModule, MatSortModule, MatTableModule]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TryTableComponent);

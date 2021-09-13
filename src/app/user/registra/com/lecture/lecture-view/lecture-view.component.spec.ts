@@ -6,11 +6,13 @@ describe('LectureViewComponent', () => {
   let component: LectureViewComponent;
   let fixture: ComponentFixture<LectureViewComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [LectureViewComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [LectureViewComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LectureViewComponent);

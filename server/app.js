@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../dist/browser')));
 
 require('./passport');
-var routes = require('./routes/routes');
+var routes = require('./routes');
 // require('./routes')(app);
 app.use('/api/', routes);
 

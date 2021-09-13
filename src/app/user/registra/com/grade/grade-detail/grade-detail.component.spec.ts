@@ -6,11 +6,13 @@ describe('GradeDetailComponent', () => {
   let component: GradeDetailComponent;
   let fixture: ComponentFixture<GradeDetailComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [GradeDetailComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [GradeDetailComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(GradeDetailComponent);

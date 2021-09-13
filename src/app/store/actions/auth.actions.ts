@@ -21,4 +21,3 @@ export const BrowserReload = createAction(
 );
 
 export const Logout = createAction('[Nav Component] Logout User');
-

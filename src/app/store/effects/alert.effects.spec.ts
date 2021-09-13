@@ -10,10 +10,7 @@ describe('AlertEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        AlertEffects,
-        provideMockActions(() => actions$)
-      ]
+      providers: [AlertEffects, provideMockActions(() => actions$)]
     });
 
     effects = TestBed.inject(AlertEffects);

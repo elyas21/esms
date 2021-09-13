@@ -8,14 +8,30 @@ export interface RoleLinksViewModal {
   role: string;
   isLoggedin: boolean;
 }
+export interface SchoolViewModal {
+  schoolId: string;
+}
 
 export const selectIsLoggedIn = createSelector(
   selectAuthState,
   (state: fromAuth.State): boolean => state.user.userId != null
 );
+export const selectSchool = createSelector(
+  selectAuthState,
+  (state: fromAuth.State): string => state.user.School.schoolId
+);
 export const selectIsAdmin = createSelector(
   selectAuthState,
   (state: fromAuth.State): string => state.user.role
+);
+
+export const selectSchoolModel = createSelector(
+  selectSchool,
+  (school: string): SchoolViewModal => {
+    return {
+      schoolId: school
+    };
+  }
 );
 
 export const selectAuthLinksViewModel = createSelector(

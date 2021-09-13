@@ -4,13 +4,15 @@ import { AuthService } from 'src/app/core/serivice/auth.service';
 import { DataService } from '../data.service';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
+import { Store } from '@ngrx/store';
+import { PaginateService } from '../paginate.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GradeService extends DataService {
-  constructor(http: HttpClient, auth: AuthService) {
-    super(`${environment.url}api/grade/`, http, auth);
+  constructor(http: HttpClient, auth: AuthService, paginateSer: PaginateService, store?: Store) {
+    super(`${environment.url}api/grade/`, http, auth, paginateSer, store);
   }
 
   getOneBySchoolGrade(id) {

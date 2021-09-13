@@ -1,0 +1,64 @@
+<div class="mat-elevation-z8" *ngIf="dataSource.data.length > 0">
+  <table mat-table class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="Id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let row">{{ row.Id }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="FirstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+      <td mat-cell *matCellDef="let row">{{ row.FirstName }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="MiddleName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Middle Name</th>
+      <td mat-cell *matCellDef="let row">{{ row.MiddleName }}</td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="LastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+      <td mat-cell *matCellDef="let row">{{ row.LastName }}</td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="Role">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+      <td mat-cell *matCellDef="let row">{{ row.Role }}</td>
+    </ng-container>
+    <!-- Name Column -->
+ 
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <mat-select
+        *matCellDef="let row"
+        [ngClass]="{
+          'btn-info': coloring(row.status, 'opend'),
+          staged: coloring(row.status, 'staged-h'),
+          'btn-danger': coloring(row.status, 'deny-h'),
+          'btn-primary': coloring(row.status, 'approve-h')
+        }"
+        placeholder="{{ row.status }}"
+        mat-cell
+        matNativeControl
+      >
+        <mat-option (click)="updateStatus(row, 'approve-h')" value="approve-h">Aprove</mat-option>
+        <mat-option (click)="updateStatus(row, 'deny-h')" value="deny-h">Deny</mat-option>
+      </mat-select>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns "></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns "></tr>
+  </table>
+
+  <mat-paginator
+    #paginator
+    [length]="dataSource?.data.length"
+    [pageIndex]="0"
+    [pageSize]="50"
+    [pageSizeOptions]="[3, 10, 5, 25]"
+  >
+  </mat-paginator>
+</div>

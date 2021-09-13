@@ -3,7 +3,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const db = {};
 
-const sequelize = new Sequelize('schoolNew', 'black', 'tikur', {
+const sequelize = new Sequelize('esms00', 'black', 'tikur', {
   host: 'localhost',
   dialect: 'mysql',
   pool: {
@@ -20,7 +20,9 @@ const sequelize = new Sequelize('schoolNew', 'black', 'tikur', {
 fs.readdirSync(__dirname)
   .filter(file => file !== 'index.js')
   .forEach(file => {
-    const model = sequelize.import(path.join(__dirname, file));
+    // const model = sequelize.import(path.join(__dirname, file));
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
+
     db[model.name] = model;
     // console.log(model)
   });

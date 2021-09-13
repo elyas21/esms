@@ -19,6 +19,10 @@ import { ViewSemisterComponent } from './com/semister/view-semister/view-semiste
 import { SemisterDetailComponent } from './com/semister/semister-detail/semister-detail.component';
 import { AddSemisterComponent } from './com/semister/add-semister/add-semister.component';
 import { SettingComponent } from './com/setting/setting.component';
+import { StaffComponentComponent } from './com/staff/staff-component.component';
+import { ViewStaffComponent } from './com/staff/view-staff/view-staff.component';
+import { DetailStaffComponent } from './com/staff/detail-staff/detail-staff.component';
+import { AddStaffComponent } from './com/staff/add-staff/add-staff.component';
 
 const routes: Routes = [
   {
@@ -77,6 +81,33 @@ const routes: Routes = [
       {
         path: 'add',
         component: AddComponent
+      }
+    ]
+  },
+  {
+    path: 'staff',
+    component: StaffComponentComponent,
+    canActivate: [AuthGuard, DirectorGuard],
+    children: [
+      {
+        path: '',
+        component: ViewStaffComponent
+      },
+      {
+        path: 'view',
+        component: ViewStaffComponent
+      },
+      {
+        path: 'detail',
+        component: DetailStaffComponent
+      },
+      {
+        path: 'detail/:id',
+        component: DetailStaffComponent
+      },
+      {
+        path: 'add',
+        component: AddStaffComponent
       }
     ]
   },

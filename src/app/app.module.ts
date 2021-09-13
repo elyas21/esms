@@ -34,6 +34,9 @@ import { RouteEffects } from './store/effects/route.effects';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AlertModule } from 'ngx-alerts';
 import { AppEffects } from './store/effects/app.effects';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [NavComponent, MenuComponent],
@@ -61,10 +64,12 @@ import { AppEffects } from './store/effects/app.effects';
     MatSidenavModule,
     MatListModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([ AlertEffects, SpinnerEffects, RouteEffects]),
+    EffectsModule.forRoot([AppEffects, AlertEffects, SpinnerEffects, RouteEffects]),
     StoreModule.forRoot(reducers, { metaReducers }),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
     StyleManagerService,

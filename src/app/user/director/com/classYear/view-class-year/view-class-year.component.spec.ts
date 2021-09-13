@@ -6,11 +6,13 @@ describe('ViewClassYearComponent', () => {
   let component: ViewClassYearComponent;
   let fixture: ComponentFixture<ViewClassYearComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ViewClassYearComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [ViewClassYearComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ViewClassYearComponent);

@@ -1,0 +1,21 @@
+form > div {
+  box-shadow: inset -3px 0px 0px transparent;
+}
+
+// .ng-valid,
+// .ng-dirty + .ng-valid {
+//   border-left: 5px solid #42a948;
+//   box-shadow: #42a948; /* green */
+// }
+
+// .ng-invalid + .ng-touched,
+// .ng-invalid + .ng-dirty {
+//   border-left: 5px solid #a94442; /* red */
+// }
+
+// .ng-untouched {
+//   border-left: 5px solid #cddc39; /* yellow */
+// }
+.mat-form-field + div {
+  height: 1rem;
+}

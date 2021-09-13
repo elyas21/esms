@@ -6,11 +6,13 @@ describe('SemisterDetailComponent', () => {
   let component: SemisterDetailComponent;
   let fixture: ComponentFixture<SemisterDetailComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [SemisterDetailComponent]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SemisterDetailComponent]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SemisterDetailComponent);

@@ -43,6 +43,15 @@ import { AssignStuComponent } from './com/stu-sec-ass/com/assign-stu/assign-stu.
 import { SelectSectionModalComponent } from './com/stu-sec-ass/select-section-modal/select-section-modal.component';
 import { LecViewTableComponent } from './com/lecture/lec-view-table/lec-view-table.component';
 import { TableLecViewComponent } from './com/lecture/table-lec-view/table-lec-view.component';
+import { ScheduleComponent } from './com/schedule/schedule.component';
+import { StoreModule } from '@ngrx/store';
+import * as fromRegiStore from './store';
+import * as fromGrade from './store/reducers/grade.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { GradeEffects } from './store/effects/grade.effects';
+import * as fromSection from './store/reducers/section.reducer';
+import { SectionEffects } from './store/effects/section.effects';
+import { ScheduleModule } from '../shared/schedule/schedule.module';
 
 @NgModule({
   declarations: [
@@ -76,10 +85,12 @@ import { TableLecViewComponent } from './com/lecture/table-lec-view/table-lec-vi
     AssignStuComponent,
     SelectSectionModalComponent,
     LecViewTableComponent,
-    TableLecViewComponent
+    TableLecViewComponent,
+    ScheduleComponent
   ],
   entryComponents: [SelectSectionModalComponent],
   imports: [
+    ScheduleModule,
     CommonModule,
     RegistraRoutingModule,
     SharedModule,
@@ -92,7 +103,10 @@ import { TableLecViewComponent } from './com/lecture/table-lec-view/table-lec-vi
     MatCheckboxModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    StoreModule.forFeature(fromGrade.gradesFeatureKey, fromGrade.reducer),
+    EffectsModule.forFeature([GradeEffects, SectionEffects]),
+    StoreModule.forFeature(fromSection.sectionFeatureKey, fromSection.reducer)
   ]
 })
 export class RegistraModule {}

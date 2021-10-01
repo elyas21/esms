@@ -1,0 +1,31 @@
+<mat-card *ngIf=" SudoEvents">
+  <mat-card-header fxLayout="row" fxLayoutAlign="end center">
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close><mat-icon>close</mat-icon></button>
+    </mat-dialog-actions>
+  </mat-card-header>
+  <mat-dialog-actions>
+    <mat-card-content fxLayout="column">
+      <h2 mat-dialog-title>Event Summary</h2>
+      <div><mat-label>Type</mat-label>{{ SudoEvents.classType }}</div>
+      <div fxLayout="row" fxLayoutAlign="space-around center">
+        <div>
+          <label for="start">Start</label
+          ><label name="start">{{ SudoEvents.start }}</label>
+        </div>
+        <div>
+          <label for="end">End</label><label name="end">{{ SudoEvents.end }}</label>
+        </div>
+      </div>
+      <div>
+        <mat-label>Day</mat-label>
+        {{ SudoEvents.day }}
+      </div>
+    </mat-card-content>
+  </mat-dialog-actions>
+  <mat-card-footer>
+    <mat-dialog-actions>
+      <button mat-button (click)="editEvent(SudoEvents.id)" mat-dialog-close><mat-icon>edit</mat-icon></button>
+    </mat-dialog-actions>
+  </mat-card-footer>
+</mat-card>

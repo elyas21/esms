@@ -6,7 +6,10 @@ import { AuthService } from '../../core/serivice/auth.service';
 import { NewUser, User } from 'src/app/model/User';
 import { ThemeService } from 'src/app/service/theme/theme.service';
 import { Option } from 'src/app/service/theme/option.model';
-import * as fromAuthSelectors from 'src/app/store/selectors/auth.selectors';
+import {
+  selectAuthLinksViewModel,
+  RoleLinksViewModal
+} from 'src/app/store/selectors/auth.selectors';
 import { select, Store } from '@ngrx/store';
 import { BrowserReload, Logout } from 'src/app/store/actions/auth.actions';
 
@@ -19,7 +22,7 @@ export class NavComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
-  vm$: Observable<fromAuthSelectors.RoleLinksViewModal>;
+  vm$: Observable<RoleLinksViewModal>;
   currentUser: User;
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -46,7 +49,7 @@ export class NavComponent implements OnInit {
       this.store.dispatch(BrowserReload({ user }));
     }
 
-    this.vm$ = this.store.pipe(select(fromAuthSelectors.selectAuthLinksViewModel));
+    this.vm$ = this.store.pipe(select(selectAuthLinksViewModel));
     this.themeService.setTheme('deeppurple-amber');
   }
 

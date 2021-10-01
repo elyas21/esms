@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "schoolingp": {
+    "esms": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -71,18 +71,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "schoolingp:build"
+            "browserTarget": "esms:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "schoolingp:build:production"
+              "browserTarget": "esms:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "schoolingp:build"
+            "browserTarget": "esms:build"
           }
         },
         "test": {
@@ -120,11 +120,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "schoolingp:serve"
+            "devServerTarget": "esms:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "schoolingp:serve:production"
+              "devServerTarget": "esms:serve:production"
             }
           }
         },
@@ -275,7 +275,7 @@
       }
     }
   },
-  "defaultProject": "schoolingp",
+  "defaultProject": "esms",
   "cli": {
     "defaultCollection": "@ngrx/schematics"
   }

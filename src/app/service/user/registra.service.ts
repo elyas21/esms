@@ -11,6 +11,6 @@ import { PaginateService } from '../paginate.service';
 })
 export class RegistraService extends DataService {
   constructor(http: HttpClient, auth: AuthService, paginateSer: PaginateService, store?: Store) {
-    super(`${environment.url}api/registara/`, http, auth);
+    super(`${environment.url}api/registra/`, http, auth,paginateSer,store);
   }
 }

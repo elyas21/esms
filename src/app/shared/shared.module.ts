@@ -24,6 +24,8 @@ import { FormsModule } from '@angular/forms';
 import { MAT_RIPPLE_GLOBAL_OPTIONS } from '@angular/material/core';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { MatButtonModule } from '@angular/material/button';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [HomeComponent, NotFoundComponent],
@@ -33,6 +35,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatSnackBarModule,
     MatDatepickerModule,
     MatSelectModule,
+    MatButtonModule,
     FlexLayoutModule,
     MatNativeDateModule,
     MatToolbarModule,
@@ -44,7 +47,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatExpansionModule,
     MatIconModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    FontAwesomeModule
   ],
   exports: [
     HomeComponent,
@@ -66,7 +70,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     MatFormFieldModule,
     MatInputModule,
     MatMenuModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatButtonModule,
+    FontAwesomeModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { float: 'auto' } }

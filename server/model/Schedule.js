@@ -1,11 +1,15 @@
+const crypto = require('crypto');
 module.exports = (sequelize, DataTypes) => {
   const Schedule = sequelize.define(
     'Schedule',
     {
       id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement: true
+        default: DataTypes.UUIDV4
+      },
+      googleCalId: {
+        type: DataTypes.UUID
       },
       classType: {
         type: DataTypes.ENUM,
@@ -79,7 +83,7 @@ module.exports = (sequelize, DataTypes) => {
 
     {
       hooks: {
-        // beforeCreate: createSemisters
+        beforeCreate: createID
         // afterCreate: createGradeing
       }
     }
@@ -89,3 +93,7 @@ module.exports = (sequelize, DataTypes) => {
 
   return Schedule;
 };
+function createID(user, options) {
+  id = crypto.randomUUID();
+  return user.setDataValue('id', id);
+}

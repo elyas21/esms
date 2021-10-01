@@ -125,6 +125,13 @@
           routerLinkActive="router-link-active"
           >aStudents 2 Sections</a
         >
+        <a
+          mat-list-item
+          [routerLink]="['/registra', 'schedule']"
+          routerLinkActive="router-link-active"
+          >Schedule</a
+        >
+        
       </div>
       <!-- director -->
       <div *ngIf="vm.role == 'director'">

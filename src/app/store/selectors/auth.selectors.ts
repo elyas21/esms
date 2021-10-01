@@ -16,9 +16,8 @@ export const selectIsLoggedIn = createSelector(
   selectAuthState,
   (state: fromAuth.State): boolean => state.user.userId != null
 );
-export const selectSchool = createSelector(
-  selectAuthState,
-  (state: fromAuth.State): string => state.user.School.schoolId
+export const selectSchool = createSelector(selectAuthState, (state: fromAuth.State): string =>
+  state.user.School ? state.user.School.schoolId : null
 );
 export const selectIsAdmin = createSelector(
   selectAuthState,

@@ -15,7 +15,8 @@ const sequelize = new Sequelize('esms00', 'black', 'tikur', {
   define: {
     timestamps: false,
     freezeTableName: true
-  }
+  },
+  logging: true,
 });
 fs.readdirSync(__dirname)
   .filter(file => file !== 'index.js')

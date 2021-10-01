@@ -26,6 +26,7 @@ import { AssCourseComponent } from './com/grade/ass-course/ass-course.component'
 import { CoSeLeAssComponent } from './com/co-se-le-ass/co-se-le-ass.component';
 import { StuSecAssComponent } from './com/stu-sec-ass/stu-sec-ass.component';
 import { ViewAllCandStuComponent } from './com/stu-sec-ass/com/view-all-cand-stu/view-all-cand-stu.component';
+import { ScheduleComponent } from './com/schedule/schedule.component';
 
 const routes: Routes = [
   {
@@ -203,6 +204,34 @@ const routes: Routes = [
       // }
     ]
   },
+  {
+    path: 'schedule',
+    component: ScheduleComponent,
+    canActivate: [AuthGuard, RegistraGuard],
+    children: [
+      // {
+      //   path: '',
+      //   component: CourseViewComponent
+      // },
+      // {
+      //   path: 'view',
+      //   component: CourseViewComponent
+      // },
+      // {
+      //   path: 'detail',
+      //   component: CourseDetailComponent
+      // },
+      // {
+      //   path: 'detail/:id',
+      //   component: CourseDetailComponent
+      // },
+      // {
+      //   path: 'add',
+      //   component: CourseAddComponent
+      // }
+    ]
+  },
+  
   {
     path: 'assign-stu-sec',
     component: StuSecAssComponent

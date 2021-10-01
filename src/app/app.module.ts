@@ -54,6 +54,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatCardModule,
     NgxSpinnerModule,
     AlertModule.forRoot({ maxMessages: 5, timeout: 5000 }),
+    FontAwesomeModule,
 
     MatMenuModule,
     MatIconModule,

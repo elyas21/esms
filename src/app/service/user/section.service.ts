@@ -6,6 +6,8 @@ import { map, catchError } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Store } from '@ngrx/store';
 import { PaginateService } from '../paginate.service';
+import { Observable } from 'rxjs';
+import { Section } from 'src/app/model/Section';
 
 @Injectable({
   providedIn: 'root'
@@ -45,9 +47,9 @@ export class SectionService extends DataService {
       );
   }
 
-  getAllBySchoolGradeClassYear(id) {
+  getAllBySchoolGradeClassYear(id): Observable<Section[]> {
     return this.http
-      .get(
+      .get<Section[]>(
         this.url +
           'get-all-by-school/' +
           this.currentUser.school +

@@ -13,6 +13,7 @@ const Semister = require('./semister');
 const Student = require('./student');
 const CourseGradeing = require('./courseGradeing');
 const Schedule = require('./schedule');
+const SudoSchedule = require('./sudoSchedule');
 
 const Course = require('./course');
 const Grade = require('./grade');
@@ -35,6 +36,7 @@ router
   .use('/student/', Student)
   .use('/course-gradeing/', CourseGradeing)
   .use('/schedule/', Schedule)
+  .use('/sudo-schedule/', SudoSchedule)
 
   .use('/course/', Course)
   .use('/grade/', Grade)

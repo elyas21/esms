@@ -95,32 +95,38 @@ module.exports = {
   },
   async add(req, res) {
     try {
-      const exissting = await Schedule.findOne({
-        where: {
-          id: req.body.id
-        }
-      });
-      if (exissting) {
-        newUser = req.body;
-        newUser.softDelete = false;
-        await Schedule.update(newUser, {
-          where: {
-            id: req.body.id
-          }
-        });
-        return res.status(200).send({
-          regsterd: 'ok',
-          schedule: exissting.toJSON()
-        });
-      }
+      // const exissting = await Schedule.findOne({
+      //   where: {
+      //     id: req.body.id
+      //   }
+      // });
+      // if (exissting) {
+      //   newUser = req.body;
+      //   newUser.softDelete = false;
+      //   await Schedule.update(newUser, {
+      //     where: {
+      //       id: req.body.id
+      //     }
+      //   });
+      //   return res.status(200).send({
+      //     regsterd: 'ok',
+      //     schedule: exissting.toJSON()
+      //   });
+      // }
 
       const schedule = await Schedule.create(req.body);
       //   const schoolJson = schedule.toJSON();
-
-      res.send({
-        schedule: schedule.toJSON(),
-        regsterd: 'ok'
-      });
+      if (schedule) {
+        res.send({
+          schedule: schedule.toJSON(),
+          regsterd: 'ok'
+        });
+      } else {
+        res.send({
+          schedule: schedule.toJSON(),
+          regsterd: 'bad'
+        });
+      }
     } catch (e) {
       console.log(e);
       res.status(400).send({

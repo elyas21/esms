@@ -81,15 +81,7 @@ export class CoSeLeAssComponent implements OnInit {
     console.log(user + user.flag);
   }
 
-  addNewRow() {
-    // this.dataSource.push({});
-    this.dataSource.push({
-      isNew: true,
-      flag: true
-    });
-    // this.cancleUpdate(this.dataSource[this.dataSource.length])
-    // this.cancleUpdate(this.dataSource[this.dataSource.length - 1], null, true);
-  }
+
 
   cancleUpdate(user: any, event?: any, isNew?: boolean, i?: number) {
     user.flag = !user.flag;

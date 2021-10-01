@@ -12,7 +12,7 @@ import { PaginateService } from '../paginate.service';
 })
 export class CourseGradeingService extends DataService {
   constructor(http: HttpClient, auth: AuthService, paginateSer: PaginateService, store?: Store) {
-    super(`${environment.url}api/course-gradeing/`, http, auth);
+    super(`${environment.url}api/course-gradeing/`, http, auth,paginateSer, store);
   }
   // course-gradeing/get-all-student-by-school/:school/:lecture/:course/:section
 

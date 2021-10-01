@@ -1,0 +1,77 @@
+<div class="section" *ngIf="sections$ | async as s">
+  <mat-toolbar *ngIf="s.length > 0" fxLayout="column wrap" fxLayoutAlign="end center">
+    <button
+      class="section-btn"
+      mat-raised-button
+      *ngFor="let item of sections$ | async"
+      fxFlex="1 1"
+      mat-list-item
+      (click)="getSchedule(item.sectionId)"
+    >
+      {{ item.sectionId }}
+    </button>
+  </mat-toolbar>
+</div>
+<div
+  class="tt-container"
+  fxLayout.gt-xs="row"
+  fxLayout.xs="column"
+  fxLayoutAlign="space-around center"
+>
+  <button mat-raised-button (click)="openDialog()" color="accent">Add W. Event</button>
+  <div>
+    <mat-card fxLayout="row">
+      <div
+        *ngFor="let item of ['Sun', 'Mon', 'Tus', 'Wen', 'Thu', 'Fir', 'Sta']; index as ii"
+        class="tt-col"
+      >
+        <div class="tt-col-head">
+          <h6>
+            {{ item }}
+          </h6>
+        </div>
+
+        <div
+          *ngFor="let i of getEventByDay(ii) | async"
+          [style]="{ 'grid-row': getRowEnd(i.start.dateTime, i.end.dateTime) }"
+          [class]="{ online: i.classType == 'online', face2face: i.classType == 'face2face' }"
+          (click)="openViewDialog(i.id)"
+          
+          class="tt-cel"
+        >
+        <div>{{ i.id }}</div>
+        <div>{{ i.day }}</div>
+      </div>
+      </div>
+    </mat-card>
+  </div>
+  <div>
+    <mat-card fxLayout="row">
+      <div
+        *ngFor="let item of ['Sun', 'Mon', 'Tus', 'Wen', 'Thu', 'Fir', 'Sta']; index as ii"
+        class="tt-col"
+      >
+        <div class="tt-col-head">
+          <h6>
+            {{ item }}
+          </h6>
+        </div>
+
+        <div
+          [style]="{
+            'grid-row': getRowEnd(i.start.dateTime, i.end.dateTime)
+          }"
+          [class]="{ online: i.classType == 'online', face2face: i.classType == 'face2face' }"
+          class="tt-cel"
+          *ngFor="let i of getEventByDay(ii) | async"
+        >
+          <!-- <div>d</div> -->
+        </div>
+      </div>
+    </mat-card>
+  </div>
+  <button mat-raised-button color="primary">Add Event</button>
+</div>
+<!-- {{ grades$ | async | json }}
+{{ sections$ | async | json }} -->
+<pre>{{ events$ | async | json }}</pre>

@@ -11,6 +11,6 @@ import { PaginateService } from '../paginate.service';
 })
 export class ClassYearService extends DataService {
   constructor(http: HttpClient, auth: AuthService, paginateSer: PaginateService, store?: Store) {
-    super(`${environment.url}api/class-year/`, http, auth);
+    super(`${environment.url}api/class-year/`, http, auth,paginateSer, store);
   }
 }

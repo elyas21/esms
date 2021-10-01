@@ -25,3 +25,14 @@ stop cruders from cruding others data
 # latter
 
     create action to store websetting {theem,platform,}
+
+# idea
+    create school setting for each school to store current semistor,start date ,end date this help to display semistor info for user page ...by defalut the current semistor info will display
+
+
+# fix's 
+    doesn't remove students frome section well
+
+    in homeroom teacher student's grade does't change on click course `change the route param map to obserble might helps`
+
+    data.service.ts 110 error handling method need fix

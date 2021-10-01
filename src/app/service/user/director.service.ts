@@ -12,7 +12,7 @@ import { PaginateService } from '../paginate.service';
 })
 export class DirectorService extends DataService {
   constructor(http: HttpClient, auth: AuthService, paginateSer: PaginateService, store?: Store) {
-    super(`${environment.url}api/director/`, http, auth);
+    super(`${environment.url}api/director/`, http, auth,paginateSer, store);
   }
 
   getBySchool(id) {

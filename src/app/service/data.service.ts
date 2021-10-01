@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { of, Observable } from 'rxjs';
+import { of, Observable, throwError } from 'rxjs';
 import { AppError } from '../common/app-error';
 import { BadInput } from '../common/bad-input';
 import { NotFoundError } from '../common/not-found-error';
@@ -55,7 +55,14 @@ export class DataService {
       catchError(err => this.handleError(err))
     );
   }
-
+  getAllBySchoolSection(section): Observable<any> {
+    return this.http
+      .get<any>(this.url + 'get-all-by-school-section/' + this.currentUser.school + '/' + section)
+      .pipe(
+        map(res => res),
+        catchError(err => this.handleError(err))
+      );
+  }
   getAll() {
     return this.http.get(this.url + 'getAll').pipe(
       map(response => response),
@@ -65,6 +72,12 @@ export class DataService {
 
   get(id) {
     return this.http.get(this.url + 'get-one/' + id).pipe(
+      map(response => response),
+      catchError(err => this.handleError(err))
+    );
+  }
+  getOneById(id): Observable<any> {
+    return this.http.get<any>(this.url + 'get-one/' + id).pipe(
       map(response => response),
       catchError(err => this.handleError(err))
     );
@@ -79,9 +92,9 @@ export class DataService {
     );
   }
 
-  update(resource) {
-    resource.school = this.currentUser.school;
-    return this.http.post(this.url + 'update', resource).pipe(
+  update(resource): Observable<any> {
+    let a = { ...resource, school: this.school.schoolId };
+    return this.http.post<any>(this.url + 'update', a).pipe(
       map(response => response),
       catchError(err => of(null))
     );
@@ -100,13 +113,13 @@ export class DataService {
 
   protected handleError(error: Response) {
     if (error.status === 400) {
-      return Observable.throw(new BadInput(error.json()));
+      return throwError(new BadInput(error.json()));
     }
 
     if (error.status === 404) {
-      return Observable.throw(new NotFoundError());
+      return throwError(new NotFoundError());
     }
 
-    return Observable.throw(new AppError(error));
+    return throwError(new AppError(error));
   }
 }

@@ -10,7 +10,10 @@ export const selectProducts = createSelector(
   state => state[StaffReducer.stafvesFeatureKey].staffs
 );
 
-export const selectAllEntites = createSelector(selectProductState, StaffReducer.selectAll);
+export const selectAllEntites = createSelector(selectProductState, state => {
+  console.log(state);
+  return StaffReducer.selectAll;
+});
 export interface StaffTableViewModel {
   Id: string;
   FirstName: string;
@@ -32,13 +35,16 @@ export interface StaffTableViewModel {
 //   }
 // );
 export const selectAllEntities = createSelector(selectAllEntites, staffs =>
-  staffs.map(a => {
-    return {
-      Id: a.staffId,
-      FirstName: a.staffId,
-      MiddleName: a.staffId,
-      LastName: a.staffId,
-      Role: a.staffId
-    };
-  })
+  // staffs.map(a => {
+  // return {
+  //   Id: a.staffId,
+  //   FirstName: a.staffId,
+  //   MiddleName: a.staffId,
+  //   LastName: a.staffId,
+  //   Role: a.staffId
+  // };
+  // })
+  {
+    return staffs;
+  }
 );

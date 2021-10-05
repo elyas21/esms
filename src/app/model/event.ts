@@ -1,22 +1,21 @@
 export interface SudoEvent {
-    id: string;
-    classType: string;
-    location: string;
-    startTime: string;
-    endTime: string;
-    end: Time;
-    start: Time;
-    classroomId: string;
-    driveUrl: string;
-    version: string;
-    day: number;
-    section: string;
-    school: string;
-    teacher: string;
-    classYearMap: number;
-  }
-  export interface Time {
-    dateTime: string;
-    timeZone: string;
-  }
-  
+  id: string | null;
+  classType: string | null;
+  location: string | null;
+  startTime: string | null;
+  endTime: string | null;
+  end: Time | null;
+  start: Time | null;
+  classroomId: string | null;
+  driveUrl: string | null;
+  version: string | null;
+  day: number | null;
+  section: string | null;
+  school: string | null;
+  teacher: string | null;
+  classYearMap: number | null;
+}
+export interface Time {
+  dateTime: string;
+  timeZone: string;
+}

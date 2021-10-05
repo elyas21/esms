@@ -51,7 +51,7 @@ export class UpdateSudoEventComponent implements OnInit {
     // });
 
     this.store
-      .pipe(select(fromEventSelector.selectEntityById({ id: this.data.id })))
+      .pipe(select(fromEventSelector.selectEntityById({ id: this.data.event.id })))
       .subscribe(res => {
         this.SudoEvent = res;
         console.log(res);
@@ -102,7 +102,7 @@ export class UpdateSudoEventComponent implements OnInit {
     );
     console.log({ ...this.sudoEventForm.value, id: this.data.event.id });
 
-    this.dialogRef.close();
+    // this.dialogRef.close();
   }
   public Days = [
     { value: 0, name: 'Sun' },

@@ -70,45 +70,49 @@ export class SScheduleComponent implements OnInit {
     this.store
       .pipe(select(fromSudoScheduleSelector.selectEntityById({ id: id })))
       .subscribe(res => {
+      console.log(res);
+      
         dff = this.dialog.open(ViewSudoEventComponent, {
           data: { data: res },
           height: '300px',
           width: '420px'
         });
-        dff.afterClosed().subscribe(result => {
-          console.log(`Dialog result: ${result}`); // Pizza!
-          if (result.edit) {
-            // if edit true passed pass to edit
-            // if close true close the dialog
-            console.log(result);
-
-            this.OpenEditorDilalog(result);
-            result = null;
-          }
-        });
-      });
-  }
-  OpenEditorDilalog(result) {
-    let df
-    df = this.dialog.open(UpdateSudoEventComponent, {
-      data: { event: result },
-      height: '500px',
-      width: '420px'
-    });
-        
-    df.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`); // Pizza!
-      // tobeupdate ture
-      console.log(result);
-
-      if (result) {
-        // if edit true passed pass to edit
-        // if close true close the dialog
-        // return this.store.dispatch(fromSudoScheduleAction.updateEvent({ event: result.event }));
-        // df.close()
       }
-    });
+      );
+        return dff.afterClosed().subscribe(result => {
+          // console.log(`Dialog result: ${result}`); // Pizza!
+          // if (result.edit) {
+          //   // if edit true passed pass to edit
+          //   // if close true close the dialog
+          //   console.log(result);
+
+          //   // return this.OpenEditorDilalog(result);
+          //   result = null;
+          // }
+          // this.dialog.closeAll()
+        });
   }
+  // OpenEditorDilalog(result) {
+  //   let df;
+  //   df = this.dialog.open(UpdateSudoEventComponent, {
+  //     data: { event: result },
+  //     height: '500px',
+  //     width: '420px'
+  //   });
+
+  //   return df.afterClosed().subscribe(result => {
+  //     console.log(`Dialog result: ${result}`); // Pizza!
+  //     // tobeupdate ture
+  //     console.log(result);
+
+  //     if (result) {
+  //       // if edit true passed pass to edit
+  //       // if close true close the dialog
+  //       // return this.store.dispatch(fromSudoScheduleAction.updateEvent({ event: result.event }));
+  //       // df.close()
+  //     }
+  //   });
+  // }
   getSections(id) {
     this.secSer.getAllBySchoolGradeClassYear(id).subscribe(res => {
       this.sections = res;

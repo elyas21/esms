@@ -59,7 +59,7 @@ export const updateEvent = createAction(
 );
 export const updateEventSuccess = createAction(
   '[Event/API] Update Event Success',
-  props<{ event: Update<SudoEvent> }>()
+  props<{ event: SudoEvent }>()
 );
 export const updateEventFaliure = createAction('[Event/API] Update Event', props<{ error: any }>());
 

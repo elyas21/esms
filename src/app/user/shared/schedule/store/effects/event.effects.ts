@@ -8,7 +8,7 @@ import { SudoScheduleService } from 'src/app/service/user/sudo-schedule.service'
 
 @Injectable()
 export class EventEffects {
-    /****************************************************************** */
+  /****************************************************************** */
   /*****Load Events API EFFECT ** */
   /****************************************************************** */
   loadSudoSchedules$ = createEffect(() => {
@@ -61,7 +61,10 @@ export class EventEffects {
       ofType(fromEventsActions.updateEvent),
       concatMap(action =>
         this.sudoSchedueleSer.update(action.event).pipe(
-          map(data => fromEventsActions.updateEventSuccess({ event: data.event })),
+          map(data => {
+            console.log(data);
+            return fromEventsActions.updateEventSuccess({ event: data.event });
+          }),
           catchError(error => of(fromEventsActions.updateEventFaliure({ error })))
         )
       )

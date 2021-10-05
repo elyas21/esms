@@ -47,8 +47,8 @@ export const reducer = createReducer(
   // on(EventActions.upsertEvents, (state, action) => adapter.upsertMany(action.events, state)),
   on(EventActions.updateEventSuccess, (state, action) => {
     console.log(action.event);
-    
-    return adapter.updateOne(action.event, state);
+
+    return adapter.upsertOne(action.event, state);
   }),
   on(EventActions.updateEvents, (state, action) => adapter.updateMany(action.events, state)),
   on(EventActions.deleteEvent, (state, action) => adapter.removeOne(action.id, state)),

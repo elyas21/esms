@@ -33,11 +33,11 @@ export const selectEventViewModel = createSelector(
         id: a.id,
         start: {
           dateTime: `2021-09-11T${a.start}+03:00`,
-          timeZone: 'America/Los_Angeles'
+          timeZone: `America/Los_Angeles`
         },
         end: {
           dateTime: `2021-09-11T${a.end}+03:00`,
-          timeZone: 'America/Los_Angeles'
+          timeZone: `America/Los_Angeles`
         },
         day: a.day,
         classType: a.classType
@@ -58,7 +58,7 @@ export const selectEventViewByDayModel = createSelector(selectAllEntites, (grade
       },
       end: {
         dateTime: `2021-09-11T${a.end}+03:00`,
-        timeZone: 'America/Los_Angeles'
+        timeZone:   `America/Los_Angeles`
       },
       classType: a.classType,
       day: a.day

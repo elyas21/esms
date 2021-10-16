@@ -4,7 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { SudoSchedule } from 'src/app/model/SudoSchedule';
 import { SudoScheduleService } from 'src/app/service/user/sudo-schedule.service';
-import * as fromEventAction from '../../store/actions/event.actions';
+import * as fromEventAction from '../../store/actions/sudoevent.actions';
 
 @Component({
   selector: 'app-add-weekly-event-modal',

@@ -9,6 +9,7 @@ router
   .get('/get-one-by-school/:school/:id', Schedule.getOneBySchool)
   .get('/getAll', Schedule.getAll)
   .get('/get-one/:id', Schedule.getOne)
+  .post('/add-bulk', Schedule.addBulk)
   .post('/add', Schedule.add)
   .post('/update', Schedule.update)
   .delete('/remove', Schedule.remove);

@@ -6,20 +6,20 @@ import {
   MetaReducer
 } from '@ngrx/store';
 import { environment } from '../../../../../environments/environment';
-import * as fromSchedule from './reducers/schedule.reducer';
-import * as fromEvent from './reducers/event.reducer';
+import * as fromSchedule from './reducers/event.reducer';
+import * as fromEvent from './reducers/sudoevent.reducer';
 
 export const scheduleStateFeatureKey = 'scheduleState';
 
 export interface State {
 
-  [fromSchedule.scheduleFeatureKey]: fromSchedule.State;
+  [fromSchedule.eventsFeatureKey]: fromSchedule.State;
   [fromEvent.eventsFeatureKey]: fromEvent.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
 
-  [fromSchedule.scheduleFeatureKey]: fromSchedule.reducer,
+  [fromSchedule.eventsFeatureKey]: fromSchedule.reducer,
   [fromEvent.eventsFeatureKey]: fromEvent.reducer,
 };
 

@@ -1,7 +1,7 @@
-import { reducer, initialState } from '../reducers/event.reducer';
+import { reducer, initialState } from './event.reducer';
 
-describe('Event Reducer', () => {
-  describe('unknown action', () => {
+describe('Schedule Reducer', () => {
+  describe('an unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;
 

@@ -35,7 +35,7 @@ router
   .use('/semister/', Semister)
   .use('/student/', Student)
   .use('/course-gradeing/', CourseGradeing)
-  .use('/schedule/', Schedule)
+  .use('/event/', Schedule)
   .use('/sudo-schedule/', SudoSchedule)
 
   .use('/course/', Course)

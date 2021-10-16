@@ -1,4 +1,4 @@
-import * as fromSchedule from './schedule.actions';
+import * as fromSchedule from './event.actions';
 
 describe('loadSchedules', () => {
   it('should return an action', () => {

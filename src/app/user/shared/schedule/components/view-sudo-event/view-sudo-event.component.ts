@@ -4,8 +4,8 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SudoSchedule } from 'src/app/model/SudoSchedule';
 import { SudoScheduleService } from 'src/app/service/user/sudo-schedule.service';
-import * as fromEventAction from '../../store/actions/event.actions';
-import * as fromEventSelector from '../../store/selectors/event.selelctors';
+import * as fromEventAction from '../../store/actions/sudoevent.actions';
+import * as fromEventSelector from '../../store/selectors/sudoevent.selelctors';
 import { faEdit, faUndo, faBackward } from '@fortawesome/free-solid-svg-icons';
 import { UpdateSudoEventComponent } from '../update-sudo-event/update-sudo-event.component';
 

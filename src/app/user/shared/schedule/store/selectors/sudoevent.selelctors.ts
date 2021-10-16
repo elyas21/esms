@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { Time } from 'src/app/model/event';
 // import {  } from '../mo';
-import * as fromEvent from '../reducers/event.reducer';
+import * as fromEvent from '../reducers/sudoevent.reducer';
 
 export const selectGradeState = createFeatureSelector<fromEvent.State>(fromEvent.eventsFeatureKey);
 export interface EventsViewModel {
@@ -46,7 +46,7 @@ export const selectEventViewModel = createSelector(
   }
 );
 
-export const selectEventViewByDayModel = createSelector(selectAllEntites, (grades): any[] => {
+export const selectSudoEventViewByDayModel = createSelector(selectAllEntites, (grades): any[] => {
   let a;
 
   grades.map(a => {

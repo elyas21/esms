@@ -6,7 +6,12 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        default: DataTypes.UUIDV4
+        defaultValue: function() {
+          return crypto.randomUUID()
+        },
+      },
+      date: {
+        type: DataTypes.DATEONLY
       },
       googleCalId: {
         type: DataTypes.UUID

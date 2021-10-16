@@ -1,7 +1,7 @@
-import { reducer, initialState } from './schedule.reducer';
+import { reducer, initialState } from './sudoevent.reducer';
 
-describe('Schedule Reducer', () => {
-  describe('an unknown action', () => {
+describe('Event Reducer', () => {
+  describe('unknown action', () => {
     it('should return the previous state', () => {
       const action = {} as any;
 

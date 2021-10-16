@@ -2,21 +2,21 @@ import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
-import { EventEffects } from './event.effects';
+import { ScheduleEffects } from './event.effects';
 
-describe('EventEffects', () => {
+describe('ScheduleEffects', () => {
   let actions$: Observable<any>;
-  let effects: EventEffects;
+  let effects: ScheduleEffects;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        EventEffects,
+        ScheduleEffects,
         provideMockActions(() => actions$)
       ]
     });
 
-    effects = TestBed.inject(EventEffects);
+    effects = TestBed.inject(ScheduleEffects);
   });
 
   it('should be created', () => {

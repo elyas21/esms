@@ -1,10 +1,10 @@
-import * as fromSchedule from '../reducers/schedule.reducer';
-import { selectScheduleState } from './schedule.selectors';
+import * as fromSchedule from '../reducers/event.reducer';
+import { selectScheduleState } from './event.selectors';
 
 describe('Schedule Selectors', () => {
   it('should select the feature state', () => {
     const result = selectScheduleState({
-      [fromSchedule.scheduleFeatureKey]: {}
+      [fromSchedule.eventsFeatureKey]: {}
     });
 
     expect(result).toEqual({});

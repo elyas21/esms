@@ -164,17 +164,17 @@ module.exports = {
   },
   async remove(req, res) {
     try {
-      const dd = req.body;
+      const id = req.params;
 
-      console.log(dd);
-      dd.softDelete = true;
-      const schedule = await SudoSchedule.update(req.body, {
+      // console.log(dd);
+      // dd.softDelete = true;
+      const schedule = await SudoSchedule.destroy( {
         where: {
-          id: req.body.id
+          id: id
         }
       });
       if (schedule[0] == 1) {
-        let updatedEvent = await SudoSchedule.findOne({ where: { id: req.body.id } });
+        let updatedEvent = await SudoSchedule.findOne({ where: { id: id } });
 
         res.send(updatedEvent);
       }

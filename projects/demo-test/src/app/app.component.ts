@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'demo-test';
+  Selectedweek =0;
+  onSubmit(){
+    console.log('ok');
+    
+  }
+  setSelectedweek(){
+    console.log(this.setSelectedweek);
+    
+    this.Selectedweek = 1
+  }
 }

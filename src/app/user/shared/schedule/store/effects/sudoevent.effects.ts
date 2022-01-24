@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap } from 'rxjs/operators';
 import { Observable, EMPTY, of } from 'rxjs';
 
-import * as fromEventsActions from '../actions/sudoevent.actions';
+import * as fromSudoEventsActions from '../actions/sudoevent.actions';
 import { SudoScheduleService } from 'src/app/service/user/sudo-schedule.service';
 
 @Injectable()
@@ -13,12 +13,12 @@ export class EventEffects {
   /****************************************************************** */
   loadSudoSchedules$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(fromEventsActions.loadEvents),
+      ofType(fromSudoEventsActions.loadEvents),
       concatMap(action =>
         /** An EMPTY observable only emits completion. Replace with your own observable API request */
         this.sudoSchedueleSer.getAllBySchoolSection(action.section).pipe(
-          map(data => fromEventsActions.loadEventsSucsess({ events: data })),
-          catchError(error => of(fromEventsActions.loadEventsFaliure({ error })))
+          map(data => fromSudoEventsActions.loadEventsSucsess({ events: data })),
+          catchError(error => of(fromSudoEventsActions.loadEventsFaliure({ error })))
         )
       )
     );
@@ -28,12 +28,12 @@ export class EventEffects {
   /****************************************************************** */
   loadSudoSchedule$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(fromEventsActions.loadEvent),
+      ofType(fromSudoEventsActions.loadEvent),
       concatMap(action =>
         /** An EMPTY observable only emits completion. Replace with your own observable API request */
         this.sudoSchedueleSer.getOneById(action.id).pipe(
-          map(data => fromEventsActions.loadEventSucsess({ event: data })),
-          catchError(error => of(fromEventsActions.loadEventFaliure({ error })))
+          map(data => fromSudoEventsActions.loadEventSucsess({ event: data })),
+          catchError(error => of(fromSudoEventsActions.loadEventFaliure({ error })))
         )
       )
     );
@@ -44,11 +44,11 @@ export class EventEffects {
   /****************************************************************** */
   upsertEvent$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(fromEventsActions.upsertEvent),
+      ofType(fromSudoEventsActions.upsertEvent),
       concatMap(action =>
         this.sudoSchedueleSer.update(action.event).pipe(
-          map(data => fromEventsActions.upsertEventSuccess({ event: data })),
-          catchError(error => of(fromEventsActions.upsertEventFailure({ error })))
+          map(data => fromSudoEventsActions.upsertEventSuccess({ event: data })),
+          catchError(error => of(fromSudoEventsActions.upsertEventFailure({ error })))
         )
       )
     )
@@ -58,14 +58,14 @@ export class EventEffects {
   /****************************************************************** */
   updateEvent$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(fromEventsActions.updateEvent),
+      ofType(fromSudoEventsActions.updateEvent),
       concatMap(action =>
         this.sudoSchedueleSer.update(action.event).pipe(
           map(data => {
             console.log(data);
-            return fromEventsActions.updateEventSuccess({ event: data.event });
+            return fromSudoEventsActions.updateEventSuccess({ event: data.event });
           }),
-          catchError(error => of(fromEventsActions.updateEventFaliure({ error })))
+          catchError(error => of(fromSudoEventsActions.updateEventFaliure({ error })))
         )
       )
     )
@@ -75,11 +75,30 @@ export class EventEffects {
   /****************************************************************** */
   addEvent$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(fromEventsActions.addEvent),
+      ofType(fromSudoEventsActions.addEvent),
       concatMap(action =>
         this.sudoSchedueleSer.create(action.event).pipe(
-          map(data => fromEventsActions.addEventSuccess({ event: data.schedule })),
-          catchError(error => of(fromEventsActions.addEventFaliure({ error })))
+          map(data => fromSudoEventsActions.addEventSuccess({ event: data.schedule })),
+          catchError(error => of(fromSudoEventsActions.addEventFaliure({ error })))
+        )
+      )
+    )
+  );
+
+  /****************************************************************** */
+  /*****Delete Event API EFFECT ** */
+  /****************************************************************** */
+  deleteEvent$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromSudoEventsActions.deleteEvent),
+      concatMap(action =>
+        this.sudoSchedueleSer.delete(action.id).pipe(
+          map(data => {
+            console.log(data);
+            
+            return fromSudoEventsActions.deleteEventSuccess({ id: data.id });
+          }),
+          catchError(error => of(fromSudoEventsActions.deleteEventFaliure({ error })))
         )
       )
     )

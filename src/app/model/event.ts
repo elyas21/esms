@@ -27,8 +27,8 @@ export interface Event {
   location: string | null;
   startTime: string | null;
   endTime: string | null;
-  end: Time | null;
-  start: Time | null;
+  end:  string | null;
+  start:   string |  null;
   classroomId: string | null;
   driveUrl: string | null;
   day: number | null;

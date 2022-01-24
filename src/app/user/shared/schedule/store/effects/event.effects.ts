@@ -3,36 +3,34 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, concatMap } from 'rxjs/operators';
 import { Observable, EMPTY, of } from 'rxjs';
 
-import * as ScheduleActions from '../actions/event.actions';
+import * as eventsAction from '../actions/event.actions';
 import { ScheduleService } from 'src/app/service/user/schedule.service';
 
 @Injectable()
 export class ScheduleEffects {
-  // loadSchedules$ = createEffect(() => {
-  //   return this.actions$.pipe(
-
-  //     ofType(ScheduleActions.loadSchedules),
-  //     concatMap(() =>
-  //       /** An EMPTY observable only emits completion. Replace with your own observable API request */
-  //       EMPTY.pipe(
-  //         map(data => ScheduleActions.loadSchedulesSuccess({ data })),
-  //         catchError(error => of(ScheduleActions.loadSchedulesFailure({ error }))))
-  //     )
-  //   );
-  // });
-
-  uploadEvents = createEffect(() => {
+  loadEvents$ = createEffect(() => {
     return this.actions$.pipe(
-      ofType(ScheduleActions.PopulateEvents),
+      ofType(eventsAction.loadWeeklyEvents),
       concatMap(action =>
-        /** An EMPTY observable only emits completion. Replace with your own observable API request */
+        this.eventSer.getEventsBySectionWeek(action).pipe(
+          map(data => eventsAction.loadWeeklyEventsSuccess({ events: data.schedule })),
+          catchError(error => of(eventsAction.loadWeeklyEventsFailure({ error })))
+        )
+      )
+    );
+  });
+
+  uploadEvents$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(eventsAction.PopulateEvents),
+      concatMap(action =>
         this.eventSer.bulkAddEvent(action).pipe(
           map(data => {
             console.log(data);
-            
-            return ScheduleActions.PopulateEventsSccusses({ events: data });
+
+            return eventsAction.PopulateEventsSccusses({ events: data });
           }),
-          catchError(error => of(ScheduleActions.loadSchedulesFailure({ error })))
+          catchError(error => of(eventsAction.PopulateEventsFaliure({ error })))
         )
       )
     );

@@ -22,12 +22,14 @@ export class AddWeeklyEventModalComponent implements OnInit {
     private store: Store,
     private fb: FormBuilder
   ) {
+    console.log(this.data);
+    
     this.sudoScheduleForm = this.fb.group({
       start: ['', Validators.required],
       end: ['', Validators.required],
       classType: ['', Validators.required],
       day: ['3', Validators.required],
-      section: ['sec-1-0-3-b', Validators.required],
+      section: [this.data.sectionId, Validators.required],
       version: ['3.32.3', Validators.required]
     });
   }

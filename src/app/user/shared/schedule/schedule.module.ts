@@ -19,6 +19,8 @@ import { AddEventComponent } from './components/add-event/add-event.component';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { ModalEffects } from './store/effects/modal.effects';
 import { PopulateEventComponent } from './components/populate-event/populate-event.component';
+import { WeeklyEventComponent } from './components/weekly-event/weekly-event.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -29,11 +31,13 @@ import { PopulateEventComponent } from './components/populate-event/populate-eve
     UpdateSudoEventComponent,
     ViewSudoEventComponent,
     AddEventComponent,
-    PopulateEventComponent
+    PopulateEventComponent,
+    WeeklyEventComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     NgxMaterialTimepickerModule,
     SharedModule,
     ReactiveFormsModule,

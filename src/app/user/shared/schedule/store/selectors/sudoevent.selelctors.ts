@@ -46,6 +46,21 @@ export const selectEventViewModel = createSelector(
   }
 );
 
+export const selectSudoEventViewModel = createSelector(
+  selectAllEntites,
+  (events): EventsViewModel[] => {
+    return events.map(a => {
+      return {
+        id: a.id,
+        start: a.start,
+        end: a.end,
+        day: a.day,
+        classType: a.classType
+      };
+    });
+  }
+);
+
 export const selectSudoEventViewByDayModel = createSelector(selectAllEntites, (grades): any[] => {
   let a;
 

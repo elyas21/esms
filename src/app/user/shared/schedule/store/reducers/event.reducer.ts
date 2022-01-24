@@ -7,7 +7,7 @@ export const eventsFeatureKey = 'events';
 
 export interface State extends EntityState<Event> {
   // additional entities state properties
-  error: any
+  error: any;
 }
 
 export const adapter: EntityAdapter<Event> = createEntityAdapter<Event>({
@@ -26,13 +26,23 @@ export const reducer = createReducer(
 
   //   return adapter.upsertMany(action.events, state);
   // }),
-  on(EventActions.PopulateEventsFaliure, (state, action)=>{
+  on(EventActions.PopulateEventsFaliure, (state, action) => {
     console.log('error on event redudcer');
-    
-    return{
+
+    return {
       ...state,
       error: action.error
-    } 
+    };
+  }),
+  on(EventActions.removeWeeklyEvents, (state, action) => {
+    console.log('removing');
+    
+    return adapter.removeAll(state);
+  }),
+  on(EventActions.loadWeeklyEventsSuccess, (state, action) => {
+    console.log(action);
+
+    return adapter.setAll(action.events, state);
   })
 );
 

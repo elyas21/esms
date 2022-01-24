@@ -1,6 +1,9 @@
 <mat-card *ngIf=" SudoEvents">
   <mat-card-header fxLayout="row" fxLayoutAlign="end center">
     <mat-dialog-actions>
+      <button mat-button mat-dialog-remove (click)="removeEvent(SudoEvents.id)"><mat-icon>delete</mat-icon></button>
+    </mat-dialog-actions>
+     <mat-dialog-actions>
       <button mat-button mat-dialog-close><mat-icon>close</mat-icon></button>
     </mat-dialog-actions>
   </mat-card-header>

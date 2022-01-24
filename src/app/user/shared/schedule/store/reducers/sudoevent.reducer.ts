@@ -28,6 +28,7 @@ export const reducer = createReducer(
     EventActions.upsertEventFailure,
     EventActions.addEventFaliure,
     EventActions.updateEventFaliure,
+    EventActions.deleteEventFaliure,
     (state, action) => {
       return {
         ...state,
@@ -51,7 +52,7 @@ export const reducer = createReducer(
     return adapter.upsertOne(action.event, state);
   }),
   on(EventActions.updateEvents, (state, action) => adapter.updateMany(action.events, state)),
-  on(EventActions.deleteEvent, (state, action) => adapter.removeOne(action.id, state)),
+  on(EventActions.deleteEventSuccess, (state, action) => adapter.removeOne(action.id, state)),
   on(EventActions.deleteEvents, (state, action) => adapter.removeMany(action.ids, state)),
 
   on(EventActions.clearEvents, state => adapter.removeAll(state))

@@ -10,6 +10,7 @@ import * as fromSudoScheduleSelector from '../../store/selectors/sudoevent.selel
 import { filter, map } from 'rxjs/operators';
 import { ViewSudoEventComponent } from '../view-sudo-event/view-sudo-event.component';
 import { UpdateSudoEventComponent } from '../update-sudo-event/update-sudo-event.component';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-sschedule',
   templateUrl: './sschedule.component.html',
@@ -22,21 +23,31 @@ export class SScheduleComponent implements OnInit {
   grades$: Observable<any>;
   sections$: Observable<any>;
   events$: Observable<fromSudoScheduleSelector.EventsViewModel[]>;
+  private sub: any;
+  sectionId: string;
 
   ScheduleList;
   constructor(
     private gradeSer: GradeService,
     private secSer: SectionService,
     private store: Store,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.gradeSer.getAllBySchool().subscribe(res => {
-      this.grades = res;
-      // console.log(this.grades);
+    // this.subscription = this.gradeSer.getAllBySchool().subscribe(res => {
+    //   this.grades = res;
+    //   // console.log(this.grades);
+    // });
+    this.sub = this.route.paramMap.subscribe(params => {
+      this. sectionId = params.get('section'); // (+) converts string 'id' to a number
+      console.log(this.sectionId);
+      console.log(params.get('section'));
+      
+      // In a real app: dispatch action to load the details here.
+      this.store.dispatch(fromSudoScheduleAction.loadEvents({ section: this.sectionId }));
     });
-    this.store.dispatch(fromSudoScheduleAction.loadEvents({ section: 'sec-1-0-3-b' }));
     // this.store.dispatch(fromGradeAction.loadGrades());
     this.events$ = this.store.pipe(select(fromSudoScheduleSelector.selectEventViewModel));
     this.events$.subscribe(res => (this.ScheduleList = res));
@@ -57,9 +68,9 @@ export class SScheduleComponent implements OnInit {
       })
     );
   }
-  openDialog() {
+  openDialog(sectionId) {
     this.dialog.open(AddWeeklyEventModalComponent, {
-      data: { data: 'data' },
+      data: { sectionId: sectionId },
       height: '500px',
       width: '700px'
     });
@@ -70,49 +81,17 @@ export class SScheduleComponent implements OnInit {
     this.store
       .pipe(select(fromSudoScheduleSelector.selectEntityById({ id: id })))
       .subscribe(res => {
-      console.log(res);
-      
+        console.log(res);
+
         dff = this.dialog.open(ViewSudoEventComponent, {
           data: { data: res },
           height: '300px',
           width: '420px'
         });
-      }
-      );
-        return dff.afterClosed().subscribe(result => {
-          // console.log(`Dialog result: ${result}`); // Pizza!
-          // if (result.edit) {
-          //   // if edit true passed pass to edit
-          //   // if close true close the dialog
-          //   console.log(result);
-
-          //   // return this.OpenEditorDilalog(result);
-          //   result = null;
-          // }
-          // this.dialog.closeAll()
-        });
+      });
+    return dff.afterClosed().subscribe(result => {});
   }
-  // OpenEditorDilalog(result) {
-  //   let df;
-  //   df = this.dialog.open(UpdateSudoEventComponent, {
-  //     data: { event: result },
-  //     height: '500px',
-  //     width: '420px'
-  //   });
 
-  //   return df.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`); // Pizza!
-  //     // tobeupdate ture
-  //     console.log(result);
-
-  //     if (result) {
-  //       // if edit true passed pass to edit
-  //       // if close true close the dialog
-  //       // return this.store.dispatch(fromSudoScheduleAction.updateEvent({ event: result.event }));
-  //       // df.close()
-  //     }
-  //   });
-  // }
   getSections(id) {
     this.secSer.getAllBySchoolGradeClassYear(id).subscribe(res => {
       this.sections = res;

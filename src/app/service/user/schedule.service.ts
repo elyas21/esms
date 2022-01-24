@@ -24,4 +24,20 @@ export class ScheduleService extends DataService {
       catchError(err => this.handleError(err))
     );
   }
+
+  // get-section-week/:school/:section/:start/:end
+  getEventsBySectionWeek(resource): Observable<any> {
+    let a = { ...resource, school: this.school.schoolId };
+    console.log(a);
+    return this.http
+      .get(
+        this.url +
+          `get-section-week/${this.school.schoolId}/${resource.section}/${resource.range.start}/${resource.range.end}`,
+        a
+      )
+      .pipe(
+        map(response => response),
+        catchError(err => this.handleError(err))
+      );
+  }
 }

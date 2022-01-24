@@ -4,8 +4,8 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { SudoSchedule } from 'src/app/model/SudoSchedule';
 import { SudoScheduleService } from 'src/app/service/user/sudo-schedule.service';
-import * as fromEventAction from '../../store/actions/sudoevent.actions';
-import * as fromEventSelector from '../../store/selectors/sudoevent.selelctors';
+import * as fromSudoEventAction from '../../store/actions/sudoevent.actions';
+import * as fromSudoEventSelector from '../../store/selectors/sudoevent.selelctors';
 import { faEdit, faUndo, faBackward } from '@fortawesome/free-solid-svg-icons';
 import { UpdateSudoEventComponent } from '../update-sudo-event/update-sudo-event.component';
 
@@ -67,7 +67,14 @@ export class ViewSudoEventComponent implements OnInit {
         // return this.store.dispatch(fromSudoScheduleAction.updateEvent({ event: result.event }));
         // df.close()
       }
-      this.dialog.closeAll()
+      this.dialog.closeAll();
     });
+  }
+
+  removeEvent(id) {
+    this.dialog.closeAll();
+    console.log('rrrrrrr');
+    
+    this.store.dispatch(fromSudoEventAction.deleteEvent({ id: id }));
   }
 }

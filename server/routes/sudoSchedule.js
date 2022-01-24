@@ -11,6 +11,6 @@ router
   .get('/get-one/:id', SudoSchedule.getOne)
   .post('/add', SudoSchedule.add)
   .post('/update', SudoSchedule.update)
-  .delete('/remove', SudoSchedule.remove);
+  .delete('/remove/:id', SudoSchedule.remove);
 
 module.exports = router;

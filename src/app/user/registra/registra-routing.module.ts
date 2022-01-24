@@ -27,6 +27,8 @@ import { CoSeLeAssComponent } from './com/co-se-le-ass/co-se-le-ass.component';
 import { StuSecAssComponent } from './com/stu-sec-ass/stu-sec-ass.component';
 import { ViewAllCandStuComponent } from './com/stu-sec-ass/com/view-all-cand-stu/view-all-cand-stu.component';
 import { ScheduleComponent } from './com/schedule/schedule.component';
+import { SScheduleComponent } from '../shared/schedule/components/schedule/sschedule.component';
+import { WeeklyEventComponent } from '../shared/schedule/components/weekly-event/weekly-event.component';
 
 const routes: Routes = [
   {
@@ -209,26 +211,14 @@ const routes: Routes = [
     component: ScheduleComponent,
     canActivate: [AuthGuard, RegistraGuard],
     children: [
-      // {
-      //   path: '',
-      //   component: CourseViewComponent
-      // },
-      // {
-      //   path: 'view',
-      //   component: CourseViewComponent
-      // },
-      // {
-      //   path: 'detail',
-      //   component: CourseDetailComponent
-      // },
-      // {
-      //   path: 'detail/:id',
-      //   component: CourseDetailComponent
-      // },
-      // {
-      //   path: 'add',
-      //   component: CourseAddComponent
-      // }
+      {
+        path: 'sudo/:section',
+        component: SScheduleComponent
+      },
+      {
+        path: 'weekly/:section/:start/:end',
+        component: WeeklyEventComponent
+      }
     ]
   },
   

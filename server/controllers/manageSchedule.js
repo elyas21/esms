@@ -94,6 +94,28 @@ module.exports = {
       });
     }
   },
+  async getBySchoolSectionWeek(req,res) {
+    // get-section-week/:school/:section/:start/:end
+    console.log(req.params);
+    try {
+
+      const schedule = await Schedule.findAll({
+        where: {
+          section: req.params.section,
+          date: { [Op.between]: [req.params.start, req.params.end] }
+        }
+      });
+      if (schedule) {
+        res.status(200).send({ schedule, found: true });
+      } else {
+        res.send({ found: false });
+      }
+    } catch (e) {
+      res.status(400).send({
+        error: `${e}This email account is already in use`
+      });
+    }
+  },
   async add(req, res) {
     try {
       // const exissting = await Schedule.findOne({
@@ -161,8 +183,11 @@ module.exports = {
     */
 
       // drop by date range
+      upperRange = new Date(req.body.range.end);
+      upperRange = upperRange.setDate(upperRange.getDate() + 1);
+
       dropSuccses = await Schedule.destroy({
-        where: { date: { [Op.between]: [req.body.range.start, req.body.range.end] } }
+        where: { date: { [Op.between]: [req.body.range.start, upperRange] } }
       });
       console.log(dropSuccses);
       // add bulk from post.events to schedue
@@ -170,9 +195,9 @@ module.exports = {
 
       // });
 
-      createEvents(req.body);
+      events = await createEvents(req.body);
 
-      res.status(200).send({ events: ['working on int'] });
+      res.status(200).send({ events: events });
     } catch (e) {
       console.log(e);
       res.status(400).send({
@@ -228,45 +253,49 @@ module.exports = {
 };
 
 async function createEvents(req) {
-  console.log('createEvents');
-  const s = new Date(req.range.start);
-  const e = new Date(req.range.end);
+  try {
+    console.log('createEvents');
+    const s = new Date(req.range.start);
+    const e = new Date(req.range.end);
 
-  let loop = new Date(s);
-  eventss = req.events;
-  eventsNestedByDay = [[], [], [], [], [], [], []];
-  eventss.forEach(e => {
-    let day = e.day;
-    eventsNestedByDay[day].push(e);
-  });
-  let eventsToSave = [];
-  while (loop <= e) {
-    console.log(loop);
-    day = loop.getDay();
-    // newEvents.filter(e=>)
-    eventsNestedByDay[day].forEach(element => {
-      delete element.id;
-      element.start = getfFullTime(element.start.dateTime);
-      element.end = getfFullTime(element.end.dateTime);
-      element.note = 'note';
-      eventsToSave.push({ ...element, date: loop });
+    let loop = new Date(s);
+    eventss = req.events;
+    eventsNestedByDay = [[], [], [], [], [], [], []];
+    eventss.forEach(e => {
+      let day = e.day;
+      eventsNestedByDay[day].push(e);
     });
+    let eventsToSave = [];
+    while (loop <= e) {
+      console.log(loop);
+      day = loop.getDay();
+      // newEvents.filter(e=>)
+      eventsNestedByDay[day].forEach(element => {
+        delete element.id;
 
-    let newDate = loop.setDate(loop.getDate() + 1);
-    loop = new Date(newDate);
+        // element.start = getfFullTime(element.start);
+        // element.end = getfFullTime(element.end);
+        element.note = 'note';
+        eventsToSave.push({ ...element, date: loop });
+      });
+
+      let newDate = loop.setDate(loop.getDate() + 1);
+      loop = new Date(newDate);
+    }
+    console.log(eventsToSave);
+    addBulk = await Schedule.bulkCreate(eventsToSave);
+    return addBulk;
+  } catch (error) {
+    throw Error('can not add BULK' + error);
   }
-  console.log(eventsToSave);
-  addBulk = await Schedule.bulkCreate(eventsToSave);
-
   // console.log(addBulk);
 }
 
-function getfFullTime(t){
-var today = new Date(t);
-var hours = ("00" + today.getHours()).slice(-2);
-var minutes = ("00" + today.getMinutes()).slice(-2); 
-var seconds = ("00" + today.getSeconds()).slice(-2);
+function getfFullTime(t) {
+  var today = new Date(t);
+  var hours = ('00' + today.getHours()).slice(-2);
+  var minutes = ('00' + today.getMinutes()).slice(-2);
+  var seconds = ('00' + today.getSeconds()).slice(-2);
 
-return hours+":"+minutes+":"+seconds
+  return hours + ':' + minutes + ':' + seconds;
 }
-

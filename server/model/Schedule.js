@@ -6,9 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: function() {
-          return crypto.randomUUID()
-        },
+        defaultValue: DataTypes.UUIDV4,
       },
       date: {
         type: DataTypes.DATEONLY
@@ -88,7 +86,8 @@ module.exports = (sequelize, DataTypes) => {
 
     {
       hooks: {
-        beforeCreate: createID
+        beforeCreate: createID,
+        // beforebulk
         // afterCreate: createGradeing
       }
     }

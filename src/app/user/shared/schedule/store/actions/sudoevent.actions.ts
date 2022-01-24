@@ -69,6 +69,8 @@ export const updateEvents = createAction(
 );
 
 export const deleteEvent = createAction('[ Sudo Event/API] Delete Event', props<{ id: string }>());
+export const deleteEventSuccess = createAction('[ Sudo Event/API] Delete Event Success', props<{ id: string }>());
+export const deleteEventFaliure = createAction('[ Sudo Event/API] Delete Event Faliure', props<{ error: any }>());
 
 export const deleteEvents = createAction('[ Sudo Event/API] Delete Events', props<{ ids: string[] }>());
 

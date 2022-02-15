@@ -276,6 +276,8 @@ async function createEvents(req) {
         // element.start = getfFullTime(element.start);
         // element.end = getfFullTime(element.end);
         element.note = 'note';
+        element.section = req.section
+        element.school=req.school
         eventsToSave.push({ ...element, date: loop });
       });
 

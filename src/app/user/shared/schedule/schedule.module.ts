@@ -21,6 +21,8 @@ import { ModalEffects } from './store/effects/modal.effects';
 import { PopulateEventComponent } from './components/populate-event/populate-event.component';
 import { WeeklyEventComponent } from './components/weekly-event/weekly-event.component';
 import { RouterModule } from '@angular/router';
+import { ViewWeekyEventsComponent } from './components/view-weeky-events/view-weeky-events.component';
+import { UpdateWeeklyEventComponent } from './components/update-weekly-event/update-weekly-event.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { RouterModule } from '@angular/router';
     ViewSudoEventComponent,
     AddEventComponent,
     PopulateEventComponent,
-    WeeklyEventComponent
+    WeeklyEventComponent,
+    ViewWeekyEventsComponent,
+    UpdateWeeklyEventComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,40 @@
+<!-- *ngIf="(vm$ | async)?.isLoggedin" -->
+<mat-card>
+  <mat-card-header fxLayout="row" fxLayoutAlign="end center">
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close><mat-icon>close</mat-icon></button>
+    </mat-dialog-actions>
+  </mat-card-header>
+  <mat-dialog-actions>
+    <mat-card-content fxLayout="column">
+      <h2 mat-dialog-title>Event Summary</h2>
+      <!-- <div><mat-label>Type</mat-label>{{ (Event$ |async)?.classType }}</div> -->
+
+      <div><mat-label>Type</mat-label>{{ Event$.classType }}</div>
+      <div fxLayout="row" fxLayoutAlign="space-around center">
+        <div>
+          <label for="start">Start</label><label name="start">{{ Event$.start }}</label>
+        </div>
+        <div>
+          <label for="end">End</label><label name="end">{{ Event$.end }}</label>
+        </div>
+      </div>
+      <div>
+        <mat-label>Day</mat-label>
+        {{ Event$.day }}
+      </div>
+    </mat-card-content>
+  </mat-dialog-actions>
+  <mat-card-footer fxLayout="row">
+    <mat-dialog-actions>
+      <button mat-button (click)="editEvent(Event$.id)" mat-dialog-close>
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-dialog-actions>
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-remove (click)="removeEvent(Event$.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-dialog-actions>
+  </mat-card-footer>
+</mat-card>

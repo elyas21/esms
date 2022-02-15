@@ -26,6 +26,13 @@ const Lecture = require('./lecture');
 const TSCA = require('./tsca');
 const Staff = require('./staff');
 
+
+
+const gauth  = require('../polices/g-cal')
+router.get('/test',gauth.isGCalendarAutherized, function (req, res) {
+  res.send('hello, user!')
+})
+router.get('/google-auth-callback',gauth.googleAuthCallback)
 router
   .use('/auth/', Auth)
   .use('/school/', School)

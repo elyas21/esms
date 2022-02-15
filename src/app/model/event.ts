@@ -20,15 +20,15 @@ export interface Time {
   timeZone: string;
 }
 
-
 export interface Event {
   id: string | null;
+  version: string | null;
   classType: string | null;
   location: string | null;
   startTime: string | null;
   endTime: string | null;
-  end:  string | null;
-  start:   string |  null;
+  end: string | null;
+  start: string | null;
   classroomId: string | null;
   driveUrl: string | null;
   day: number | null;

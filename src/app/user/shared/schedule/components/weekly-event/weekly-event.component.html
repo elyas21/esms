@@ -2,7 +2,7 @@
   
   <div fxLayout="column" fxLayoutAlign="space-between center">
     <div>
-      <form [formGroup]="weekRange" (onSubmit)="SelectWeek()">
+      <form [formGroup]="weekRange">
       <mat-form-field class="col-md-8">
         <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
           <input matStartDate formControlName="start" (dateChange)="startDateSelection()" />
@@ -17,10 +17,6 @@
         >Invalid end date</mat-error
         >
       </mat-form-field>
-      
-      <button color="accent" mat-raised-button [disabled]="!weekRange.valid" type="submit">
-        Week
-      </button>
     </form>
   </div>
   <mat-card fxLayout="row">
@@ -41,6 +37,7 @@
     [class]="{ online: i.classType == 'online', face2face: i.classType == 'face2face' }"
     class="tt-cel"
     *ngFor="let i of getEventByDay(ii) | async"
+    (click)="onEventSelect(i)"
     >
     <div>{{ i.classType }}</div>
   </div>

@@ -29,3 +29,24 @@ export const selectEventViewModel = createSelector(
     });
   }
 );
+
+
+
+
+
+
+
+
+
+
+// it need must fix it is not proper way to get data
+export const selectEntityById = (props: { id: number }) =>
+  createSelector(selectAllEntites, entities => {
+    // return entities[props.id];
+    for (const iterator of entities) {
+      if (iterator.id == props.id.toString()) {
+        return iterator;
+      }
+    }
+    return null;
+  });

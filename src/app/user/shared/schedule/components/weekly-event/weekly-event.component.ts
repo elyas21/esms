@@ -8,6 +8,8 @@ import * as eventsAction from '../../store/actions/event.actions';
 import * as eventsSelector from '../../store/selectors/event.selectors';
 import { VERSION } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ViewWeekyEventsComponent } from '../../components/view-weeky-events/view-weeky-events.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-weekly-event',
@@ -19,7 +21,7 @@ export class WeeklyEventComponent implements OnDestroy, OnInit {
     start: new FormControl('', Validators.required),
     end: new FormControl('', Validators.required)
   });
-
+  noClickBefore = true;
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl()
@@ -30,19 +32,36 @@ export class WeeklyEventComponent implements OnDestroy, OnInit {
     let start = new Date(this.range.controls['start'].value);
     start.setDate(start.getDate() - start.getDay());
     this.range.controls['start'].setValue(start);
+    if (this.noClickBefore) {
+      this.endDateSelection();
+      this.noClickBefore = false;
+    }
+    this.store.dispatch(eventsAction.removeWeeklyEvents());
   }
   endDateSelection() {
     let start = new Date(this.range.controls['start'].value);
     let end = new Date(start);
     end.setDate(start.getDate() + 6);
     this.range.controls['end'].setValue(end);
+    let endd = new Date(this.range.controls['end'].value);
+
+    let sstart = `${start.getFullYear()}-${start.getMonth() + 1}-${start.getDate()}`;
+    let enddd = `${endd.getFullYear()}-${endd.getMonth() + 1}-${endd.getDate()}`;
+    console.log(sstart+enddd+this.sectionId);
+    
+    this.store.dispatch(
+      eventsAction.loadWeeklyEvents({
+        section: this.sectionId,
+        range: { start: sstart, end: enddd }
+      })
+    );
   }
   lastStart;
   sectionId: string;
   startDate: string;
   endDate: string;
   sub;
-  constructor(private route: ActivatedRoute, private store: Store) {}
+  constructor(private route: ActivatedRoute, private store: Store, public dialog: MatDialog) {}
   weeklyEvents$: Observable<any>;
   ngOnInit(): void {
     this.sub = this.route.paramMap.subscribe(params => {
@@ -112,14 +131,16 @@ export class WeeklyEventComponent implements OnDestroy, OnInit {
     return `${sstartT}  /  ${sendT}`;
   }
 
-  SelectWeek() {
-    if (this.lastStart == this.weekRange.value.start) {
-      this.weekRange.setValue({
-        end: WeekStart(this.weekRange.value.start),
-        start: WeekStart(this.weekRange.value.start)
-      });
-      this.lastStart = this.weekRange.value.start;
-    }
+  onEventSelect(event) {
+    let dff;
+    this.store
+      
+        dff = this.dialog.open(ViewWeekyEventsComponent, {
+          data: { data: event },
+          height: '300px',
+          width: '420px'
+        });
+     return dff.afterClosed().subscribe(result => {});
   }
 
   onSelect() {
@@ -129,9 +150,4 @@ export class WeeklyEventComponent implements OnDestroy, OnInit {
   ngOnDestroy(): void {
     this.store.dispatch(eventsAction.removeWeeklyEvents());
   }
-}
-function WeekStart(day) {
-  console.log('ok');
-
-  return '';
 }

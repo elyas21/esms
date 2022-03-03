@@ -10,6 +10,7 @@ import { VERSION } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ViewWeekyEventsComponent } from '../../components/view-weeky-events/view-weeky-events.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AddWeeklyEventModalComponent } from '../add-weekly-event-modal/add-weekly-event-modal.component';
 
 @Component({
   selector: 'app-weekly-event',
@@ -26,7 +27,7 @@ export class WeeklyEventComponent implements OnDestroy, OnInit {
     start: new FormControl(),
     end: new FormControl()
   });
-
+  currentWeekDate;
   startDateSelection() {
     console.log(this.range.controls['start'].value);
     let start = new Date(this.range.controls['start'].value);
@@ -48,7 +49,7 @@ export class WeeklyEventComponent implements OnDestroy, OnInit {
     let sstart = `${start.getFullYear()}-${start.getMonth() + 1}-${start.getDate()}`;
     let enddd = `${endd.getFullYear()}-${endd.getMonth() + 1}-${endd.getDate()}`;
     console.log(sstart+enddd+this.sectionId);
-    
+    this.currentWeekDate = sstart;
     this.store.dispatch(
       eventsAction.loadWeeklyEvents({
         section: this.sectionId,
@@ -150,4 +151,17 @@ export class WeeklyEventComponent implements OnDestroy, OnInit {
   ngOnDestroy(): void {
     this.store.dispatch(eventsAction.removeWeeklyEvents());
   }
+
+
+  
+
+
+  openDialog(sectionId) {
+    this.dialog.open(AddWeeklyEventModalComponent, {
+      data: { sectionId: sectionId, date:this.currentWeekDate },
+      height: '500px',
+      width: '700px'
+    });
+  }
+
 }

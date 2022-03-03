@@ -8,6 +8,20 @@ import { ScheduleService } from 'src/app/service/user/schedule.service';
 
 @Injectable()
 export class ScheduleEffects {
+
+
+  addEvent$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(eventsAction.UpsertEvent),
+    concatMap(action =>
+      this.eventSer.create(action.event).pipe(
+        map(data => eventsAction.UpsertEventccusses({ event: data.schedule })),
+        catchError(error => of(eventsAction.UpsertEventaliure({ error })))
+      )
+    )
+  )
+);
+
   loadEvents$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(eventsAction.loadWeeklyEvents),

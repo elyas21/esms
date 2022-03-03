@@ -54,8 +54,19 @@
             "program": "${workspaceFolder}/serve",
             "preLaunchTask": "tsc: build - tsconfig.json",
             "outFiles": [
-                "${workspaceFolder}/dist/out-tsc/**/*.js"
-            ]
+                "${workspaceFolder}/dist/out-tsc/**/*.js",
+                "${workspaceFolder}/node_modules/**",
+                "${workspaceFolder}/server/node_modules/**",
+                "${workspaceFolder}/src/**/*.ts",
+                "${workspaceFolder}/server/try/**/*.js"
+            ],
+            "skipFiles": [
+                "<node_internals>/**",
+                "src/",
+                "server/try/**",
+                "src/**"
+            ],
+        
         }
     ]
 }

@@ -4,7 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { SudoSchedule } from 'src/app/model/SudoSchedule';
 import { SudoScheduleService } from 'src/app/service/user/sudo-schedule.service';
-import * as fromEventAction from '../../store/actions/sudoevent.actions';
+// import * as fromEventAction from '../../store/actions/sudoevent.actions';
+import * as fromEventAction from '../../store/actions/event.actions';
 
 @Component({
   selector: 'app-add-weekly-event-modal',
@@ -23,11 +24,12 @@ export class AddWeeklyEventModalComponent implements OnInit {
     private fb: FormBuilder
   ) {
     console.log(this.data);
-    
+
     this.sudoScheduleForm = this.fb.group({
       start: ['', Validators.required],
       end: ['', Validators.required],
       classType: ['', Validators.required],
+      date: [this.data.date, Validators.required],
       day: ['3', Validators.required],
       section: [this.data.sectionId, Validators.required],
       version: ['3.32.3', Validators.required]
@@ -36,6 +38,14 @@ export class AddWeeklyEventModalComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.data);
+  }
+
+  dateChange(){
+
+    let date = new Date(this.sudoScheduleForm.controls['date'].value);
+    let end = date.getDay()
+    this.sudoScheduleForm.controls['day'].setValue(end);
+
   }
   public Days = [
     { value: 0, name: 'Sun' },
@@ -75,7 +85,7 @@ export class AddWeeklyEventModalComponent implements OnInit {
     //   s = 0;
     //   e = 0;
     // });
-    this.store.dispatch(fromEventAction.addEvent({ event: this.sudoScheduleForm.value }));
+    this.store.dispatch(fromEventAction.UpsertEvent({ event: this.sudoScheduleForm.value }));
     this.dialogRef.close();
   }
 

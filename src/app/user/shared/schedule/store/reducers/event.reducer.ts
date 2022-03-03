@@ -34,6 +34,10 @@ export const reducer = createReducer(
       error: action.error
     };
   }),
+  on(EventActions.UpsertEvent, (state, action)=>{
+    return adapter.upsertOne( action.event ,state)
+  }),
+
   on(EventActions.removeWeeklyEvents, (state, action) => {
     console.log('removing');
     

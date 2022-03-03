@@ -1,86 +1,94 @@
 <mat-card>
   <form (ngSubmit)="onSubmit()" [formGroup]="sudoScheduleForm">
     <div fxLayout="column">
-    <div class="form-group">
-      <label for="classType">ClassType</label>
-      <select
-        class="form-control"
-        id="classType"
-        required
-        name="classType"
-        formControlName="classType"
-      >
-        <option value="face2face">Face 2 Face</option>
-        <option value="online">Online</option>
-      </select>
-      <div
-        *ngIf="
-          sudoScheduleForm.controls['classType'].invalid &&
-          (sudoScheduleForm.controls['classType'].dirty ||
-            sudoScheduleForm.controls['classType'].touched)
-        "
-        class="alert"
-      >
-        <mat-error *ngIf="sudoScheduleForm.controls['classType'].errors.required">
-          Please enter classType
-        </mat-error>
+      <div class="form-group">
+        <label for="classType">ClassType</label>
+        <select
+          class="form-control"
+          id="classType"
+          required
+          name="classType"
+          formControlName="classType"
+        >
+          <option value="face2face">Face 2 Face</option>
+          <option value="online">Online</option>
+        </select>
+        <div
+          *ngIf="
+            sudoScheduleForm.controls['classType'].invalid &&
+            (sudoScheduleForm.controls['classType'].dirty ||
+              sudoScheduleForm.controls['classType'].touched)
+          "
+          class="alert"
+        >
+          <mat-error *ngIf="sudoScheduleForm.controls['classType'].errors.required">
+            Please enter classType
+          </mat-error>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="start">Start</label>
-      <ngx-timepicker-field
-        formControlName="start"
-        name="start"
-        min="00:00 am"
-        max="11:11 pm"
-        [format]="24"
-        [controlOnly]="true"
-      ></ngx-timepicker-field>
-      <div
-        *ngIf="
-          sudoScheduleForm.controls['start'].invalid &&
-          (sudoScheduleForm.controls['start'].dirty || sudoScheduleForm.controls['start'].touched)
-        "
-        class="alert"
-      >
-        <mat-error *ngIf="sudoScheduleForm.controls['start'].errors.required">
-          Please enter start
-        </mat-error>
+      <div class="form-group">
+        <label for="start">Start</label>
+        <ngx-timepicker-field
+          formControlName="start"
+          name="start"
+          min="00:00 am"
+          max="11:11 pm"
+          [format]="24"
+          [controlOnly]="true"
+        ></ngx-timepicker-field>
+        <div
+          *ngIf="
+            sudoScheduleForm.controls['start'].invalid &&
+            (sudoScheduleForm.controls['start'].dirty || sudoScheduleForm.controls['start'].touched)
+          "
+          class="alert"
+        >
+          <mat-error *ngIf="sudoScheduleForm.controls['start'].errors.required">
+            Please enter start
+          </mat-error>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="end">End</label>
-      <ngx-timepicker-field
-        formControlName="end"
-        name="end"
-        min="00:00 am"
-        max="11:11 pm"
-        [format]="24"
-        [controlOnly]="true"
-      ></ngx-timepicker-field>
-      <div
-        *ngIf="
-          sudoScheduleForm.controls['end'].invalid &&
-          (sudoScheduleForm.controls['end'].dirty || sudoScheduleForm.controls['end'].touched)
-        "
-        class="alert"
-      >
-        <mat-error *ngIf="sudoScheduleForm.controls['end'].errors.required">
-          Please enter end
-        </mat-error>
+      <div class="form-group">
+        <label for="end">End</label>
+        <ngx-timepicker-field
+          formControlName="end"
+          name="end"
+          min="00:00 am"
+          max="11:11 pm"
+          [format]="24"
+          [controlOnly]="true"
+        ></ngx-timepicker-field>
+        <div
+          *ngIf="
+            sudoScheduleForm.controls['end'].invalid &&
+            (sudoScheduleForm.controls['end'].dirty || sudoScheduleForm.controls['end'].touched)
+          "
+          class="alert"
+        >
+          <mat-error *ngIf="sudoScheduleForm.controls['end'].errors.required">
+            Please enter end
+          </mat-error>
+        </div>
       </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date" />
+        <mat-datepicker-toggle matSuffix [for]="picker"  (dateChange)="dateChange()"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Day</mat-label>
+        <mat-select formControlName="day">
+          <mat-option [value]="option.value" *ngFor="let option of Days">{{
+            option.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button fxFlex="1 0 0" type="submit" mat-raised-button [disabled]="!sudoScheduleForm.valid">
+        Submit
+      </button>
     </div>
-    <mat-form-field appearance="fill">
-      <mat-label>Day</mat-label>
-      <mat-select formControlName="day">
-        <mat-option [value]="option.value" *ngFor="let option of Days">{{
-          option.name
-        }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button fxFlex="1 0 0" type="submit" mat-raised-button [disabled]="!sudoScheduleForm.valid">
-      Submit
-    </button>
-  </div>
   </form>
 </mat-card>

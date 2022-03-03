@@ -44,9 +44,10 @@ module.exports = {
     // console.log(code);
     oAuth2Client.getToken(code, (err, token) => {
       if (err) return console.error('Error retrieving access token', err);
-    //   oAuth2Client.setCredentials(token);
-    // //   // Store the token to disk for later program executions
-    //   console.log('ss\n\n\\n\n\n\n\nnllllllllllllllllllllll\n\n\n\\n\n\n\n\nn');
+      console.log(token);
+      oAuth2Client.setCredentials(token);
+    //   // Store the token to disk for later program executions
+      console.log('ss\n\n\\n\n\n\n\nnllllllllllllllllllllll\n\n\n\\n\n\n\n\nn');
       res.send('ok');
     });
   }

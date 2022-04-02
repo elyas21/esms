@@ -241,6 +241,20 @@
           [routerLink]="['/login']"
           >Login</a
         >
+        <a
+          class="nav-item nav-link"
+          id="loginlink"
+          *ngIf="!(vm$ | async)?.isLoggedin"
+          [routerLink]="['/login']"
+          >Login</a
+        >
+        <a
+          class="nav-item nav-link"
+          id="loginlink"
+          *ngIf="(Gvm$ | async)?.isGLoggedin"
+          (click)="naviageToGoogleLogin()"
+          >GLogin</a
+        > 
       </div>
 
       <!-- <span id="role" *ngIf="vm.School" fxFlexOffset="15%">{{

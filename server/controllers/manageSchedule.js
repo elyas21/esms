@@ -94,11 +94,10 @@ module.exports = {
       });
     }
   },
-  async getBySchoolSectionWeek(req,res) {
+  async getBySchoolSectionWeek(req, res) {
     // get-section-week/:school/:section/:start/:end
     console.log(req.params);
     try {
-
       const schedule = await Schedule.findAll({
         where: {
           section: req.params.section,
@@ -118,25 +117,7 @@ module.exports = {
   },
   async add(req, res) {
     try {
-      // const exissting = await Schedule.findOne({
-      //   where: {
-      //     id: req.body.id
-      //   }
-      // });
-      // if (exissting) {
-      //   newUser = req.body;
-      //   newUser.softDelete = false;
-      //   await Schedule.update(newUser, {
-      //     where: {
-      //       id: req.body.id
-      //     }
-      //   });
-      //   return res.status(200).send({
-      //     regsterd: 'ok',
-      //     schedule: exissting.toJSON()
-      //   });
-      // }
-
+      const waitGmeet = await createGoogleMeet(cevent);
       const schedule = await Schedule.create(req.body);
       //   const schoolJson = schedule.toJSON();
       if (schedule) {
@@ -276,8 +257,8 @@ async function createEvents(req) {
         // element.start = getfFullTime(element.start);
         // element.end = getfFullTime(element.end);
         element.note = 'note';
-        element.section = req.section
-        element.school=req.school
+        element.section = req.section;
+        element.school = req.school;
         eventsToSave.push({ ...element, date: loop });
       });
 
@@ -300,4 +281,53 @@ function getfFullTime(t) {
   var seconds = ('00' + today.getSeconds()).slice(-2);
 
   return hours + ':' + minutes + ':' + seconds;
+}
+
+// create google meet event with google calendar api
+async function createGoogleMeet(cevent) {
+  try {
+    var token = cevent.token;
+    var refreshToken = cevent.refreshToken;
+    var expiry_date = +cevent.expiry_date;
+    var CalId = cevent.calendarId;
+    var sheetId = cevent.sheetId;
+
+    var event = cevent.event;
+
+    var startDateTime = formatDateTime(event.startDate, event.startTime);
+    var endDateTime = formatDateTime(event.endDate, event.endTime);
+
+    if (startDateTime > endDateTime) {
+      return next('Events must start before they end!');
+    }
+
+    function formatTimeZone(date) {
+      return moment(date)
+        .tz(event.timeZone)
+        .format();
+    }
+
+    oauth2Client.setCredentials({
+      access_token: token,
+      refresh_token: refreshToken,
+      expiry_date: expiry_date
+    });
+
+    calendar.events.insert({
+      auth: oauth2Client,
+      calendarId: CalId,
+      resource: {
+        summary: sheet.summary,
+        description: sheet.summary,
+        start: {
+          dateTime: formatTimeZone(startDateTime)
+        },
+        end: {
+          dateTime: formatTimeZone(endDateTime)
+        }
+      }
+    });
+  } catch (error) {
+    throw Error('can not create google meet' + error);
+  }
 }

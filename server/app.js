@@ -4,7 +4,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var cors = require('cors');
-var session = require('express-session');
+// var session = require('express-session');
+const passport = require('passport');
 
 const { sequelize } = require('./model');
 var app = express();
@@ -15,14 +16,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(bodyParser());
 
-app.use(session({ secret: '123dsf4567890QWERTY', resave: false, saveUninitialized: false }));
+// app.use(session({ secret: '123dsf4567890QWERTY', resave: false, saveUninitialized: false }));
 const config = require('./config/config');
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../dist/browser')));
 
-require('./passport');
+require('./polices/passport-google');
 var routes = require('./routes');
+
+
+
+const cookieSession = require('cookie-session')
+app.use(cookieSession({
+  name: 'google-auth-session',
+  keys: ['key1', 'key2']
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 // require('./routes')(app);
 app.use('/api/', routes);

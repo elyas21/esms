@@ -23,6 +23,7 @@ export interface NewUser {
   role: string;
   schoolName: string;
   School: School;
+  googleId: string;
 }
 
 export interface School {

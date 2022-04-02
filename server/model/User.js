@@ -37,7 +37,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING
       },
       password: DataTypes.STRING,
-      google_refresh_token: DataTypes.STRING,
+      googleRefreshToken: DataTypes.STRING,
+      googleAccessToken: DataTypes.STRING,
+      googleId: DataTypes.STRING,
+      googleEmail: DataTypes.STRING,
       softDelete: { type: DataTypes.BOOLEAN, defaultValue: false }
     },
     {

@@ -7,6 +7,11 @@ export const selectAuthState = createFeatureSelector<fromAuth.State>(fromAuth.au
 export interface RoleLinksViewModal {
   role: string;
   isLoggedin: boolean;
+  
+}export interface GRoleLinksViewModal {
+  role: string;
+  isGLoggedin: boolean;
+  
 }
 export interface SchoolViewModal {
   schoolId: string;
@@ -40,6 +45,16 @@ export const selectAuthLinksViewModel = createSelector(
     return {
       role,
       isLoggedin: isLoggedIn
+    };
+  }
+);
+export const gselectAuthLinksViewModel = createSelector(
+  selectIsAdmin,
+  selectIsLoggedIn,
+  (role: string, googleId: boolean): GRoleLinksViewModal => {
+    return {
+      role,
+      isGLoggedin: googleId != null
     };
   }
 );

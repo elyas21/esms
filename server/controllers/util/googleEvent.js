@@ -226,56 +226,8 @@ module.exports = function ApiController() {
       return next(err);
     }
 
-    const createRowPromise = new Promise((resolve, reject) => {
-      sheets.spreadsheets.values.append(
-        {
-          auth: oauth2Client,
-          spreadsheetId: sheetId,
-          valueInputOption: "RAW",
-          range: "Sheet1",
-          resource: {
-            majorDimension: "ROWS",
-            values: [
-              [
-                sheet.startDate,
-                sheet.startTime,
-                sheet.endDate,
-                sheet.endTime,
-                sheet.summary
-              ]
-            ]
-          }
-        },
-        function(err, response) {
-          if (err) reject(err);
-          storeAccessToken();
-          resolve(response.data);
-        }
-      );
-    });
-
-    const createEventPromise = new Promise((resolve, reject) => {
-      calendar.events.insert(
-        {
-          auth: oauth2Client,
-          calendarId: CalId,
-          resource: {
-            summary: sheet.summary,
-            description: sheet.summary,
-            start: {
-              dateTime: formatTimeZone(startDateTime)
-            },
-            end: {
-              dateTime: formatTimeZone(endDateTime)
-            }
-          }
-        },
-        function(err, response) {
-          if (err) reject(err);
-          resolve(response.data);
-        }
-      );
-    });
+  
+  
 
     Promise.all([createRowPromise, createEventPromise])
       .then(values => {

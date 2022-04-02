@@ -86,7 +86,7 @@ module.exports = (sequelize, DataTypes) => {
 
     {
       hooks: {
-        beforeCreate: createID,
+        // beforeCreate: createID,
         // beforebulk
         // afterCreate: createGradeing
       }

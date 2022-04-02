@@ -1,6 +1,7 @@
 const passport = require('passport');
 const config = require('../config/google-credentials');
 const { google } = require('googleapis');
+const { log } = require('console');
 
 const SCOPES = ['https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/classroom.courses'];
 const { client_secret, client_id, redirect_uris } = config.web;
@@ -15,16 +16,19 @@ module.exports = {
     if (isThereToken(req.user)) {
       oAuth2Client.next();
     } else {
-      const authUrl = oAuth2Client.generateAuthUrl({
-        access_type: 'offline',
-        scope: SCOPES
-      });
-      console.log(authUrl);
-      //   res.redirect(authUrl)
-
-      req.session.authUrl = authUrl;
-      req.session.requestUrl = `http://localhost:3000${req.originalUrl}`;
-      res.redirect(authUrl);
+      try {
+        const authUrl = oAuth2Client.generateAuthUrl({
+          access_type: 'offline',
+          scope: SCOPES
+        });
+        console.log(authUrl);
+        //   res.redirect(authUrl)
+        req.session.authUrl = authUrl;
+        req.session.requestUrl = `http://localhost:3000${req.originalUrl}`;
+        res.redirect(authUrl);
+      } catch (error) {
+        console.log(error)
+      }
       // next();
     }
 

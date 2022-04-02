@@ -1,6 +1,8 @@
-// const isAuthenticated = require("./polices/isAuthenticated");
+// const isAuthenticated = require('./polices/isAuthenticated');
 // const allowOnly = require("./polices/role");
-
+// const passport = require('../polices/passport-google');
+// import passport from "passport";
+const passport = require('passport');
 const express = require('express');
 const router = express.Router();
 
@@ -26,13 +28,30 @@ const Lecture = require('./lecture');
 const TSCA = require('./tsca');
 const Staff = require('./staff');
 
+const isLoggedIn = require('../polices/IsGAuthenticated');
 
+const gauth = require('../polices/g-cal');
+// router.get('/test',gauth.isGCalendarAutherized, function (req, res) {
+//   res.send('hello, user!')
+// })
+// router.get('/google-auth-callback',gauth.googleAuthCallback)
 
-const gauth  = require('../polices/g-cal')
-router.get('/test',gauth.isGCalendarAutherized, function (req, res) {
-  res.send('hello, user!')
-})
-router.get('/google-auth-callback',gauth.googleAuthCallback)
+router.get('/auth/login', passport.authenticate('google', { scope: ['profile', 'email'] }));
+router.get('/auth/error', (req, res) => res.send('Unknown Error'));
+router.get(
+  '/api/account/google',
+  passport.authenticate('google', { failureRedirect: '/auth/error' }),
+  function(req, res) {
+    res.redirect('/');
+  }
+);
+
+router.get('/logout', (req, res) => {
+  req.session = null;
+  req.logout();
+  res.redirect('/');
+});
+
 router
   .use('/auth/', Auth)
   .use('/school/', School)
@@ -40,7 +59,7 @@ router
   .use('/attendance/', Attendance)
   .use('/class-year/', ClassYear)
   .use('/semister/', Semister)
-  .use('/student/', Student)
+  .use('/student/', isLoggedIn, Student)
   .use('/course-gradeing/', CourseGradeing)
   .use('/event/', Schedule)
   .use('/sudo-schedule/', SudoSchedule)

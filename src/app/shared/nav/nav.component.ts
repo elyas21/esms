@@ -8,10 +8,13 @@ import { ThemeService } from 'src/app/service/theme/theme.service';
 import { Option } from 'src/app/service/theme/option.model';
 import {
   selectAuthLinksViewModel,
-  RoleLinksViewModal
+  RoleLinksViewModal,
+  GRoleLinksViewModal,
+  gselectAuthLinksViewModel
 } from 'src/app/store/selectors/auth.selectors';
 import { select, Store } from '@ngrx/store';
 import { BrowserReload, Logout } from 'src/app/store/actions/auth.actions';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'Bnc-nav',
@@ -22,7 +25,8 @@ export class NavComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
-  vm$: Observable<RoleLinksViewModal>;
+    vm$: Observable<RoleLinksViewModal>;
+    Gvm$: Observable<GRoleLinksViewModal>;
   currentUser: User;
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -50,10 +54,21 @@ export class NavComponent implements OnInit {
     }
 
     this.vm$ = this.store.pipe(select(selectAuthLinksViewModel));
+    this.Gvm$ = this.store.pipe(select(gselectAuthLinksViewModel));
+
     this.themeService.setTheme('deeppurple-amber');
   }
 
   themeChangeHandler(themeToSet) {
     this.themeService.setTheme(themeToSet);
+  }
+
+  naviageToGoogleLogin() {
+    // window.location.href=environment.hostname+'google';
+    console.log(environment.hostname + 'api/test');
+    
+    (window as any).open(environment.hostname + 'api/test', '_blank');
+
+    // this.route.([environment.hostname, 'google']);
   }
 }

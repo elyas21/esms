@@ -13,10 +13,19 @@
             "request": "launch",
             "restart": true,
             "skipFiles": [
-                "<node_internals>/**"
+                "<node_internals>/**",
+
             ],
             "type": "pwa-node",
-            "runtimeExecutable": "/home/black/.nvm/versions/node/v14.17.3/bin/nodemon"
+            "runtimeExecutable": "/home/black/.nvm/versions/node/v14.17.3/bin/nodemon",
+            "debug.javascript.terminalOptions": {
+                "skipFiles": [
+                    "server/node_internals/**",
+                    "./server/node_internals/**",
+                    "**/<node_internals>/**",
+                    "server/node_internals/**"
+                ]
+              },   
         },
         {
             "name": "seed2 Program",

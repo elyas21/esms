@@ -66,5 +66,10 @@ typings/
 
 
 server/try/
+node_modules
+node_moduless
+
+server/node_modules
 
 server/node_modulesc/
+server/node_moduless/

@@ -13,7 +13,7 @@ import { UpdateWeeklyEventComponent } from '../update-weekly-event/update-weekly
   styleUrls: ['./view-weeky-events.component.scss']
 })
 export class ViewWeekyEventsComponent implements OnInit {
-  Event$: Observable<Event>;
+  Event$;
   constructor(
     private sudoScheduleSer: ScheduleService,
     public dialogRef: MatDialogRef<ViewWeekyEventsComponent>,

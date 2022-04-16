@@ -102,12 +102,72 @@ module.exports = {
         sections = await sectionResolve(user);
         userJson.Studentsections = sections;
       }
-
+      req.session.user = userJson;
+      req.session.userInfo = userJson;
       res.status(200).send(
         userJson
 
         // token: jwtSignUser(userJson)
       );
+    } catch (err) {
+      console.log(err);
+      res.status(500).send({
+        error: err
+      });
+    }
+  },
+  async glogin(req, res, next) {
+    try {
+      console.log(req.body);
+      const { userId, password } = req.body;
+      const user = await User.findOne({
+        where: {
+          userId: userId
+        },
+        include: [
+          {
+            model: School
+          }
+        ]
+      });
+
+      if (!user) {
+        return res.status(403).send({
+          error: 'The login information was incorrect'
+        });
+      }
+
+      const isPasswordValid = await user.comparePassword(password);
+      console.log(isPasswordValid);
+      if (!isPasswordValid) {
+        return res.status(403).send({
+          error: 'The login information was incorrect(password)'
+        });
+      }
+
+      const userJson = user.toJSON();
+      userJson.token = jwtSignUser(userJson);
+
+      /*  if user is a Teacher and assign as homeroom 
+          teacher 4 this school year find those or that section 
+          and pass as Techer info object
+     */
+      if (user.role == 'lecture') {
+        sections = await homeroomeResolve(user);
+        userJson.sections = sections;
+      }
+
+      if (user.role == 'student') {
+        sections = await sectionResolve(user);
+        userJson.Studentsections = sections;
+      }
+
+      // res.status(200).send(
+      //   userJson
+
+      //   // token: jwtSignUser(userJson)
+      // );
+      next(userJson);
     } catch (err) {
       console.log(err);
       res.status(500).send({

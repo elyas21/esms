@@ -8,7 +8,10 @@ module.exports = function(req, res, next) {
       });
     } else {
       req.user = user;
-      next();
+      req.session.userInfo = user;
+      console.log(req.session.userInfo);
+      next();dfdf
+      res.send(user)
     }
   })(req, res, next);
 };

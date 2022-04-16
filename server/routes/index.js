@@ -30,28 +30,6 @@ const Staff = require('./staff');
 
 const isLoggedIn = require('../polices/IsGAuthenticated');
 
-const gauth = require('../polices/g-cal');
-// router.get('/test',gauth.isGCalendarAutherized, function (req, res) {
-//   res.send('hello, user!')
-// })
-// router.get('/google-auth-callback',gauth.googleAuthCallback)
-
-router.get('/auth/login', passport.authenticate('google', { scope: ['profile', 'email'] }));
-router.get('/auth/error', (req, res) => res.send('Unknown Error'));
-router.get(
-  '/api/account/google',
-  passport.authenticate('google', { failureRedirect: '/auth/error' }),
-  function(req, res) {
-    res.redirect('/');
-  }
-);
-
-router.get('/logout', (req, res) => {
-  req.session = null;
-  req.logout();
-  res.redirect('/');
-});
-
 router
   .use('/auth/', Auth)
   .use('/school/', School)

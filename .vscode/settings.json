@@ -3,8 +3,12 @@
     "**.spec.ts": true,
     "/try-this/": true,
     "/projects/**": true,
+    "node_moduless/": true,
+    "node_modules/": true,
     "/public/": true,
     "/e2e/": true,
+    "server/node_modules/": true,
+    "server/node_modulesc/": true,
     "/server/": true
   },
   "angular.enable-strict-mode-prompt": false

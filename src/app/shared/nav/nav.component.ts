@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { AuthService } from '../../core/serivice/auth.service';
 import { NewUser, User } from 'src/app/model/User';
 import { ThemeService } from 'src/app/service/theme/theme.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Option } from 'src/app/service/theme/option.model';
 import {
   selectAuthLinksViewModel,
@@ -25,15 +27,16 @@ export class NavComponent implements OnInit {
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(map(result => result.matches));
-    vm$: Observable<RoleLinksViewModal>;
-    Gvm$: Observable<GRoleLinksViewModal>;
+  vm$: Observable<RoleLinksViewModal>;
+  Gvm$: Observable<GRoleLinksViewModal>;
   currentUser: User;
   constructor(
     private breakpointObserver: BreakpointObserver,
     public authenticationService: AuthService,
     private readonly themeService: ThemeService,
     private authSer: AuthService,
-    private store: Store
+    private store: Store,
+    private http: HttpClient
   ) {
     // this.authenticationService.currentUser.subscribe(x => (this.currentUser = x));
     console.log(this.currentUser);
@@ -66,9 +69,18 @@ export class NavComponent implements OnInit {
   naviageToGoogleLogin() {
     // window.location.href=environment.hostname+'google';
     console.log(environment.hostname + 'api/test');
-    
-    (window as any).open(environment.hostname + 'api/test', '_blank');
 
-    // this.route.([environment.hostname, 'google']);
+    (window as any).open(environment.hostname + 'api/auth/google', '_self');
+
+    const headers = new HttpHeaders()
+      .append('Authorization', 'Bearer ' + localStorage.getItem('current_user')['token'])
+      .append('Content-type', 'application/json');
+    const httpOptions = {
+      headers
+    };
+    const externalUrl =  '/api/auth/google';
+    const dataToPut = 'Usually, it will be an object, not a string';
+
+    this.http.post<any>(externalUrl, dataToPut, httpOptions).subscribe(res => {});
   }
 }

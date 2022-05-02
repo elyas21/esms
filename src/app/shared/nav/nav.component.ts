@@ -57,7 +57,7 @@ export class NavComponent implements OnInit {
     }
 
     this.vm$ = this.store.pipe(select(selectAuthLinksViewModel));
-    this.Gvm$ = this.store.pipe(select(gselectAuthLinksViewModel));
+    this.Gvm$ = this.authSer.currentGoogleUser;
 
     this.themeService.setTheme('deeppurple-amber');
   }
@@ -70,17 +70,24 @@ export class NavComponent implements OnInit {
     // window.location.href=environment.hostname+'google';
     console.log(environment.hostname + 'api/test');
 
-    (window as any).open(environment.hostname + 'api/auth/google', '_self');
+    // (window as any).open(environment.hostname + 'api/auth/google', '_self');
 
-    const headers = new HttpHeaders()
-      .append('Authorization', 'Bearer ' + localStorage.getItem('current_user')['token'])
-      .append('Content-type', 'application/json');
-    const httpOptions = {
-      headers
-    };
-    const externalUrl =  '/api/auth/google';
-    const dataToPut = 'Usually, it will be an object, not a string';
+    // const headers = new HttpHeaders()
+    //   .append('Authorization', 'Bearer ' + localStorage.getItem('current_user')['token'])
+    //   .append('Content-type', 'application/json');
+    // const httpOptions = {
+    //   headers
+    // };
+    // const externalUrl =  '/api/auth/google';
+    // const dataToPut = 'Usually, it will be an object, not a string';
 
-    this.http.post<any>(externalUrl, dataToPut, httpOptions).subscribe(res => {});
+    // this.http.post<any>(externalUrl, dataToPut, httpOptions).subscribe(res => {});
+    this.http.get<any>(environment.hostname + 'api/auth/google').subscribe(res => {
+      let windowFeatures = 'popup,left=100,top=100,width=320,height=320';
+      console.log(res);
+      (window as any).open(res.url, '_self');
+
+      let windowObjectReference;
+    });
   }
 }

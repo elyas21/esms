@@ -251,7 +251,7 @@
         <a
           class="nav-item nav-link"
           id="loginlink"
-          *ngIf="(Gvm$ | async)?.isGLoggedin"
+          *ngIf="!(Gvm$ | async) && (vm$ | async)?.isLoggedin"
           (click)="naviageToGoogleLogin()"
           >GLogin</a
         > 

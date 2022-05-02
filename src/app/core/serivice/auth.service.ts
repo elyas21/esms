@@ -11,16 +11,39 @@ import { environment } from '../../../environments/environment';
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+  public currentGoogleUserSubject: BehaviorSubject<any>;
+  public currentGoogleUser: Observable<any>;
 
   constructor(private http: HttpClient) {
+    
+    
+    this.currentGoogleUserSubject = new BehaviorSubject<any>(
+      JSON.parse(localStorage.getItem('currentGoogleUser'))
+    );
+
+    this.currentGoogleUser = this.currentGoogleUserSubject.asObservable();
+
+
+
+
+
     this.currentUserSubject = new BehaviorSubject<User>(
       JSON.parse(localStorage.getItem('currentUser'))
     );
     this.currentUser = this.currentUserSubject.asObservable();
+
+
+
+
+
+
   }
 
   public get currentUserValue(): User {
     return this.currentUserSubject.value;
+  }
+  public get currentGoogleUserValue(): User {
+    return this.currentGoogleUserSubject.value;
   }
 
   login(username: string, password: string) {
@@ -42,5 +65,10 @@ export class AuthService {
     // remove user from local storage to log user out
     // localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    this.currentGoogleUserSubject.next(null);
+  }
+  savegoogleUser(user) {
+    localStorage.setItem('currentGoogleUser', JSON.stringify(user));
+    this.currentGoogleUserSubject.next(user);
   }
 }

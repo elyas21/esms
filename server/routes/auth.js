@@ -15,27 +15,26 @@ const { google } = require('googleapis');
 const oauth2Client = new google.auth.OAuth2(
   config.web2.client_id,
   config.web2.client_secret,
-  config.web2.redirect_uris[2]
+  config.web2.redirect_uris[3]
 );
 
 // Access scopes for read-only Drive activity.
 const scopes = [
   'https://www.googleapis.com/auth/calendar',
   'https://www.googleapis.com/auth/gmail.compose',
-  'https://www.googleapis.com/auth/classroom.courses'
+  'https://www.googleapis.com/auth/classroom.courses',
+  'https://www.googleapis.com/auth/userinfo.email',
+  'https://www.googleapis.com/auth/userinfo.profile'
 ];
 const isAuthenticated = require('../polices/isAuthenticated');
 
-router.get('/google', [
-  isAuthenticated,
+router.get('/google', isAuthenticated.checkTokenMW, isAuthenticated.verifyToken, [
   (req, res, next) => {
-    console.log(req)
+    // console.log(req);
     next();
   },
   (req, res) => {
     // Generate a url that asks permissions for the Drive activity scope
-    logger.info('google');
-    console.log(resdfq);
     const authorizationUrl = oauth2Client.generateAuthUrl({
       // 'online' (default) or 'offline' (gets refresh_token)
       access_type: 'offline',
@@ -45,53 +44,81 @@ router.get('/google', [
       // Enable incremental authorization. Recommended as a best practice.
       include_granted_scopes: true
     });
-    res.redirect(301, authorizationUrl);
+    // res.redirect(301, authorizationUrl);
+    req.session.user = req.user;
+    req.session.userInfo = req.user;
+    req.session.save();
+    res.json({ url: authorizationUrl });
   }
 ]);
 
 // callback url upon successful google authentication
-const url = require('url');
-const isLoggedIn = require('../polices/IsGAuthenticated');
-const { log } = require('console');
 
 // Receive the callback from Google's OAuth 2.0 server.
-router.get('/google/callback', async (req, res) => {
-  // if ()
+router.post(
+  '/google/callback',
+  isAuthenticated.checkTokenMW,
+  isAuthenticated.verifyToken,
+  async (req, res) => {
+    // if ()
 
-  // Handle the OAuth 2.0 server response
-  let q = url.parse(req.url, true).query;
+    // Handle the OAuth 2.0 server response
+    // let q = url.parse(req.url, true).query;
+    q = req.body;
+    // Get access and refresh tokens (if access_type is offline)
+    let { tokens } = await oauth2Client.getToken(q.code);
+    oauth2Client.setCredentials(tokens);
 
-  // Get access and refresh tokens (if access_type is offline)
-  let { tokens } = await oauth2Client.getToken(q.code);
-  oauth2Client.setCredentials(tokens);
-  // if user does not have googleId in database, upsert google id and refresh token
-  // if user has googleId in database, update refresh token
-  // console.log(tokens);
-  const user = await User.findOne({ where: { googleId: tokens.refresh_token } });
-  console.log(user);
-  if (user) {
-    await User.update(
-      { googleRefreshToken: tokens.refresh_token },
-      {
-        where: {
-          userId: req.session.userInfo.userId
-        }
+    var oauth2 = google.oauth2({
+      auth: oauth2Client,
+      version: 'v2'
+    });
+    userINFO = await oauth2.userinfo.get();
+    // if user does not have googleId in database, upsert google id and refresh token
+    // if user has googleId in database, update refresh token
+    // console.log(tokens);
+    const user = await User.findOne({ where: { googleId: userINFO.data.id } });
+    if (user && userINFO) {
+      if (user.dataValues.googleEmail != userINFO.data.email) {
+        return res.sendStatus(403);
       }
-    );
-  } else {
-    await User.update(
-      { googleId: q.id, googleRefreshToken: tokens.refresh_token },
-      {
-        where: {
-          userId: req.session.UserInfo.userId
+    } else {
+      console.log(userINFO.data);
+      console.log(user.dataValues.googleEmail);
+      console.log(user);
+      req.session.gac=toknes.access_token
+      req.session.grc=toknes.refresh_token
+      req.session.gdata = userINFO.data
+    }
+    console.log(userINFO.data);
+    console.log(user.googleEmail);
+    console.log(user);
+    if (user) {
+      await User.update(
+        { googleRefreshToken: tokens.refresh_token },
+        {
+          where: {
+            userId: req.user.userId
+          }
         }
-      }
-    );
+      );
+    } else {
+      await User.update(
+        { googleId: userINFO.data.id, googleRefreshToken: tokens.refresh_token },
+        {
+          where: {
+            userId: req.user.userId
+          }
+        }
+      );
+    }
+    // console.log(tokens);
+    // authService.signToken(req, res);
+    const userJson = userINFO.data;
+    userJson.gtoken = jwtSignUser(userINFO.data);
+    res.send(userJson);
   }
-  console.log(tokens);
-  // authService.signToken(req, res);
-  res.send(tokens);
-});
+);
 
 // route to check token with postman.
 // using middleware to check for authorization header
@@ -157,5 +184,32 @@ router.get('/verify', authService.checkTokenMW, authService.verifyToken, (req, r
 //   req.logout();
 //   res.redirect('/');
 // });
+router.use('*', (req, res) => {
+  res.send('auth not found');
+});
 
 module.exports = router;
+
+// data: {
+//   id: '106363603356945484174',
+//   email: 'elyasabate21@gmail.com',
+//   verified_email: true,
+//   name: 'elyas abate',
+//   given_name: 'elyas',
+//   family_name: 'abate',
+//   picture: 'https://lh3.googleusercontent.com/a-/AOh14GjRbs1Ii-kmHf4wLuNybaIv_eHhYkD9WcUBbqqp=s96-c',
+//   locale: 'en'
+// },
+
+// save tokens to session
+const aconfig = require('../config/config');
+
+const jwt = require('jsonwebtoken');
+const { userInfo } = require('os');
+
+function jwtSignUser(user) {
+  const ONE_WEEK = 60 * 60 * 24 * 7;
+  return jwt.sign(user, aconfig.authentication.jwtSecret, {
+    expiresIn: ONE_WEEK
+  });
+}

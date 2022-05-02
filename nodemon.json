@@ -1,0 +1,18 @@
+{
+  "restartable": "rs",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "node_moduless",
+    "src",
+    "projects",
+    "node_modules",
+    "node_moduless",
+
+    "server/node_modules",
+
+    "server/node_modulesc",
+    "server/node_moduless"
+  ],
+  "ext": "js json html css"
+}

@@ -8,8 +8,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from '../store/effects/auth.effects';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AlertModule } from 'ngx-alerts';
+import { GcallBackComponent } from './component/gcall-back/gcall-back.component';
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, GcallBackComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -331,3 +331,12 @@ async function createGoogleMeet(cevent) {
     throw Error('can not create google meet' + error);
   }
 }
+
+
+
+function df(cevent) {
+  return new promise(function (resolve, reject) {
+    
+    resolve(path.join(path1, path2));
+  });
+};

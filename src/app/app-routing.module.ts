@@ -1,5 +1,6 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { GcallBackComponent } from './core/component/gcall-back/gcall-back.component';
 import { LoginComponent } from './core/component/login/login.component';
 import { HomeComponent } from './shared/home/home.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'parent',
     loadChildren: () => import('src/app/user/parent/parent.module').then(mod => mod.ParentModule)
+  },
+  {
+    path: 'google-auth-callback',
+    component: GcallBackComponent
   },
   {
     path: '**',

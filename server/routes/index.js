@@ -29,6 +29,7 @@ const TSCA = require('./tsca');
 const Staff = require('./staff');
 
 const isLoggedIn = require('../polices/IsGAuthenticated');
+const isAuthenticated = require('../polices/isAuthenticated');
 
 router
   .use('/auth/', Auth)
@@ -37,7 +38,7 @@ router
   .use('/attendance/', Attendance)
   .use('/class-year/', ClassYear)
   .use('/semister/', Semister)
-  .use('/student/', isLoggedIn, Student)
+  .use('/student/', isAuthenticated.checkTokenMW,isAuthenticated.verifyToken, Student)
   .use('/course-gradeing/', CourseGradeing)
   .use('/event/', Schedule)
   .use('/sudo-schedule/', SudoSchedule)

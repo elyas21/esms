@@ -9,7 +9,10 @@ export class AppEffects {
     () =>
       this.actions$.pipe(
         ofType(fromAuthActions.Logout),
-        tap(() => localStorage.removeItem('currentUser'))
+        tap(() => {
+          localStorage.removeItem('currentUser');
+          localStorage.removeItem('currentGoogleUser');
+        })
       ),
     { dispatch: false }
   );

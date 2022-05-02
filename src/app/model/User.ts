@@ -9,6 +9,7 @@ export interface User {
   school: string;
   School?: School;
   token: string;
+  gtoken: string;
   Teacher: Teacher;
   sections: Section[];
   Studentsections?: string;

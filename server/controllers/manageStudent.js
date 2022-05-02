@@ -19,7 +19,7 @@ module.exports = {
     offset = page * pageSize;
     limit = pageSize;
 
-    console.log(req.params);
+    // console.log(req.params);
     try {
       const students = await Student.findAndCountAll({
         where: {
@@ -29,8 +29,8 @@ module.exports = {
         limit
       });
       if (students) {
-        console.log(students.rows);
-        console.log(students.count);
+        // console.log(students.rows);
+        // console.log(students.count);
         res.status(200).send({ students: students.rows, count: students.count });
       } else {
         res.send({ found: false });

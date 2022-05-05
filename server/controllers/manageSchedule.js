@@ -1,6 +1,6 @@
 const { Schedule } = require('../model');
 const { Op } = require('sequelize');
-
+ const gApi = require('./util/gEvent')();
 module.exports = {
   async getAll(req, res) {
     try {
@@ -117,7 +117,10 @@ module.exports = {
   },
   async add(req, res) {
     try {
-      const waitGmeet = await createGoogleMeet(cevent);
+      console.log(req.body);
+      cevent = req.body
+      const waitGmeet = await gApi.createGoogleCalendarEvent(cevent);
+      console.log(waitGmeet);
       const schedule = await Schedule.create(req.body);
       //   const schoolJson = schedule.toJSON();
       if (schedule) {

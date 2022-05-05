@@ -232,7 +232,7 @@ module.exports = function ApiController() {
     Promise.all([createRowPromise, createEventPromise])
       .then(values => {
         const newEvent = new Event({
-          google: {
+          google: {createEventPromise
             id: req.user.google.id
           },
           sheet: {

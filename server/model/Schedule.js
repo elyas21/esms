@@ -34,6 +34,9 @@ module.exports = (sequelize, DataTypes) => {
       driveUrl: {
         type: DataTypes.STRING
       },
+      calUrl: {
+        type: DataTypes.STRING
+      },
       day: { type: DataTypes.INTEGER(1).UNSIGNED, validate: { min: 0, max: 6 } }, // 0 sun ... to 1 fri
       scheduleFor: {
         type: DataTypes.ENUM,

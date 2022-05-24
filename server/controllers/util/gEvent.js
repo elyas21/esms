@@ -64,22 +64,52 @@ async function storeAccessToken() {
   }
 }
 
+function formatTimeZone(date) {
+  return moment(date)
+    .tz('Africa/Addis_Ababa')
+    .format();
+}
+const crypto = require('crypto');
 module.exports = function ApiController() {
   //   create google calendar event using wrapper function return promise
-  const createGoogleCalendarEvent = function(event) {
+  const createGoogleCalendarEvent = function(req, event) {
+    event.CalId = 'primary';
+    console.log(req.session.gdata);
+    // req.session.gac = kutokens.refresh_token;
+    var expiry_date = +req.session.gdata;
+    var expiry_date = +req.session.gdata.expiry_date;
+
+    oauth2Client.setCredentials({
+      access_token: req.session.gac,
+      refresh_token: req.session.grc,
+      expiry_date: expiry_date
+    });
+
     return new Promise((resolve, reject) => {
       calendar.events.insert(
         {
           auth: oauth2Client,
           calendarId: event.CalId,
+          maxAttendees: 100,
+          sendNotifications: true,
+          sendUpdates: 'all',
+          supportsAttachments: true,
+          conferenceDataVersion: 1,
           resource: {
             summary: event.summary,
             description: event.summary,
+            visibility: 'private',
             start: {
               dateTime: formatTimeZone(event.startDateTime)
             },
             end: {
               dateTime: formatTimeZone(event.endDateTime)
+            },
+            conferenceData: {
+              createRequest: {
+                requestId: crypto.randomUUID(),
+                conferenceSolutionKey: { type: 'hangoutsMeet' }
+              }
             }
           }
         },

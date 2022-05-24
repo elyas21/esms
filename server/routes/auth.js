@@ -78,22 +78,28 @@ router.post(
     // if user has googleId in database, update refresh token
     // console.log(tokens);
     const user = await User.findOne({ where: { googleId: userINFO.data.id } });
-    if (user && userINFO) {
-      if (user.dataValues.googleEmail != userINFO.data.email) {
-        return res.sendStatus(403);
+    console.log(user);
+    if (req.session.userInfo.googleId) {
+      if (req.session.userInfo.googleId != userINFO.data.id) {
+        return res.status(403).send({ msg: 'Email does not match' });
       }
-    } else {
+    }
+    if (user && userINFO) {
+      // if (user.dataValues.googleId != userINFO.data.id) {
+      //   return res.status(403).send({ msg: 'Email does not match' });
+      // }
+
       console.log(userINFO.data);
+      console.log(user.dataValues);
       console.log(user.dataValues.googleEmail);
       console.log(user);
-      req.session.gac=toknes.access_token
-      req.session.grc=toknes.refresh_token
-      req.session.gdata = userINFO.data
-    }
-    console.log(userINFO.data);
-    console.log(user.googleEmail);
-    console.log(user);
-    if (user) {
+      req.session.gac = tokens.access_token;
+      req.session.grc = tokens.refresh_token;
+      req.session.gdata = userINFO.data;
+      console.log(userINFO.data);
+      console.log(user.googleEmail);
+      console.log(user);
+
       await User.update(
         { googleRefreshToken: tokens.refresh_token },
         {
@@ -104,7 +110,11 @@ router.post(
       );
     } else {
       await User.update(
-        { googleId: userINFO.data.id, googleRefreshToken: tokens.refresh_token },
+        {
+          googleEmail: userINFO.data.email,
+          googleId: userINFO.data.id,
+          googleRefreshToken: tokens.refresh_token
+        },
         {
           where: {
             userId: req.user.userId
@@ -179,11 +189,11 @@ router.get('/verify', authService.checkTokenMW, authService.verifyToken, (req, r
 //   }
 // );
 
-// router.get('/logout', (req, res) => {
-//   req.session = null;
-//   req.logout();
-//   res.redirect('/');
-// });
+router.get('/logout', (req, res) => {
+    req.logout();
+    req.session = null;
+    res.send('ok'); //Inside a callback… bulletproof!
+});
 router.use('*', (req, res) => {
   res.send('auth not found');
 });

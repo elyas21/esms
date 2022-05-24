@@ -19,6 +19,16 @@ export class AuthEffects {
       )
     );
   });
-
+  logout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.Logout),
+      concatMap(action =>
+        this.authSer.logout().pipe(
+          map(user => AuthActions.LogoutSuccess()),
+          catchError(error => of(AuthActions.AuthLoginFailure({ error })))
+        )
+      )
+    );
+  });
   constructor(private actions$: Actions, private authSer: AuthService) {}
 }

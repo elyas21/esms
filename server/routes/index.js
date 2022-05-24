@@ -30,7 +30,7 @@ const Staff = require('./staff');
 
 const isLoggedIn = require('../polices/IsGAuthenticated');
 const isAuthenticated = require('../polices/isAuthenticated');
-
+//sAuthenticated.checkTokenMW,isAuthenticated.verifyToken
 router
   .use('/auth/', Auth)
   .use('/school/', School)
@@ -38,7 +38,7 @@ router
   .use('/attendance/', Attendance)
   .use('/class-year/', ClassYear)
   .use('/semister/', Semister)
-  .use('/student/', isAuthenticated.checkTokenMW,isAuthenticated.verifyToken, Student)
+  .use('/student/', Student)
   .use('/course-gradeing/', CourseGradeing)
   .use('/event/', Schedule)
   .use('/sudo-schedule/', SudoSchedule)

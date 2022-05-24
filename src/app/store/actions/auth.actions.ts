@@ -21,3 +21,14 @@ export const BrowserReload = createAction(
 );
 
 export const Logout = createAction('[Nav Component] Logout User');
+
+export const LogoutSuccess = createAction(
+  '[Auth Component] AuthLogOut Success'
+);
+
+
+
+export const LogoutFailure = createAction(
+  '[Auth Component] AuthLogout Failure',
+  props<{ error: any }>()
+);

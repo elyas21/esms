@@ -31,6 +31,8 @@ exports.checkTokenMW = (req, res, next) => {
 
 // Verify Token validity and attach token data as request attribute
 exports.verifyToken = (req, res, next) => {
+  console.log('res', req.session);
+
   jwt.verify(req.token, 'secret', (err, authData) => {
     if (err) {
       res.sendStatus(403);
@@ -45,8 +47,9 @@ exports.verifyToken = (req, res, next) => {
 };
 
 // Verify Token Google validity and attach token data as request attribute
-exports.verifyToken = (req, res, next) => {
-  jwt.verify(req.gtoken, 'secret', (err, authData) => {
+exports.verifyGToken = (req, res, next) => {
+  console.log('res', req.session.glt);
+    jwt.verify(req.gtoken, 'secret', (err, authData) => {
     if (err) {
       res.sendStatus(403);
     } else {

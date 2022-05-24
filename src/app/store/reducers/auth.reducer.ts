@@ -19,7 +19,7 @@ export const initialState: State = {
     role: null,
     schoolName: null,
     School: null,
-    googleId: null,
+    googleId: null
   },
   error: null
 };
@@ -44,8 +44,20 @@ export const reducer = createReducer(
         role: null,
         schoolName: null,
         School: null,
-        googleId: null,
+        googleId: null
       },
+      error: action.error
+    };
+  }),
+  on(AuthActions.LogoutSuccess, (state, action) => {
+    return {
+      user: null,
+      error: null
+    };
+  }),
+  on(AuthActions.AuthLoginFailure, (state, action) => {
+    return {
+      user: state.user,
       error: action.error
     };
   }),
@@ -61,7 +73,7 @@ export const reducer = createReducer(
         role: null,
         schoolName: null,
         School: null,
-        googleId: null,
+        googleId: null
       },
       error: null
     };

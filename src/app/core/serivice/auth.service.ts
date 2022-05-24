@@ -64,8 +64,19 @@ export class AuthService {
   logout() {
     // remove user from local storage to log user out
     // localStorage.removeItem('currentUser');
+    // this.currentUserSubject.next(null);
+    // this.currentGoogleUserSubject.next(null);
+
     this.currentUserSubject.next(null);
     this.currentGoogleUserSubject.next(null);
+
+    return this.http
+      .get<any>(`${environment.url}api/auth/logout`)
+      .pipe(
+        map(msg => {
+          return msg;
+        })
+      );
   }
   savegoogleUser(user) {
     localStorage.setItem('currentGoogleUser', JSON.stringify(user));

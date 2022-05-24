@@ -15,17 +15,26 @@ var parseurl = require('parseurl');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser());
+const config = require('./config/database');
 
+var MySQLStore = require('express-mysql-session')(session);
+var options = {
+	host: config.db.host,
+	port: 3306,
+	user: config.db.user,
+	password: config.db.password,
+	database: config.db.session_db
+};
+var sessionStore = new MySQLStore(options);
 app.use(
   session({
     secret: 'keyboard cat',
     resave: false,
-
+    // store: sessionStore,
     saveUninitialized: true
   })
 );
 
-const config = require('./config/config');
 
 // require('./polices/passport-google');
 require('./passport');

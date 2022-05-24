@@ -15,6 +15,20 @@ export class RouteEffects {
       ),
     { dispatch: false }
   );
+
+  logoutSuccess$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(fromAuthActions.LogoutSuccess),
+        tap(action => {
+          localStorage.removeItem('currentUser');
+          localStorage.removeItem('currentGoogleUser');
+          this.Route.navigate(['/']);
+        })
+      ),
+    { dispatch: false }
+  );
+
   goHome$ = createEffect(
     () => {
       return this.actions$.pipe(

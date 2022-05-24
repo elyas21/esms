@@ -116,11 +116,17 @@ module.exports = {
     }
   },
   async add(req, res) {
+
     try {
-      console.log(req.body);
       cevent = req.body
-      const waitGmeet = await gApi.createGoogleCalendarEvent(cevent);
-      console.log(waitGmeet);
+      console.log(req.body);
+
+      if (req.body.classType === 'online') {  // if online
+        cevent.summary = 'online class'; 
+        const waitGmeet = await gApi.createGoogleCalendarEvent(req,cevent);
+        console.log(waitGmeet);
+        cevent.calUrl = waitGmeet.htmlLink;  
+      }
       const schedule = await Schedule.create(req.body);
       //   const schoolJson = schedule.toJSON();
       if (schedule) {
@@ -308,7 +314,7 @@ async function createGoogleMeet(cevent) {
       return moment(date)
         .tz(event.timeZone)
         .format();
-    }
+    }Africa/Addis_Ababa
 
     oauth2Client.setCredentials({
       access_token: token,

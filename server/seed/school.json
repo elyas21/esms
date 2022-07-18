@@ -18,5 +18,17 @@
   {
     "schoolId": "school-4",
     "schoolName": "SCHOOL-4"
+  },
+  {
+    "schoolId": "sc-00",
+    "schoolName": "sc-00"
+  },
+  {
+    "schoolId": "sc-01",
+    "schoolName": "sc-00"
+  },
+  {
+    "schoolId": "sc-02",
+    "schoolName": "sc-00"
   }
 ]

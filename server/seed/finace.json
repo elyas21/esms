@@ -1,6 +1,27 @@
 [
   {
     "finaceId": "finace-0",
-    "finanaceName": "finacer Ela"
+    "finanaceName": "finacer-0",
+    "school": "school-0"
+  },
+  {
+    "finaceId": "finace-1",
+    "finanaceName": "finacer-1",
+    "school": "school-1"
+  },
+  {
+    "finaceId": "finace-2",
+    "finanaceName": "finacer-2",
+    "school": "school-2"
+  },
+  {
+    "finaceId": "finace-3",
+    "finanaceName": "finacer-3",
+    "school": "school-3"
+  },
+  {
+    "finaceId": "finace-4",
+    "finanaceName": "finacer-4",
+    "school": "school-4"
   }
 ]

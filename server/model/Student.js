@@ -37,6 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       sex: { type: DataTypes.ENUM, values: ['male', 'female'] },
       studentName: DataTypes.STRING,
       regCandidate: { type: DataTypes.BOOLEAN, defaultValue: true },
+      isNatuarScience: { type: DataTypes.BOOLEAN },
       softDelete: { type: DataTypes.BOOLEAN, defaultValue: false }
     },
     {

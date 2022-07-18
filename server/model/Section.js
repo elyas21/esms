@@ -25,6 +25,10 @@ module.exports = (sequelize, DataTypes) => {
         validate: { min: -3, max: 12 }
         // -3 nursary    -2 kg-1 -1 kg-2 0 kg-3  12 last
       },
+
+      isNatuarScience: {
+        type: DataTypes.BOOLEAN
+      },
       softDelete: { type: DataTypes.BOOLEAN, defaultValue: false }
     },
     {

@@ -7,15 +7,16 @@ const sequelize = new Sequelize('esms00', 'black', 'tikur', {
   host: 'localhost',
   dialect: 'mysql',
   pool: {
-    max: 5,
+    max: 15,
     min: 0,
-    acquire: 30000,
-    idle: 10000
+    acquire: 300000,
+    idle: 100000
   },
   define: {
     timestamps: false,
     freezeTableName: true
   },
+  
   logging: true,
 });
 fs.readdirSync(__dirname)

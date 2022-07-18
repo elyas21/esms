@@ -32,7 +32,23 @@ const teacher = require('./teacher.json');
 const tsc = require('./tsc.json');
 const finace = require('./finace.json');
 const classYearMap = require('./classYearMap.json');
+const studentsArray = require('./rand/RandGen');
+const coursesArray = require('./rand/genCourse');
 
+const gradeArray = require('./rand/genGrade');
+fs = require('fs');
+function consoleLogToFile(log) {
+  console.log(log);
+  fs.appendFile('log.txt', `${log}\n`, function(err) {
+    if (err) {
+      console.log(err);
+    }
+  });
+}
+var dateNow = new Date();
+// var timeNow = dateNow.getHours() + '-' + dateNow.getMinutes();
+// var logPath = 'log/' + dateNow.toDateString() + ' -' + ' Start Time - ' + timeNow + '.log';
+consoleLogToFile('Start Time - ' + dateNow);
 sequelize.sync({ force: true }).then(async function() {
   await Promise.all(
     school.map(school => {
@@ -55,12 +71,12 @@ sequelize.sync({ force: true }).then(async function() {
     })
   );
   await Promise.all(
-    course.map(course => {
+    coursesArray.map(course => {
       Course.create(course);
     })
   );
   await Promise.all(
-    grade.map(gradee => {
+    gradeArray.map(gradee => {
       Grade.create(gradee);
     })
   );
@@ -82,7 +98,7 @@ sequelize.sync({ force: true }).then(async function() {
   );
 
   await Promise.all(
-    student.map(student => {
+    studentsArray().map(student => {
       Student.create(student);
     })
   );

@@ -1,4 +1,17 @@
-save google accesToken to session
+create refreshtoken route     
 
 
-calendar vs event 
+back and fix things 
+
+
+
+# create 100 students for each grade from 9 - 12 
+
+    generae using random
+    update all json
+
+
+# genGrade
+// how to add courses by id rather by name
+// cheak gencourses 
+// gen sections

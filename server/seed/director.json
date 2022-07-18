@@ -28,5 +28,23 @@
     "directorName": null,
     "softDelete": false,
     "school": "school-4"
+  },
+  {
+    "directorId": "dr-00",
+    "directorName": "dr-00-name",
+    "softDelete": false,
+    "school": "sc-00"
+  },
+  {
+    "directorId": "dr-01",
+    "directorName": "dr-01-name",
+    "softDelete": false,
+    "school": "sc-01"
+  },
+  {
+    "directorId": "dr-02",
+    "directorName": "dr-02-name",
+    "softDelete": false,
+    "school": "sc-02"
   }
 ]

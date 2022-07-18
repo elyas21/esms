@@ -8,7 +8,7 @@
     "projects",
     "node_modules",
     "node_moduless",
-
+    "server/seed",
     "server/node_modules",
 
     "server/node_modulesc",
